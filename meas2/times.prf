@@ -1,0 +1,325 @@
+(times
+ (time_TCC1 0
+  (time_TCC1-1 nil 3639475474 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil))
+   nil))
+ (unit_time_TCC1 0
+  (unit_time_TCC1-1 nil 3639475474 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil))
+   nil))
+ (negunit_time_TCC1 0
+  (negunit_time_TCC1-1 nil 3639475474 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (unit_time const-decl "time" times nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil))
+   nil))
+ (nonzero_time_TCC1 0
+  (nonzero_time_TCC1-1 nil 3639242576
+   ("" (expand "unit_time") (("" (assert) nil nil)) nil)
+   ((unit_time const-decl "time" times nil)) nil))
+ (nonneg_time_TCC1 0
+  (nonneg_time_TCC1-1 nil 3639242576
+   ("" (expand "zero_time")
+    (("" (expand "zero_measurement") (("" (assert) nil nil)) nil)) nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_time const-decl "time" times nil))
+   nil))
+ (nonpos_time_TCC1 0
+  (nonpos_time_TCC1-1 nil 3639242576 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (postime_TCC1 0
+  (postime_TCC1-1 nil 3639475474 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (unit_time const-decl "time" times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (negtime_TCC1 0
+  (negtime_TCC1-1 nil 3639475474 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (unit_time const-decl "time" times nil)
+    (negunit_time const-decl "time" times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (time_plus_time_is_time 0
+  (time_plus_time_is_time-1 nil 3639242576 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (+ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil))
+   nil))
+ (time_minus_time_is_time 0
+  (time_minus_time_is_time-1 nil 3639242576 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil))
+   nil))
+ (real_times_time_is_time 0
+  (real_times_time_is_time-1 nil 3639242576 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil))
+   nil))
+ (time_div_nzreal_is_time 0
+  (time_div_nzreal_is_time-1 nil 3639242576 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil))
+   nil))
+ (neg_time_is_time 0
+  (neg_time_is_time-1 nil 3639242576 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (time? const-decl "bool" times nil))
+   nil))
+ (time_div_time_is_dimensionless 0
+  (time_div_time_is_dimensionless-1 nil 3639475474
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (time? const-decl "bool" times nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (nztime nonempty-type-eq-decl nil times nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (odd_minus_odd_is_even application-judgement "even_int" integers
+     nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (even_minus_even_is_even application-judgement "even_int" integers
+     nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "measurement" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (dimensionless? const-decl "bool" dimensionlesses nil))
+   nil))
+ (nzreal_times_nztime_is_nztime 0
+  (nzreal_times_nztime_is_nztime-1 nil 3639242576
+   ("" (judgement-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil))
+   nil))
+ (nztime_div_nzreal_is_nztime 0
+  (nztime_div_nzreal_is_nztime-1 nil 3639242576
+   ("" (judgement-tcc) nil nil)
+   ((S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil))
+   nil))
+ (ms_TCC1 0
+  (ms_TCC1-1 nil 3639314108 ("" (grind) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (time? const-decl "bool" times nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     times nil)
+    (s const-decl "postime" times nil)
+    (unit_time const-decl "time" times nil)
+    (zero_time const-decl "time" times nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (S formal-const-decl "system_enum" times nil))
+   nil))
+ (posreal_times_postime_is_postime 0
+  (posreal_times_postime_is_postime-1 nil 3641377835
+   ("" (skeep) (("" (expand "*") (("" (field) nil nil)) nil)) nil)
+   ((* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil)
+    (pos_times_gt formula-decl nil real_props nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (postime_div_posreal_is_postime 0
+  (postime_div_posreal_is_postime-1 nil 3641377835
+   ("" (skeep) (("" (expand "/") (("" (field) nil nil)) nil)) nil)
+   ((/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_times1 formula-decl nil real_props nil)
+    (both_sides_times_pos_le1_imp formula-decl nil extra_real_props
+     nil)
+    (postime nonempty-type-eq-decl nil times nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (time? const-decl "bool" times nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (S formal-const-decl "system_enum" times nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
+    (nznum nonempty-type-eq-decl nil number_fields nil)
+    (/= const-decl "boolean" notequal nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (nnreal_times_nnreal_is_nnreal application-judgement "nnreal"
+     real_types nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (div_cancel2 formula-decl nil real_props nil)
+    (nonzero_real nonempty-type-eq-decl nil reals nil)
+    (bijective? const-decl "bool" functions nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (TRUE const-decl "bool" booleans nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (> const-decl "bool" reals nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (>= const-decl "bool" reals nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil))
+   nil)))
+

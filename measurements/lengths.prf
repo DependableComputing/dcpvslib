@@ -1,0 +1,384 @@
+(lengths
+ (length_TCC1 0
+  (length_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (unit_length_TCC1 0
+  (unit_length_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (negunit_length_TCC1 0
+  (negunit_length_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (nonzero_length_TCC1 0
+  (nonzero_length_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (nonneg_length_TCC1 0
+  (nonneg_length_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (nonpos_length_TCC1 0
+  (nonpos_length_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (poslength_TCC1 0
+  (poslength_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (neglength_TCC1 0
+  (neglength_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (negunit_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (m_TCC1 0
+  (m_TCC1-1 nil 3645152485 ("" (subtype-tcc) nil nil)
+   ((length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (length_plus_length_is_length_TCC1 0
+  (length_plus_length_is_length_TCC1-1 nil 3646733189
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (length_plus_length_is_length_TCC2 0
+  (length_plus_length_is_length_TCC2-1 nil 3646733189
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (length_plus_length_is_length 0
+  (length_plus_length_is_length-1 nil 3639836391 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (preferred_system? const-decl "bool" measurements nil)
+    (+ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil))
+ (length_minus_length_is_length 0
+  (length_minus_length_is_length-1 nil 3639836391 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (preferred_system? const-decl "bool" measurements nil)
+    (- const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil))
+ (real_times_length_is_length 0
+  (real_times_length_is_length-1 nil 3639836391
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (* const-decl "{m: valid_measurement | unit_match?(y, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil))
+ (length_div_nzreal_is_length 0
+  (length_div_nzreal_is_length-1 nil 3639836391
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil))
+ (neg_length_is_length 0
+  (neg_length_is_length-1 nil 3639836391 ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (- const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil))
+ (length_div_length_is_dimensionless_TCC1 0
+  (length_div_length_is_dimensionless_TCC1-1 nil 3646733189
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (dimensionless? const-decl "bool" dimensionlesses nil)
+    (dimensionless nonempty-type-eq-decl nil dimensionlesses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (length_div_length_is_dimensionless_TCC2 0
+  (length_div_length_is_dimensionless_TCC2-1 nil 3646733189
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (dimensionless? const-decl "bool" dimensionlesses nil)
+    (dimensionless nonempty-type-eq-decl nil dimensionlesses nil)
+    (number nonempty-type-decl nil numbers nil)
+    (nzdimensionless nonempty-type-eq-decl nil dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (cm_TCC1 0
+  (cm_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (m const-decl "poslength" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (mm_TCC1 0
+  (mm_TCC1-1 nil 3646734173 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (m const-decl "poslength" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (nzreal_times_nzlength_is_nzlength_TCC1 0
+  (nzreal_times_nzlength_is_nzlength_TCC1-1 nil 3646733189
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (number nonempty-type-decl nil numbers nil)
+    (nzlength nonempty-type-eq-decl nil lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (nzreal_times_nzlength_is_nzlength 0
+  (nzreal_times_nzlength_is_nzlength-1 nil 3639836391
+   ("" (judgement-tcc) nil nil)
+   ((* const-decl "{m: valid_measurement | unit_match?(y, m)}"
+       measurements nil))
+   nil))
+ (nzlength_div_nzreal_is_nzlength 0
+  (nzlength_div_nzreal_is_nzlength-1 nil 3639836391
+   ("" (judgement-tcc) nil nil)
+   ((/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil))
+   nil))
+ (ft_TCC1 0
+  (ft_TCC1-1 nil 3642755863 ("" (subtype-tcc) nil nil)
+   ((length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil)))
+

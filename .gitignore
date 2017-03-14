@@ -1,0 +1,37 @@
+## Compressed/bundled files
+
+*.7z
+*.zip
+*.tgz
+*.tar
+*.dmg
+
+
+## Created by PVS
+
+.pvscontext
+pvsbin
+
+
+# Temporary files
+
+*~
+~$*
+*.bak
+*.back
+*.00[0-9]
+tmp
+temp-header.md
+
+
+# System specific files
+
+.DS_Store
+[Tt]humbs.db
+
+
+# git
+
+.gitattributes
+
+

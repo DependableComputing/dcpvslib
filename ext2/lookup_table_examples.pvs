@@ -1,0 +1,41 @@
+lookup_table_examples: THEORY
+BEGIN
+
+  IMPORTING lookup_table_1d;
+  IMPORTING lookup_table_2d;
+
+  t1d: table_1d =
+      (: (# lhs := 2, rhs := 3.2 #),
+         (# lhs := 3, rhs := 1.6 #) :);
+  min_test_1d: LEMMA
+    lookup_table_1d.min(t1d) = 1.6;
+
+  t1: table_1d = (: (# lhs := 10, rhs := 4.2 #),
+                    (# lhs := 20, rhs := 3.1 #),
+                    (# lhs := 30, rhs := 2.0 #) :);
+  t2: table_1d = (: (# lhs := 10, rhs := 2.2 #),
+                    (# lhs := 20, rhs := 5.1 #),
+                    (# lhs := 30, rhs := 4.0 #) :);
+  t2d: table_2d =
+      (: (# lhs := 1.1, rhs := t1 #),
+         (# lhs := 1.6, rhs := t2 #)
+       :);
+  max_test_2d: LEMMA
+    lookup_table_2d.max(t2d) = 5.1;
+
+%  max_test_2d: LEMMA
+%    LET t: table_2d =
+%      (: (# lhs := 1.1,
+%            rhs :=
+%              (: (# lhs := 10, rhs := 4.2 #),
+%                 (# lhs := 20, rhs := 3.1 #),
+%                 (# lhs := 30, rhs := 2.0 #) :) #),
+%         (# lhs := 1.6,
+%            rhs :=
+%              (: (# lhs := 10, rhs := 2.2 #),
+%                 (# lhs := 20, rhs := 5.1 #),
+%                 (# lhs := 30, rhs := 4.0 #) :) #)
+%       :) IN
+%    lookup_table_2d.max(t) = 5.1;
+
+END lookup_table_examples

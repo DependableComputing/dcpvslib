@@ -1,0 +1,31 @@
+% The queue theory does not define any new structures but
+% provides functions for using a list as a queue
+queue[T: TYPE]: THEORY
+BEGIN
+
+  IMPORTING while@list_props_aux[T];
+
+  enqueue(q: list[T], item: T): {l: list[T] | NOT null?(l)} =
+    append(q, (: item :));
+
+  head(q: {l: list[T] | NOT null?(l)}): T =
+    nth(q, 0);
+
+  dequeue(q: {l: list[T] | NOT null?(l)}): list[T] =
+    cdr(q);
+
+  enqueue2_has_first_item_head: LEMMA
+    FORALL(x: T, y: T):
+      head(enqueue(enqueue(null, x), y)) = x;
+
+  enqueue2_dequeue1_has_second_item_list: LEMMA
+    FORALL(x: T, y: T):
+      dequeue(enqueue(enqueue(null, x), y)) = cons(y, null);
+
+  poslength_implies_notnull: LEMMA
+    FORALL(q: list[T], px: posnat):
+      NOT length(q) < px IMPLIES NOT null?(q);
+
+  AUTO_REWRITE+ poslength_implies_notnull;
+
+END queue

@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of length measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+lengths[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING dimensionlesses[S];
+
+  % or distance, width, etc.
+  length?(m: measurement): bool =
+    dimension_match?(m, zero_measurement WITH [`length_dim := 1]);
+
+  length: NONEMPTY_TYPE = (length?)
+    CONTAINING zero_measurement WITH [`length_dim := 1];
+
+  zero_length: length = zero_measurement WITH [`length_dim := 1];
+
+  unit_length: length = zero_length WITH [`value := 1];
+
+  negunit_length: length = unit_length WITH [`value := -1];
+
+  nonzero_length: NONEMPTY_TYPE =
+    {l: length | l`value /= 0} CONTAINING unit_length;
+
+  nonneg_length: NONEMPTY_TYPE =
+    {l: length | l`value >= 0} CONTAINING zero_length;
+
+  nonpos_length: NONEMPTY_TYPE =
+    {l: length | l`value <= 0} CONTAINING zero_length;
+
+  poslength: NONEMPTY_TYPE =
+    {l: length | l`value > 0} CONTAINING unit_length;
+
+  neglength: NONEMPTY_TYPE =
+    {l: length | l`value < 0} CONTAINING negunit_length;
+
+  nzlength: NONEMPTY_TYPE = nonzero_length;
+  nnlength: NONEMPTY_TYPE = nonneg_length;
+  nplength: NONEMPTY_TYPE = nonpos_length;
+
+  x:   VAR length;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  length_plus_length_is_length:
+    JUDGEMENT +(x: length, y: {l: length | unit_match?(x, l)})
+    HAS_TYPE length;
+  length_minus_length_is_length:
+    JUDGEMENT -(x: length, y: {l: length | unit_match?(x, l)})
+    HAS_TYPE length;
+  real_times_length_is_length:        JUDGEMENT *(a, x)   HAS_TYPE length;
+  length_div_nzreal_is_length:        JUDGEMENT /(x, n0c) HAS_TYPE length;
+  neg_length_is_length:               JUDGEMENT -(x)      HAS_TYPE length;
+  length_div_length_is_dimensionless:
+    JUDGEMENT /(x: dimensionless, n0z: nzdimensionless)
+    HAS_TYPE dimensionless;
+
+  nzreal_times_nzlength_is_nzlength:
+    JUDGEMENT *(n0c: nzreal, n0z: nzlength)
+    HAS_TYPE nzlength;
+  nzlength_div_nzreal_is_nzlength:
+    JUDGEMENT /(n0z: nzlength, n0c: nzreal)
+    HAS_TYPE nzlength;
+
+END lengths

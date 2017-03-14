@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of area measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+areas[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING lengths[S];
+  IMPORTING dimensionlesses[S];
+  IMPORTING reals@sqrt
+ 
+  area?(m: measurement): bool =
+    dimension_match?(m, zero_measurement WITH [`length_dim := 2]);
+
+  area: NONEMPTY_TYPE = (area?)
+    CONTAINING zero_measurement WITH [`length_dim := 2];
+
+  zero_area: area = zero_measurement WITH [`length_dim := 2];
+
+  unit_area: area = zero_area WITH [`value := 1];
+
+  negunit_area: area = unit_area WITH [`value := -1];
+
+  nonzero_area: NONEMPTY_TYPE =
+    {a: area | a`value /= 0} CONTAINING unit_area;
+
+  nonneg_area: NONEMPTY_TYPE =
+    {a: area | a`value >= 0} CONTAINING zero_area;
+
+  nonpos_area: NONEMPTY_TYPE =
+    {a: area | a`value <= 0} CONTAINING zero_area;
+
+  posarea: NONEMPTY_TYPE =
+    {a: area | a`value > 0} CONTAINING unit_area;
+
+  negarea: NONEMPTY_TYPE =
+    {a: area | a`value < 0} CONTAINING negunit_area;
+
+  nzarea: NONEMPTY_TYPE = nonzero_area;
+  nnarea: NONEMPTY_TYPE = nonneg_area;
+  nparea: NONEMPTY_TYPE = nonpos_area;
+
+  x:   VAR area;
+  n0z: VAR nzarea;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  area_plus_area_is_area:
+    JUDGEMENT +(x: area, y: {a: area | unit_match?(x, a)})
+    HAS_TYPE area;
+  area_minus_area_is_area:
+    JUDGEMENT -(x: area, y: {a: area | unit_match?(x, a)})
+    HAS_TYPE area;
+  real_times_area_is_area: JUDGEMENT *(a, x)   HAS_TYPE area;
+  area_div_nzreal_is_area: JUDGEMENT /(x, n0c) HAS_TYPE area;
+  neg_area_is_area:        JUDGEMENT -(x)      HAS_TYPE area;
+
+  length_times_length_is_area:
+    JUDGEMENT *(x: length, y: length) HAS_TYPE area;
+  area_div_length_is_length:
+    JUDGEMENT /(x: area, y: nzlength) HAS_TYPE length;
+
+  nzreal_times_nzarea_is_nzarea: JUDGEMENT *(n0c, n0z) HAS_TYPE nzarea;
+  nzarea_div_nzreal_is_nzarea: JUDGEMENT /(n0z, n0c)   HAS_TYPE nzarea;
+
+  sqrt_area_is_length: JUDGEMENT sqrt(nnz: nnarea) HAS_TYPE nnlength;
+
+END areas

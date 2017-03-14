@@ -1,0 +1,34 @@
+lookup_table_1d: THEORY
+BEGIN
+
+  table_entry_1d: TYPE = [#
+                           x1: real,
+                           x2: {r: real | r > x1},
+                           y1: real,
+                           y2: real
+                          #];
+
+  % Assertion that either we're interpolating or we're clipping (not true if we're extrapolating)
+  interpolate_or_clipping_1d(x: real, data: table_entry_1d): bool =
+    (data`x1 <= x AND x <= data`x2) OR (data`y1 = data`y2);
+
+  interpolate_1d(x: real, data: table_entry_1d): real =
+    data`y2 + (x - data`x2) * (data`y2 - data`y1) / (data`x2 - data`x1);
+
+  oneD_interpolate_interpolates: LEMMA
+    FORALL(data: table_entry_1d,
+           x:    {r: real | data`x1 <= r AND r <= data`x2}):
+      LET interp = interpolate_1d(x, data) IN
+      LET min = min(data`y1, data`y2) IN
+      LET max = max(data`y1, data`y2) IN
+        min <= interp AND interp <= max;
+
+  oneD_interp_or_clipping_implies_bounds: LEMMA
+    FORALL(data: table_entry_1d,
+           x:    {r: real | interpolate_or_clipping_1d(r, data)}):
+      LET interp = interpolate_1d(x, data) IN
+      LET min = min(data`y1, data`y2) IN
+      LET max = max(data`y1, data`y2) IN
+        min <= interp AND interp <= max;
+
+END lookup_table_1d

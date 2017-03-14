@@ -1,0 +1,11 @@
+imperial_masses: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING masses[IMPERIAL];
+
+  slug_to_g: real = 14593.902937;
+
+  slug: posmass = unit_mass WITH [`scaling := slug_to_g];
+
+END imperial_masses

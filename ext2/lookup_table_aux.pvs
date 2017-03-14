@@ -1,0 +1,68 @@
+% Auxillary definitions and functions for lookup tables
+lookup_table_aux[T: TYPE]: THEORY
+  BEGIN
+
+    entryPair: TYPE = [# lhs: real, rhs: T #];
+
+    % x values are in stictly increasing order
+    lookup_table: TYPE =
+      {A: finseq[entryPair] | A`length > 0 AND
+                              FORALL (i: below(A`length - 1)):
+                                A(i+1)`lhs > A(i)`lhs};
+
+    tbl: VAR lookup_table;
+
+    x: VAR real;
+
+    i, j: VAR nat;
+
+    half(i): {j | 2*j <= i AND i <= 2*j + 1} =
+      IF even?(i) THEN i / 2 ELSE (i - 1) / 2 ENDIF;
+
+    % An interval is a real that is between tbl(lo)`lhs and tbl(hi)`lhs (inclusive)
+    % or a real that is simply less than or equal to tbl(hi)`lhs if lo is zero or
+    % a real that is simply greater than or equal to tbl(lo)`lhs if hi = tbl`length
+    % (i.e., one beyond the max index) or any real if lo is zero AND
+    % hi = tbl`length
+    interval(tbl, (lo: below(tbl`length)), (hi: subrange(lo+1, tbl`length))): TYPE =
+      {x | (lo = 0 OR tbl(lo)`lhs <= x) AND
+           (hi = tbl`length OR x <= tbl(hi)`lhs)};
+
+    % An index is a natural number between lo and hi (inclusive) such that it
+    % reflects the smallest such value such that tbl(i-1)`lhs <= x and
+    % x <= tbl(i)`lhs, when lo /= 0 (or x > tbl(0)`lhs) and hi /= tbl`length
+    % (or x < tbl(tbl`length-1)`lhs). If lo = 0 and x <= tbl(0)`lhs, then index will
+    % equal 0, or if hi = tbl`length and x >= tbl(tbl`length-1)`lhs then index will
+    % equal tbl`length (which is not a valid entry into tbl).
+    index(tbl, (lo: below(tbl`length)), (hi: subrange(lo+1, tbl`length)),
+          (x: interval(tbl, lo, hi))): TYPE =
+      {i : subrange(lo, hi) | (i = tbl`length IMPLIES x >= tbl(hi-1)`lhs) AND
+                              (i = 0 IMPLIES x <= tbl(0)`lhs) AND
+                              ((i > 0 AND i < tbl`length) IMPLIES
+                                (tbl(i-1)`lhs <= x AND x <= tbl(i)`lhs))};
+
+    % search uses binary search to find a value satisfying the index type
+    search(tbl, (lo : below(tbl`length)), (hi: subrange(lo+1, tbl`length)))
+      (x: interval(tbl, lo, hi)): RECURSIVE index(tbl, lo, hi, x) =                
+      (IF x >= tbl(lo)`lhs THEN
+         IF x < tbl(hi-1)`lhs THEN
+           (LET midd = half(hi - lo) IN
+            IF midd = 0 THEN
+              hi
+            ELSIF x >= tbl(lo + midd)`lhs THEN
+              search(tbl, lo + midd, hi)(x)
+            ELSE
+              search(tbl, lo, lo+midd)(x)
+            ENDIF)
+         ELSE
+           hi
+         ENDIF
+       ELSE
+         lo
+       ENDIF)
+      MEASURE (hi - lo);
+
+    % find uses search over the whole table
+    find(tbl)(x): index(tbl, 0, tbl`length, x) = search(tbl, 0, tbl`length)(x);
+
+END lookup_table_aux

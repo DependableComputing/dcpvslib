@@ -1,0 +1,372 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of generic measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+measurements: THEORY
+BEGIN
+
+  IMPORTING reals@sqrt;
+
+  % NOT_APPLICABLE should only apply for zero-valued or dimensional measurements
+  system_enum: NONEMPTY_TYPE = {NOT_APPLICABLE, METRIC, IMPERIAL, ANY};
+
+  measurement: NONEMPTY_TYPE =
+    [#
+      value:       real,
+      system:      system_enum,
+      scaling:     posreal,
+      length_dim:  real,
+      mass_dim:    real,
+      time_dim:    real,
+      current_dim: real,
+      temp_dim:    real,
+      intens_dim:  real,
+      angle_dim:   real
+     #] CONTAINING
+    (#
+      value       := 0,
+      system      := NOT_APPLICABLE,
+      scaling     := 1,
+      length_dim  := 0,
+      mass_dim    := 0,
+      time_dim    := 0,
+      current_dim := 0,
+      temp_dim    := 0,
+      intens_dim  := 0,
+      angle_dim   := 0
+     #);
+
+  zero_measurement: measurement =
+    (#
+      value       := 0,
+      system      := NOT_APPLICABLE,
+      scaling     := 1,
+      length_dim  := 0,
+      mass_dim    := 0,
+      time_dim    := 0,
+      current_dim := 0,
+      temp_dim    := 0,
+      intens_dim  := 0,
+      angle_dim   := 0
+     #);
+
+  dimension_match?(x: measurement, y: measurement): bool =
+    (x`length_dim = y`length_dim) AND
+    (x`time_dim = y`time_dim) AND
+    (x`mass_dim = y`mass_dim) AND
+    (x`current_dim = y`current_dim) AND
+    (x`temp_dim = y`temp_dim) AND
+    (x`intens_dim = y`intens_dim) AND
+    (x`angle_dim = y`angle_dim);
+
+  explicit_system?(m: measurement): bool =
+    (m`system /= NOT_APPLICABLE) AND (m`system /= ANY)
+
+  % Whether x's system is preferred over (or equaly preferred as) y's
+  % DEFINED > ANY > NOT_APPLICABLE (where DEFINED is either METRIC or IMPERIAL)
+  preferred_system?(x: measurement, y: measurement): bool =
+    IF explicit_system?(x) THEN
+      TRUE
+    ELSIF explicit_system?(y) THEN
+      FALSE
+    ELSIF (x`system = ANY) OR (y`system = NOT_APPLICABLE) THEN
+      % either they're both all, both n/a, or x is all and y is n/a
+      TRUE
+    ELSE
+      % x is n/a and y is all
+      FALSE
+    ENDIF
+
+  % NOT_APPLICABLE can only be used as a sytem if the value
+  % is zero or it is a dimensionless measurement
+  valid_measurement?(m: measurement): bool =
+    (m`system /= NOT_APPLICABLE) OR
+    (dimension_match?(zero_measurement, m))
+
+  valid_measurement: NONEMPTY_TYPE = (valid_measurement?)
+    CONTAINING zero_measurement;
+
+  system_match?(x: measurement, y: measurement): bool =
+    valid_measurement?(x) AND valid_measurement?(y) AND
+     ((x`system = y`system) OR (NOT explicit_system?(x))
+      OR (NOT explicit_system?(y)));
+
+  system_match_not_transitive: LEMMA
+    EXISTS(x, y, z: valid_measurement):
+     system_match?(x, y) AND system_match?(y, z) AND NOT system_match?(x, z)
+
+  explicit_system_match?(x: measurement, y: measurement): bool =
+    valid_measurement?(x) AND valid_measurement?(y) AND
+     (x`system = y`system);
+
+  explicit_system_match_transitive: LEMMA
+    FORALL(x, y, z: valid_measurement):
+     explicit_system_match?(x, y) AND explicit_system_match?(y, z) IMPLIES
+       explicit_system_match?(x, z)
+
+  unit_measurement: valid_measurement =
+    zero_measurement WITH [`value := 1, `system := NOT_APPLICABLE];
+
+  negunit_measurement: valid_measurement =
+    zero_measurement WITH [`value := -1, `system := NOT_APPLICABLE];
+
+  nonzero_measurement: NONEMPTY_TYPE =
+    {m: valid_measurement | m`value /= 0} CONTAINING unit_measurement;
+
+  nonneg_measurement: NONEMPTY_TYPE =
+    {m: valid_measurement | m`value >= 0} CONTAINING zero_measurement;
+
+  nonpos_measurement: NONEMPTY_TYPE =
+    {m: valid_measurement | m`value <= 0} CONTAINING zero_measurement;
+
+  posmeasurement: NONEMPTY_TYPE =
+    {m: valid_measurement | m`value > 0} CONTAINING unit_measurement;
+
+  negmeasurement: NONEMPTY_TYPE =
+    {m: valid_measurement | m`value < 0} CONTAINING negunit_measurement;
+
+  nzmeasurement: NONEMPTY_TYPE = nonzero_measurement;
+  nnmeasurement: NONEMPTY_TYPE = nonneg_measurement;
+  npmeasurement: NONEMPTY_TYPE = nonpos_measurement;
+
+  unit_match?(x: measurement, y: measurement): bool =
+    dimension_match?(x, y) AND
+    system_match?(x, y) AND
+    (x`scaling = y`scaling);
+
+  unit_match_not_transitive: LEMMA
+    EXISTS(x, y, z: valid_measurement):
+     unit_match?(x, y) AND unit_match?(y, z) AND NOT unit_match?(x, z)
+
+  explicit_unit_match?(x: measurement, y: measurement): bool =
+    dimension_match?(x, y) AND
+    explicit_system_match?(x, y) AND
+    (x`scaling = y`scaling);
+
+  explicit_unit_match_transitive: LEMMA
+    FORALL(x, y, z: valid_measurement):
+     explicit_unit_match?(x, y) AND explicit_unit_match?(y, z) IMPLIES
+       explicit_unit_match?(x, z)
+
+  unit_model(value: real, m: valid_measurement):
+    {x: valid_measurement | unit_match?(x, m)} =
+      m WITH [`value := value];
+
+  +(x: valid_measurement, y: {m: valid_measurement | unit_match?(x, m)}):
+    {m: valid_measurement | unit_match?(x, m)} =
+      IF preferred_system?(x, y) THEN
+        x WITH [`value := x`value + y`value]
+      ELSE
+        y WITH [`value := x`value + y`value]
+      ENDIF
+
+  commutative_add: LEMMA
+    FORALL(x:  valid_measurement, y: {m: valid_measurement | unit_match?(x, m)}):
+      x + y = y + x;
+
+  associative_add: LEMMA
+    FORALL(x:  valid_measurement, y: {m: valid_measurement | unit_match?(x, m)},
+           z:  {m: valid_measurement | unit_match?(x, m) AND unit_match?(y, m)}):
+      x + (y + z) = (x + y) + z;
+
+  -(x: valid_measurement, y: {m: valid_measurement | unit_match?(x, m)}):
+    {m: valid_measurement | unit_match?(x, m)} =
+      IF preferred_system?(x, y) THEN
+        x WITH [`value := x`value - y`value]
+      ELSE
+        y WITH [`value := x`value - y`value]
+      ENDIF;
+
+  -(x: valid_measurement): {m: valid_measurement | unit_match?(x, m)} =
+    x WITH [`value := -x`value];
+
+  inverse_add: LEMMA
+    FORALL(x: valid_measurement):
+      (x + -x)`value = 0;
+
+  minus_add: LEMMA
+    FORALL(x:  valid_measurement, y: {m: valid_measurement | unit_match?(x, m)}):
+      x - y = x + -y;
+
+  *(x: valid_measurement, y: {m: valid_measurement | system_match?(x, m)}):
+    {m: valid_measurement | system_match?(x, m)} =
+      (#
+        value       := x`value * y`value,
+        system      := IF preferred_system?(x, y) THEN
+                         x`system
+                       ELSE
+                         y`system
+                       ENDIF,
+        scaling     := x`scaling * y`scaling,
+        length_dim  := x`length_dim  + y`length_dim,
+        time_dim    := x`time_dim    + y`time_dim,
+        mass_dim    := x`mass_dim    + y`mass_dim,
+        current_dim := x`current_dim + y`current_dim,
+        temp_dim    := x`temp_dim    + y`temp_dim,
+        intens_dim  := x`intens_dim  + y`intens_dim,
+        angle_dim   := x`angle_dim   + y`angle_dim
+       #);
+
+  commutative_mult: LEMMA
+    FORALL(x: valid_measurement, y: {m: valid_measurement | system_match?(x, m)}):
+      x * y = y * x;
+
+  associative_mult: LEMMA
+    FORALL(x:  valid_measurement, y: {m: valid_measurement | unit_match?(x, m)},
+           z:  {m: valid_measurement | unit_match?(x, m) AND unit_match?(y, m)}):
+      x * (y * z) = (x * y) * z;
+
+% Results in a stack overflow error in PVS
+%  identity_mult: LEMMA
+%    FORALL(x: valid_measurement):
+%      (unit_measurement WITH [`system := x`system]) * x = x;
+
+  distributive: LEMMA
+    FORALL(x: valid_measurement, y: {m: valid_measurement | unit_match?(x, m)},
+           z: {m: valid_measurement | unit_match?(x, m) AND unit_match?(y, m)}):
+      x * (y + z) = x * y + x * z;
+
+  *(x: real, y: valid_measurement): {m: valid_measurement | unit_match?(y, m)} =
+    y WITH [`value := x * y`value];
+
+  *(x: valid_measurement, y: real): {m: valid_measurement | unit_match?(x, m)} =
+    x WITH [`value := x`value * y];
+
+% mr = valid_measurement-real
+  mr_commutative_mult: LEMMA
+    FORALL(x: valid_measurement, y: real):
+      x * y = y * x;
+
+  mr_associative_mult: LEMMA
+    FORALL(x: valid_measurement, y, z: real):
+      x * (y * z) = (x * y) * z;
+
+  mr_associative_mult2: LEMMA
+    FORALL(x: valid_measurement, y: real, z: {m: valid_measurement | system_match?(x, m)}):
+      x * (y * z) = (x * y) * z;
+
+  mr_distributive: LEMMA
+    FORALL(x: real, y: valid_measurement, z: {m: valid_measurement | unit_match?(y, m)}):
+      x * (y + z) = x * y + x * z;
+
+  /(x: valid_measurement, y: {m: nzmeasurement | system_match?(x, m)}):
+    {m: valid_measurement | system_match?(y, m)} =
+      (#
+        value       := x`value / y`value,
+        system      := IF preferred_system?(x, y) THEN
+                         x`system
+                       ELSE
+                         y`system
+                       ENDIF,
+        scaling     := x`scaling / y`scaling,
+        length_dim  := x`length_dim  - y`length_dim,
+        time_dim    := x`time_dim    - y`time_dim,
+        mass_dim    := x`mass_dim    - y`mass_dim,
+        current_dim := x`current_dim - y`current_dim,
+        temp_dim    := x`temp_dim    - y`temp_dim,
+        intens_dim  := x`intens_dim  - y`intens_dim,
+        angle_dim   := x`angle_dim   - y`angle_dim
+       #);
+
+  inverse_mult: LEMMA
+    FORALL(n0x: nzmeasurement):
+      LET unity = n0x * ((unit_measurement WITH [`system := n0x`system]) / n0x) IN
+        (unity`value = 1) AND dimension_match?(unity, unit_measurement)
+        AND (unity`scaling = 1);
+
+  /(x: valid_measurement, y: nzreal): {m: valid_measurement | unit_match?(x, m)} =
+    x WITH [`value := x`value / y];
+
+  /(x: real, y: nzmeasurement): {m: valid_measurement | system_match?(y, m)} =
+    (#
+      value       := x / y`value,
+      system      := y`system,
+      scaling     := 1 / y`scaling,
+      length_dim  := -y`length_dim,
+      time_dim    := -y`time_dim,
+      mass_dim    := -y`mass_dim,
+      current_dim := -y`current_dim,
+      temp_dim    := -y`temp_dim,
+      intens_dim  := -y`intens_dim,
+      angle_dim   := -y`angle_dim
+     #);
+
+  mr_inverse_mult: LEMMA
+    FORALL(n0x: nzmeasurement):
+      LET unity = n0x * (1 / n0x) IN
+        (unity`value = 1) AND dimension_match?(unity, unit_measurement)
+        AND (unity`scaling = 1);
+
+  base_value(x: valid_measurement): real =
+    x`value * x`scaling;
+
+  % We might want to use a different comparable function, but
+  % just checking system and value is insufficient, because it
+  % does not capture how some specifications (e.g., Simulink)
+  % would handle similar logic
+  comparable?(x: valid_measurement, y: valid_measurement): bool =
+    unit_match?(x, y) OR (x`value = 0) OR (y`value = 0);
+
+  =(x: valid_measurement, y: valid_measurement): bool =
+    comparable?(x, y) AND (base_value(x) = base_value(y));
+
+  <(x: valid_measurement, y: {m: valid_measurement | comparable?(x, m)}): bool =
+    base_value(x) < base_value(y);
+
+  trich_lt: LEMMA
+    FORALL(x: valid_measurement, y: {m: valid_measurement | comparable?(x, m)}):
+      x < y OR x = y OR y < x;
+
+  <=(x: valid_measurement, y: {m: valid_measurement | comparable?(x, m)}): bool =
+    x < y OR x = y;
+
+  >(x: valid_measurement, y: {m: valid_measurement | comparable?(x, m)}): bool =
+    y < x;
+
+  trich_gt: LEMMA
+    FORALL(x: valid_measurement, y: {m: valid_measurement | comparable?(x, m)}):
+      x > y OR x = y OR y > x;
+
+  >=(x: valid_measurement, y: {m: valid_measurement | comparable?(x, m)}): bool =
+    y <= x;
+
+  % Taking sqrt of scaling might not always be the correct solution
+  % Currently, however, I do not have a clear example where it is not
+  sqrt(x: nnmeasurement): {m: nnmeasurement | system_match?(x,m)} =
+    (#
+      value       := sqrt(x`value),
+      system      := x`system,
+      scaling     := sqrt(x`scaling),
+      length_dim  := x`length_dim  / 2,
+      time_dim    := x`time_dim    / 2,
+      mass_dim    := x`mass_dim    / 2,
+      current_dim := x`current_dim / 2,
+      temp_dim    := x`temp_dim    / 2,
+      intens_dim  := x`intens_dim  / 2,
+      angle_dim   := x`angle_dim   / 2
+     #)
+
+  % Scaling is exponentiated via multiplication rule
+  expt(x: valid_measurement, n: nat): RECURSIVE {m: valid_measurement | x`system = m`system} =
+    IF n = 0 THEN
+      unit_measurement WITH [`system := x`system]
+    ELSE
+      x * expt(x, n - 1)
+    ENDIF
+    MEASURE n;
+
+  zero_value?(m: valid_measurement): bool = (m`value = 0);
+
+  ^(x: valid_measurement, i: {i: int | NOT(zero_value?(x)) OR i >= 0}):
+    {m: valid_measurement | system_match?(x,m)} =
+      IF i >= 0 THEN expt(x, i) ELSE 1 / expt(x, -i) ENDIF;
+
+  expt_pos: LEMMA FORALL(px: posmeasurement, i: int): (px^i)`value > 0;
+
+  sqrt_inverse_sq: LEMMA
+    FORALL(nnx: nnmeasurement): sqrt(nnx) ^ 2 = nnx
+
+  abs(x: valid_measurement): {m: nnmeasurement | unit_match?(x, m)} =
+    x WITH [`value := abs(x`value)];
+
+END measurements

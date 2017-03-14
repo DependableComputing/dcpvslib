@@ -1,0 +1,12 @@
+metric_forces: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING forces[METRIC];
+  IMPORTING metric_masses;
+  IMPORTING metric_lengths;
+
+  N: posforce = kg * m / s^2;
+  N_def: LEMMA N = unit_force WITH [`scaling := 1000];
+
+END metric_forces

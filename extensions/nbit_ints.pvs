@@ -1,0 +1,79 @@
+nbit_ints: THEORY
+BEGIN
+
+n: VAR above(1);
+i: VAR number;
+
+min_int(n):   negint = -(2^(n-1));
+max_int(n):   posint = (2^(n-1) - 1);
+max_nnint(n): posint = (2^n - 1);
+
+max_int_aux:   LEMMA FORALL(n): 1 <= max_int(n);
+max_nnint_aux: LEMMA FORALL(n): 1 <= max_nnint(n);
+
+AUTO_REWRITE+ max_int_aux
+AUTO_REWRITE+ max_nnint_aux
+
+nbit_int?(n)(i): bool = integer?(i) AND (min_int(n) <= i) AND (i <= max_int(n));
+nbit_int(n): NONEMPTY_TYPE = (nbit_int?(n)) CONTAINING 0;
+
+nz_nbit_int?(n)(i): bool = nbit_int?(n)(i) AND (i /= 0);
+nz_nbit_int(n) : NONEMPTY_TYPE = (nz_nbit_int?(n)) CONTAINING 1;
+
+nn_nbit_int?(n)(i): bool = integer?(i) AND (0 <= i) AND (i <= max_nnint(n));
+nn_nbit_int(n): NONEMPTY_TYPE = (nn_nbit_int?(n)) CONTAINING 0;
+
+pos_nbit_int?(n)(i): bool = nn_nbit_int?(n)(i) AND (i /= 0);
+pos_nbit_int(n) : NONEMPTY_TYPE = (pos_nbit_int?(n)) CONTAINING 1;
+
+int8?(i):     bool = nbit_int?(8)(i);
+nz_int8?(i):  bool = nz_nbit_int?(8)(i);
+nn_int8?(i):  bool = nn_nbit_int?(8)(i);
+pos_int8?(i): bool = pos_nbit_int?(8)(i);
+
+int8:    NONEMPTY_TYPE = nbit_int(8)     CONTAINING 0;
+nzint8:  NONEMPTY_TYPE = nz_nbit_int(8)  CONTAINING 1;
+nnint8:  NONEMPTY_TYPE = nn_nbit_int(8)  CONTAINING 0;
+posint8: NONEMPTY_TYPE = pos_nbit_int(8) CONTAINING 1;
+
+int16?(i):     bool = nbit_int?(16)(i);
+nz_int16?(i):  bool = nz_nbit_int?(16)(i);
+nn_int16?(i):  bool = nn_nbit_int?(16)(i);
+pos_int16?(i): bool = pos_nbit_int?(16)(i);
+
+int16:    NONEMPTY_TYPE = nbit_int(16)     CONTAINING 0;
+nzint16:  NONEMPTY_TYPE = nz_nbit_int(16)  CONTAINING 1;
+nnint16:  NONEMPTY_TYPE = nn_nbit_int(16)  CONTAINING 0;
+posint16: NONEMPTY_TYPE = pos_nbit_int(16) CONTAINING 1;
+
+int24?(i):     bool = nbit_int?(24)(i);
+nz_int24?(i):  bool = nz_nbit_int?(24)(i);
+nn_int24?(i):  bool = nn_nbit_int?(24)(i);
+pos_int24?(i): bool = pos_nbit_int?(24)(i);
+
+int24:    NONEMPTY_TYPE = nbit_int(24)     CONTAINING 0;
+nzint24:  NONEMPTY_TYPE = nz_nbit_int(24)  CONTAINING 1;
+nnint24:  NONEMPTY_TYPE = nn_nbit_int(24)  CONTAINING 0;
+posint24: NONEMPTY_TYPE = pos_nbit_int(24) CONTAINING 1;
+
+int32?(i):     bool = nbit_int?(32)(i);
+nz_int32?(i):  bool = nz_nbit_int?(32)(i);
+nn_int32?(i):  bool = nn_nbit_int?(32)(i);
+pos_int32?(i): bool = pos_nbit_int?(32)(i);
+
+int32:    NONEMPTY_TYPE = nbit_int(32)     CONTAINING 0;
+nzint32:  NONEMPTY_TYPE = nz_nbit_int(32)  CONTAINING 1;
+nnint32:  NONEMPTY_TYPE = nn_nbit_int(32)  CONTAINING 0;
+posint32: NONEMPTY_TYPE = pos_nbit_int(32) CONTAINING 1;
+
+int64?(i):     bool = nbit_int?(64)(i);
+nz_int64?(i):  bool = nz_nbit_int?(64)(i);
+nn_int64?(i):  bool = nn_nbit_int?(64)(i);
+pos_int64?(i): bool = pos_nbit_int?(64)(i);
+
+int64:    NONEMPTY_TYPE = nbit_int(64)     CONTAINING 0;
+nzint64:  NONEMPTY_TYPE = nz_nbit_int(64)  CONTAINING 1;
+nnint64:  NONEMPTY_TYPE = nn_nbit_int(64)  CONTAINING 0;
+posint64: NONEMPTY_TYPE = pos_nbit_int(64) CONTAINING 1;
+
+END nbit_ints

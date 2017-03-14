@@ -1,0 +1,571 @@
+(volume_per_times
+ (volume_per_time_TCC1 0
+  (volume_per_time_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (unit_volume_per_time_TCC1 0
+  (unit_volume_per_time_TCC1-1 nil 3639836392
+   ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (negunit_volume_per_time_TCC1 0
+  (negunit_volume_per_time_TCC1-1 nil 3639836392
+   ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (unit_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (nonzero_volume_per_time_TCC1 0
+  (nonzero_volume_per_time_TCC1-1 nil 3639836392
+   ("" (subtype-tcc) nil nil)
+   ((zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (unit_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (nonneg_volume_per_time_TCC1 0
+  (nonneg_volume_per_time_TCC1-1 nil 3639836392
+   ("" (subtype-tcc) nil nil)
+   ((real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (nonpos_volume_per_time_TCC1 0
+  (nonpos_volume_per_time_TCC1-1 nil 3639836392
+   ("" (subtype-tcc) nil nil)
+   ((real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (posvolume_per_time_TCC1 0
+  (posvolume_per_time_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (unit_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (negvolume_per_time_TCC1 0
+  (negvolume_per_time_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (negunit_volume_per_time const-decl "volume_per_time"
+     volume_per_times nil)
+    (unit_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume_per_time const-decl "volume_per_time" volume_per_times
+     nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (volume_per_time_plus_volume_per_time_is_volume_per_time_TCC1 0
+  (volume_per_time_plus_volume_per_time_is_volume_per_time_TCC1-1 nil
+   3646733191 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (volume_per_time_plus_volume_per_time_is_volume_per_time_TCC2 0
+  (volume_per_time_plus_volume_per_time_is_volume_per_time_TCC2-1 nil
+   3646733191 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (volume_per_time_plus_volume_per_time_is_volume_per_time 0
+  (volume_per_time_plus_volume_per_time_is_volume_per_time-1 nil
+   3639836392 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (preferred_system? const-decl "bool" measurements nil)
+    (+ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (volume_per_time_minus_volume_per_time_is_volume_per_time 0
+  (volume_per_time_minus_volume_per_time_is_volume_per_time-1 nil
+   3639836392 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (preferred_system? const-decl "bool" measurements nil)
+    (- const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (real_times_volume_per_time_is_volume_per_time 0
+  (real_times_volume_per_time_is_volume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (/= const-decl "boolean" notequal nil)
+    (* const-decl "{m: valid_measurement | unit_match?(y, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (volume_per_time_div_nzreal_is_volume_per_time 0
+  (volume_per_time_div_nzreal_is_volume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (neg_volume_per_time_is_volume_per_time 0
+  (neg_volume_per_time_is_volume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (/= const-decl "boolean" notequal nil)
+    (- const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (volume_over_time_is_volume_per_time_TCC1 0
+  (volume_over_time_is_volume_per_time_TCC1-1 nil 3646733191
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume? const-decl "bool" volumes nil)
+    (volume nonempty-type-eq-decl nil volumes nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (volume_over_time_is_volume_per_time_TCC2 0
+  (volume_over_time_is_volume_per_time_TCC2-1 nil 3646733191
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume? const-decl "bool" volumes nil)
+    (volume nonempty-type-eq-decl nil volumes nil)
+    (time? const-decl "bool" times nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (number nonempty-type-decl nil numbers nil)
+    (nztime nonempty-type-eq-decl nil times nil)
+    (system_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (volume_over_time_is_volume_per_time 0
+  (volume_over_time_is_volume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume? const-decl "bool" volumes nil)
+    (volume nonempty-type-eq-decl nil volumes nil)
+    (time? const-decl "bool" times nil)
+    (time nonempty-type-eq-decl nil times nil)
+    (number nonempty-type-decl nil numbers nil)
+    (nztime nonempty-type-eq-decl nil times nil)
+    (system_match? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (even_minus_even_is_even application-judgement "even_int" integers
+     nil)
+    (even_minus_odd_is_odd application-judgement "odd_int" integers
+     nil)
+    (odd_minus_even_is_odd application-judgement "odd_int" integers
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (/ const-decl "{m: valid_measurement | system_match?(y, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (speed_times_area_is_volume_per_time_TCC1 0
+  (speed_times_area_is_volume_per_time_TCC1-1 nil 3646733191
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (speed? const-decl "bool" speeds nil)
+    (speed nonempty-type-eq-decl nil speeds nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (speed_times_area_is_volume_per_time_TCC2 0
+  (speed_times_area_is_volume_per_time_TCC2-1 nil 3646733191
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (speed? const-decl "bool" speeds nil)
+    (speed nonempty-type-eq-decl nil speeds nil)
+    (area? const-decl "bool" areas nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (system_match? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (speed_times_area_is_volume_per_time 0
+  (speed_times_area_is_volume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (speed? const-decl "bool" speeds nil)
+    (speed nonempty-type-eq-decl nil speeds nil)
+    (area? const-decl "bool" areas nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (system_match? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (nnint_plus_posint_is_posint application-judgement "posint"
+     integers nil)
+    (odd_plus_even_is_odd application-judgement "odd_int" integers nil)
+    (even_minus_odd_is_odd application-judgement "odd_int" integers
+     nil)
+    (odd_minus_even_is_odd application-judgement "odd_int" integers
+     nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (even_minus_even_is_even application-judgement "even_int" integers
+     nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (* const-decl "{m: valid_measurement | system_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil))
+   nil))
+ (nzreal_times_nzvolume_per_time_is_nzvolume_per_time_TCC1 0
+  (nzreal_times_nzvolume_per_time_is_nzvolume_per_time_TCC1-1 nil
+   3646733191 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (volume_per_time? const-decl "bool" volume_per_times nil)
+    (volume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (number nonempty-type-decl nil numbers nil)
+    (nzvolume_per_time nonempty-type-eq-decl nil volume_per_times nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_volume const-decl "volume" volumes nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (nzreal_times_nzvolume_per_time_is_nzvolume_per_time 0
+  (nzreal_times_nzvolume_per_time_is_nzvolume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((* const-decl "{m: valid_measurement | unit_match?(y, m)}"
+       measurements nil))
+   nil))
+ (nzvolume_per_time_div_nzreal_is_nzvolume_per_time 0
+  (nzvolume_per_time_div_nzreal_is_nzvolume_per_time-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil))
+   nil)))
+

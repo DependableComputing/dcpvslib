@@ -1,0 +1,12 @@
+metric_lengths: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING lengths[METRIC];
+
+  m: poslength = unit_length;
+  km: poslength = m WITH [`scaling := 1000];
+  cm: poslength = m WITH [`scaling := 1/100];
+  mm: poslength = m WITH [`scaling := 1/1000];
+
+END metric_lengths

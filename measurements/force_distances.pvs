@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of force_distance measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+force_distances: THEORY
+BEGIN
+
+  IMPORTING measurements
+  IMPORTING speeds
+  IMPORTING times
+  IMPORTING dimensionlesses
+  IMPORTING accelerations
+  IMPORTING masses
+  IMPORTING forces
+  IMPORTING reals@sqrt
+
+  force_distance?(m: measurement): bool =
+    valid_measurement?(m) AND
+    dimension_match?(m, zero_force WITH [`length_dim := 2]);
+
+  force_distance: NONEMPTY_TYPE = (force_distance?)
+    CONTAINING zero_force WITH [`system := ANY, `length_dim := 2];
+
+  zero_force_distance: force_distance =
+    zero_force WITH [`system := ANY, `length_dim := 2];
+
+  unit_force_distance: force_distance = zero_force_distance WITH [`value := 1];
+
+  negunit_force_distance: force_distance =
+    unit_force_distance WITH [`value := -1];
+
+  nonzero_force_distance: NONEMPTY_TYPE =
+    {f: force_distance| f`value /= 0} CONTAINING unit_force_distance;
+
+  nonneg_force_distance: NONEMPTY_TYPE =
+    {f: force_distance| f`value >= 0} CONTAINING zero_force_distance;
+
+  nonpos_force_distance: NONEMPTY_TYPE =
+    {f: force_distance| f`value <= 0} CONTAINING zero_force_distance;
+
+  posforce_distance: NONEMPTY_TYPE =
+    {f: force_distance| f`value > 0} CONTAINING unit_force_distance;
+
+  negforce_distance: NONEMPTY_TYPE =
+    {f: force_distance| f`value < 0} CONTAINING negunit_force_distance;
+
+  nzforce_distance: NONEMPTY_TYPE = nonzero_force_distance;
+  nnforce_distance: NONEMPTY_TYPE = nonneg_force_distance;
+  npforce_distance: NONEMPTY_TYPE = nonpos_force_distance;
+
+  x:   VAR force_distance;
+  n0z: VAR nzforce_distance;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  force_distance_plus_force_distance_is_force_distance:
+    JUDGEMENT +(x: force_distance, y: {f: force_distance | unit_match?(x, f)})
+    HAS_TYPE force_distance;
+  force_distance_minus_force_distance_is_force_distance:
+    JUDGEMENT -(x: force_distance, y: {f: force_distance | unit_match?(x, f)})
+    HAS_TYPE force_distance;
+  real_times_force_distance_is_force_distance:  JUDGEMENT *(a, x)   HAS_TYPE force_distance;
+  force_distance_div_nzreal_is_force_distance:  JUDGEMENT /(x, n0c) HAS_TYPE force_distance;
+  neg_force_distance_is_force_distance:         JUDGEMENT -(x)      HAS_TYPE force_distance;
+
+  force_times_distance_is_force_distance:
+    JUDGEMENT *(x: force, y: {d: length | system_match?(x, d)})
+    HAS_TYPE force_distance;
+
+  nzreal_times_nzforce_distance_is_nzforce_distance: JUDGEMENT *(n0c, n0z) HAS_TYPE nzforce_distance;
+  nzforce_distance_div_nzreal_is_nzforce_distance: JUDGEMENT /(n0z, n0c) HAS_TYPE nzforce_distance;
+
+END force_distances

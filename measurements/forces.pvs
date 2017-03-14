@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of force measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+forces: THEORY
+BEGIN
+
+  IMPORTING measurements
+  IMPORTING speeds
+  IMPORTING times
+  IMPORTING dimensionlesses
+  IMPORTING accelerations
+  IMPORTING masses
+  IMPORTING reals@sqrt
+
+  force?(m: measurement): bool =
+    valid_measurement?(m) AND
+    dimension_match?(m, zero_acceleration WITH [`mass_dim := 1]);
+
+  force: NONEMPTY_TYPE = (force?)
+    CONTAINING zero_acceleration WITH [`system := ANY, `mass_dim := 1];
+
+  zero_force: force = zero_acceleration WITH [`system := ANY, `mass_dim := 1];
+
+  unit_force: force = zero_force WITH [`value := 1];
+
+  negunit_force: force = unit_force WITH [`value := -1];
+
+  nonzero_force: NONEMPTY_TYPE =
+    {f: force| f`value /= 0} CONTAINING unit_force;
+
+  nonneg_force: NONEMPTY_TYPE =
+    {f: force| f`value >= 0} CONTAINING zero_force;
+
+  nonpos_force: NONEMPTY_TYPE =
+    {f: force| f`value <= 0} CONTAINING zero_force;
+
+  posforce: NONEMPTY_TYPE =
+    {f: force| f`value > 0} CONTAINING unit_force;
+
+  negforce: NONEMPTY_TYPE =
+    {f: force| f`value < 0} CONTAINING negunit_force;
+
+  nzforce: NONEMPTY_TYPE = nonzero_force;
+  nnforce: NONEMPTY_TYPE = nonneg_force;
+  npforce: NONEMPTY_TYPE = nonpos_force;
+
+  x:   VAR force;
+  n0z: VAR nzforce;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  force_plus_force_is_force:
+    JUDGEMENT +(x: force, y: {f: force | unit_match?(x, f)})
+    HAS_TYPE force;
+  force_minus_force_is_force:
+    JUDGEMENT -(x: force, y: {f: force | unit_match?(x, f)})
+    HAS_TYPE force;
+  real_times_force_is_force:  JUDGEMENT *(a, x)   HAS_TYPE force;
+  force_div_nzreal_is_force:  JUDGEMENT /(x, n0c) HAS_TYPE force;
+  neg_force_is_force:         JUDGEMENT -(x)      HAS_TYPE force;
+
+  acceleration_times_mass_is_force:
+    JUDGEMENT *(x: acceleration, y: {m: mass | system_match?(x, m)})
+    HAS_TYPE force;
+
+  nzreal_times_nzforce_is_nzforce: JUDGEMENT *(n0c, n0z) HAS_TYPE nzforce;
+  nzforce_div_nzreal_is_nzforce:   JUDGEMENT /(n0z, n0c) HAS_TYPE nzforce;
+
+  N: posforce = kg * m / s^2;
+  N_def: LEMMA N = unit_force WITH [`system := METRIC, `scaling := 1000];
+
+  % Imperial
+  lb: posforce = slug * ft / s^2;
+  lb_def: LEMMA lb = unit_force WITH [`system := IMPERIAL];
+
+END forces

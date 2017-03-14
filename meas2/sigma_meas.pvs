@@ -1,0 +1,59 @@
+% Based on reals@sigma from nasalib
+sigma_meas[T: NONEMPTY_TYPE FROM int, (IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  ASSUMING
+    % Required to discharge TCCs that all values between two ints of type T
+    % are themselves of type T
+    connected_domain: ASSUMPTION (FORALL (x, y: T), (z: integer):
+                                    x <= z AND z <= y IMPLIES T_pred(z))
+  ENDASSUMING
+  
+  IMPORTING measurements[S];
+
+  T_pred_lem: LEMMA
+    FORALL(low: T, z: int, high: {t: T | t >= low}):
+      low <= z AND z <= high IMPLIES T_pred(z)
+
+  high_low_rewrite: LEMMA
+    FORALL(p: pred[[low: T, high: {t: T | t >= low}]]):
+      (FORALL(low: T, high: {t: T | t >= low}):
+         IF high < low THEN p(low, high)
+         ELSE (FORALL (n: subrange(low, high)): p(low, n))
+         ENDIF)
+      IMPLIES
+        (FORALL(low: T, high: {t: T | t >= low}):
+          p(low, high));
+
+  summable_fn?(f: FUNCTION[T -> measurement]): bool =
+    FORALL(i, j: T): unit_match?(f(i), f(j));
+
+  F: VAR (summable_fn?);
+
+  sigma(low: T, high: {t: T | t >= low}, F): RECURSIVE
+    {m: measurement | unit_match?(m, F(high))} =
+      IF low = high THEN F(high)
+      ELSE  F(high) + sigma(low, high-1, F)
+      ENDIF
+  MEASURE (LAMBDA(low: T, high: {t: T | t >= low}, F): high - low);
+
+  sigma_eq_arg: THEOREM
+    FORALL(m: T):
+      sigma(m, m, F) = F(m);
+
+  sigma_scal: THEOREM
+    FORALL(low: T, high: {t: T | t >= low}, a: real):
+      sigma(low, high, (LAMBDA(i: T): a * F(i))) =
+        a * sigma(low, high, F);
+
+  sigma_scal_meas: THEOREM
+    FORALL(low: T, high: {t: T | t >= low}, a: measurement):
+      sigma(low, high, (LAMBDA(i: T): a * F(i))) =
+        a * sigma(low, high, F);
+
+  sigma_sum: THEOREM
+    FORALL(low: T, high: {t: T | t >= low},
+           G: {f: (summable_fn?) | FORALL(i: T): unit_match?(F(i), f(i))}):
+      sigma(low, high, F) + sigma(low, high, G)
+        = sigma(low, high, (LAMBDA(i: T): F(i) + G(i)))
+END sigma_meas

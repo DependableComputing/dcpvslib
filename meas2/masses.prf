@@ -1,0 +1,262 @@
+(masses
+ (mass_TCC1 0
+  (mass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil))
+   nil))
+ (unit_mass_TCC1 0
+  (unit_mass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil))
+   nil))
+ (negunit_mass_TCC1 0
+  (negunit_mass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil))
+   nil))
+ (nonzero_mass_TCC1 0
+  (nonzero_mass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil))
+   nil))
+ (nonneg_mass_TCC1 0
+  (nonneg_mass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (nonpos_mass_TCC1 0
+  (nonpos_mass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (posmass_TCC1 0
+  (posmass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (negmass_TCC1 0
+  (negmass_TCC1-1 nil 3642688643 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (negunit_mass const-decl "mass" masses nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (mass_plus_mass_is_mass 0
+  (mass_plus_mass_is_mass-1 nil 3642688643 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (mass nonempty-type-eq-decl nil masses nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (+ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil))
+   nil))
+ (mass_minus_mass_is_mass 0
+  (mass_minus_mass_is_mass-1 nil 3642688643 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (mass nonempty-type-eq-decl nil masses nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil))
+   nil))
+ (real_times_mass_is_mass 0
+  (real_times_mass_is_mass-1 nil 3642688643
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (mass nonempty-type-eq-decl nil masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil))
+   nil))
+ (mass_div_nzreal_is_mass 0
+  (mass_div_nzreal_is_mass-1 nil 3642688643
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (mass nonempty-type-eq-decl nil masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil))
+   nil))
+ (neg_mass_is_mass 0
+  (neg_mass_is_mass-1 nil 3642688643 ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (mass nonempty-type-eq-decl nil masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (mass? const-decl "bool" masses nil))
+   nil))
+ (mass_div_mass_is_dimensionless 0
+  (mass_div_mass_is_dimensionless-1 nil 3642688643
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (mass? const-decl "bool" masses nil)
+    (mass nonempty-type-eq-decl nil masses nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (nzmass nonempty-type-eq-decl nil masses nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     masses nil)
+    (odd_minus_odd_is_even application-judgement "even_int" integers
+     nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (even_minus_even_is_even application-judgement "even_int" integers
+     nil)
+    (S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "measurement" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (dimensionless? const-decl "bool" dimensionlesses nil))
+   nil))
+ (nzreal_times_nzmass_is_nzmass 0
+  (nzreal_times_nzmass_is_nzmass-1 nil 3642688643
+   ("" (judgement-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil))
+   nil))
+ (nzmass_div_nzreal_is_nzmass 0
+  (nzmass_div_nzreal_is_nzmass-1 nil 3642688643
+   ("" (judgement-tcc) nil nil)
+   ((S formal-const-decl "system_enum" masses nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil))
+   nil)))
+

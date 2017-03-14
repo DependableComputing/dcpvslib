@@ -1,0 +1,136 @@
+(metric_pressures
+ (pa_TCC1 0
+  (pa_TCC1-1 nil 3666180807 ("" (subtype-tcc) nil nil)
+   ((METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (m const-decl "poslength" metric_lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_pressures nil))
+   nil))
+ (pa_TCC2 0
+  (pa_TCC2-1 nil 3666180807 ("" (subtype-tcc) nil nil)
+   ((zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_pressures nil)
+    (zero_value? const-decl "bool" measurements nil)
+    (s const-decl "postime" times nil)
+    (unit_time const-decl "time" times nil)
+    (zero_time const-decl "time" times nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil))
+ (pa_TCC3 0
+  (pa_TCC3-1 nil 3666180807 ("" (grind) nil nil)
+   ((METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (unit_time const-decl "time" times nil)
+    (s const-decl "postime" times nil)
+    (unit_measurement const-decl "measurement" measurements nil)
+    (expt def-decl "measurement" measurements nil)
+    (* const-decl "measurement" measurements nil)
+    (^ const-decl "measurement" measurements nil)
+    (unit_measurement_is_dimensionless name-judgement
+     "dimensionless[METRIC]" metric_pressures nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_pressures nil))
+   nil))
+ (pa_TCC4 0
+  (pa_TCC4-1 nil 3666180807 ("" (grind) nil nil)
+   ((minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (pressure? const-decl "bool" pressures nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_pressures nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (unit_measurement_is_dimensionless name-judgement
+     "dimensionless[METRIC]" metric_pressures nil)
+    (^ const-decl "measurement" measurements nil)
+    (* const-decl "measurement" measurements nil)
+    (expt def-decl "measurement" measurements nil)
+    (unit_measurement const-decl "measurement" measurements nil)
+    (s const-decl "postime" times nil)
+    (unit_time const-decl "time" times nil)
+    (zero_time const-decl "time" times nil)
+    (/ const-decl "measurement" measurements nil)
+    (m const-decl "poslength" metric_lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (kg const-decl "posmass" metric_masses nil)
+    (g const-decl "posmass" metric_masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_mass const-decl "mass" masses nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil))
+ (pa_def 0
+  (pa_def-1 nil 3666180827 ("" (grind) nil nil)
+   ((METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (g const-decl "posmass" metric_masses nil)
+    (kg const-decl "posmass" metric_masses nil)
+    (zero_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (m const-decl "poslength" metric_lengths nil)
+    (/ const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (unit_time const-decl "time" times nil)
+    (s const-decl "postime" times nil)
+    (unit_measurement const-decl "measurement" measurements nil)
+    (expt def-decl "measurement" measurements nil)
+    (* const-decl "measurement" measurements nil)
+    (^ const-decl "measurement" measurements nil)
+    (pa const-decl "pospressure" metric_pressures nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_pressure const-decl "pressure" pressures nil)
+    (unit_pressure const-decl "pressure" pressures nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (unit_measurement_is_dimensionless name-judgement
+     "dimensionless[METRIC]" metric_pressures nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_pressures nil))
+   shostak)))
+

@@ -1,0 +1,22 @@
+(time_is_time
+ (system_agnostic 0
+  (system_agnostic-1 nil 3670337930 ("" (tcc) nil nil)
+   ((METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_time const-decl "time" times nil)
+    (unit_time const-decl "time" times nil)
+    (s const-decl "postime" times nil)
+    (IMPERIAL adt-constructor-decl "(IMPERIAL?)" measurement_systems
+     nil)
+    (IMPERIAL? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (zero_measurement_is_dimensionless name-judgement
+     "dimensionless[S]" time_is_time nil)
+    (zero_measurement_is_dimensionless name-judgement
+     "dimensionless[S]" time_is_time nil))
+   shostak)))
+

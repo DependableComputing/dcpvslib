@@ -1,0 +1,256 @@
+(lookup_table_2d
+ (interpolate_2d_interpolates 0
+  (interpolate_2d_interpolates-1 nil 3645917221
+   ("" (skeep)
+    (("" (expand* "interpolate_2d" "get_1d_from_2d_y")
+      ((""
+        (case "min(data`z11, data`z12, data`z21, data`z22) <= interpolate_1d(x, get_1d_from_2d_1(data)) AND interpolate_1d(x, get_1d_from_2d_1(data)) <= max(data`z11, data`z12, data`z21, data`z22)")
+        (("1"
+          (case "min(data`z11, data`z12, data`z21, data`z22) <= interpolate_1d(x, get_1d_from_2d_2(data)) AND interpolate_1d(x, get_1d_from_2d_2(data)) <= max(data`z11, data`z12, data`z21, data`z22)")
+          (("1"
+            (name-replace*
+             ("y1" "interpolate_1d(x, get_1d_from_2d_1(data))" "y2"
+              "interpolate_1d(x, get_1d_from_2d_2(data))"))
+            (("1"
+              (lemma "oneD_interpolate_interpolates"
+               ("data" "(# x1 := data`y1, x2 := data`y2,
+   y1 := y1, y2 := y2 #)" "x" "y"))
+              (("1"
+                (name-replace "z" "interpolate_1d(y,
+                      (# x1 := data`y1,
+                         x2 := data`y2,
+                         y1 := y1,
+                         y2 := y2 #))")
+                (("1" (assert)
+                  (("1" (hide -2 -3) (("1" (grind) nil nil)) nil))
+                  nil))
+                nil))
+              nil))
+            nil)
+           ("2" (hide -1 2)
+            (("2"
+              (lemma "oneD_interpolate_interpolates"
+               ("data" "get_1d_from_2d_2(data)" "x" "x"))
+              (("1" (grind) nil nil)
+               ("2" (typepred "x") (("2" (grind) nil nil)) nil))
+              nil))
+            nil))
+          nil)
+         ("2" (hide 2)
+          (("2"
+            (lemma "oneD_interpolate_interpolates"
+             ("data" "get_1d_from_2d_1(data)" "x" "x"))
+            (("1" (grind) nil nil)
+             ("2" (typepred "x") (("2" (grind) nil nil)) nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((get_1d_from_2d_y const-decl "table_entry_1d" lookup_table_2d nil)
+    (interpolate_2d const-decl "real" lookup_table_2d nil)
+    (get_1d_from_2d_2 const-decl "table_entry_1d" lookup_table_2d nil)
+    (oneD_interpolate_interpolates formula-decl nil lookup_table_1d
+     nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
+    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (<= const-decl "bool" reals nil)
+    (min const-decl "real" lookup_table_2d nil)
+    (> const-decl "bool" reals nil)
+    (table_entry_2d type-eq-decl nil lookup_table_2d nil)
+    (table_entry_1d type-eq-decl nil lookup_table_1d nil)
+    (interpolate_1d const-decl "real" lookup_table_1d nil)
+    (get_1d_from_2d_1 const-decl "table_entry_1d" lookup_table_2d nil)
+    (max const-decl "real" lookup_table_2d nil))
+   shostak))
+ (interp_or_clip_2d_implies_bounds 0
+  (interp_or_clip_2d_implies_bounds-1 nil 3645920333
+   ("" (skeep)
+    (("" (typepred "data`x2" "data`y2" "y")
+      (("" (expand "interpolate_or_clipping_2d")
+        (("" (flatten)
+          (("" (case "(data`z11 = data`z12 AND data`z21 = data`z22)")
+            (("1"
+              (case "(data`z11 = data`z21 AND data`z12 = data`z22)")
+              (("1" (grind) nil nil)
+               ("2" (split -5)
+                (("1" (split -5)
+                  (("1"
+                    (lemma "interpolate_2d_interpolates"
+                     ("data" "data" "x" "x" "y" "y"))
+                    (("1" (propax) nil nil) ("2" (propax) nil nil)
+                     ("3" (propax) nil nil))
+                    nil)
+                   ("2" (hide -3 1)
+                    (("2" (expand "interpolate_2d")
+                      (("2"
+                        (case "interpolate_1d(x, get_1d_from_2d_1(data)) = data`z11")
+                        (("1"
+                          (case "interpolate_1d(x, get_1d_from_2d_2(data)) = data`z21")
+                          (("1" (replace* -1 -2)
+                            (("1"
+                              (lemma "oneD_interpolate_interpolates"
+                               ("data"
+                                "get_1d_from_2d_y(data, data`z11, data`z21)"
+                                "x"
+                                "y"))
+                              (("1"
+                                (expand "get_1d_from_2d_y")
+                                (("1"
+                                  (flatten)
+                                  (("1"
+                                    (split)
+                                    (("1"
+                                      (case
+                                       "min(data`z11, data`z12, data`z21, data`z22) <= min(data`z11, data`z21)")
+                                      (("1" (field) nil nil)
+                                       ("2"
+                                        (hide - 2)
+                                        (("2" (grind) nil nil))
+                                        nil))
+                                      nil)
+                                     ("2"
+                                      (case
+                                       "max(data`z11, data`z21) <= max(data`z11, data`z12, data`z21, data`z22)")
+                                      (("1" (field) nil nil)
+                                       ("2"
+                                        (hide - 2)
+                                        (("2" (grind) nil nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil)
+                               ("2"
+                                (hide 2)
+                                (("2" (grind) nil nil))
+                                nil))
+                              nil))
+                            nil)
+                           ("2" (hide 2) (("2" (grind) nil nil)) nil))
+                          nil)
+                         ("2" (hide 2) (("2" (grind) nil nil)) nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil)
+                 ("2" (propax) nil nil))
+                nil))
+              nil)
+             ("2" (split -3)
+              (("1" (split -4)
+                (("1"
+                  (lemma "interpolate_2d_interpolates"
+                   ("data" "data" "x" "x" "y" "y"))
+                  (("1" (propax) nil nil) ("2" (propax) nil nil)
+                   ("3" (propax) nil nil))
+                  nil)
+                 ("2" (hide 1)
+                  (("2" (expand "interpolate_2d")
+                    (("2"
+                      (case "interpolate_1d(x, get_1d_from_2d_1(data)) =
+             interpolate_1d(x, get_1d_from_2d_2(data))")
+                      (("1" (replace -1)
+                        (("1"
+                          (name-replace "v"
+                           "interpolate_1d(x, get_1d_from_2d_2(data))")
+                          (("1"
+                            (case "interpolate_1d(y, get_1d_from_2d_y(data, v, v)) = v")
+                            (("1" (replace -1)
+                              (("1"
+                                (expand "v")
+                                (("1"
+                                  (lemma
+                                   "oneD_interpolate_interpolates"
+                                   ("data"
+                                    "get_1d_from_2d_2(data)"
+                                    "x"
+                                    "x"))
+                                  (("1" (grind) nil nil)
+                                   ("2"
+                                    (hide 2)
+                                    (("2" (grind) nil nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil)
+                             ("2" (hide 2) (("2" (grind) nil nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil)
+                       ("2" (hide 2) (("2" (grind) nil nil)) nil))
+                      nil))
+                    nil))
+                  nil))
+                nil)
+               ("2" (propax) nil nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((interpolate_or_clipping_2d const-decl "bool" lookup_table_2d nil)
+    (table_entry_2d type-eq-decl nil lookup_table_2d nil)
+    (> const-decl "bool" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (v skolem-const-decl "real" lookup_table_2d nil)
+    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
+    (min const-decl "real" lookup_table_2d nil)
+    (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
+    (max const-decl "real" lookup_table_2d nil)
+    (get_1d_from_2d_1 const-decl "table_entry_1d" lookup_table_2d nil)
+    (interpolate_1d const-decl "real" lookup_table_1d nil)
+    (get_1d_from_2d_2 const-decl "table_entry_1d" lookup_table_2d nil)
+    (get_1d_from_2d_y const-decl "table_entry_1d" lookup_table_2d nil)
+    (interpolate_2d const-decl "real" lookup_table_2d nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (interpolate_2d_interpolates formula-decl nil lookup_table_2d nil)
+    (<= const-decl "bool" reals nil)
+    (oneD_interpolate_interpolates formula-decl nil lookup_table_1d
+     nil)
+    (>= const-decl "bool" reals nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (table_entry_1d type-eq-decl nil lookup_table_1d nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (= const-decl "[T, T -> boolean]" equalities nil))
+   shostak)))
+

@@ -1,0 +1,12 @@
+metric_pressures: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING pressures[METRIC];
+  IMPORTING metric_forces;
+  IMPORTING metric_lengths;
+
+  pa: pospressure = kg / m / s^2;
+  pa_def: LEMMA pa = unit_pressure WITH [`scaling := 1000];
+
+END metric_pressures

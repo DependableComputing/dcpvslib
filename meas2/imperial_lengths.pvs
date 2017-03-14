@@ -1,0 +1,14 @@
+imperial_lengths: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING lengths[IMPERIAL];
+
+  ft_to_m: real = 0.3048;
+
+  ft: poslength = unit_length WITH [`scaling := ft_to_m];
+  inch: poslength = ft WITH [`scaling := ft_to_m * 1/12];
+  yard: poslength = ft WITH [`scaling := ft_to_m * 3];
+  mi: poslength = ft WITH [`scaling := ft_to_m * 5280];
+
+END imperial_lengths

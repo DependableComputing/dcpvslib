@@ -1,0 +1,23 @@
+useOneD: THEORY
+BEGIN
+  IMPORTING lookup_table_1d;
+
+  foo: table_1d = (: (# lhs := 0, rhs := 5 #),
+                     (# lhs := 10, rhs := 10 #),
+                     (# lhs := 20, rhs := 15 #),
+                     (# lhs := 40, rhs := 20 #),
+                     (# lhs := 50, rhs := 25 #) :);
+
+  foo_2: table_1d = foo WITH [`seq(1) := (# lhs := 10, rhs := 11 #)];
+
+  foo_3: table_1d = foo WITH [`seq(1)`rhs := 11];
+
+  foo_4: table_1d = foo WITH [`seq := (LAMBDA(i: below(5)): foo`seq(i) WITH [`rhs := foo`seq(i)`rhs + 1])];
+
+  testFoo3: LEMMA
+    foo_3(0)`rhs = 5 AND foo_3(1)`lhs = 10 AND foo_3(1)`rhs = 11;
+
+  testEquality: LEMMA
+    foo_2 = foo_3;
+
+END useOneD

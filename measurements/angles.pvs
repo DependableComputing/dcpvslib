@@ -1,0 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of angle measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+angles: THEORY
+BEGIN
+
+  IMPORTING measurements;
+  IMPORTING dimensionlesses;
+  IMPORTING trig_fnd@atan;
+
+  % or distance, width, etc.
+  angle?(m: measurement): bool =
+    valid_measurement?(m) AND
+    dimension_match?(m, zero_measurement WITH [`angle_dim := 1]);
+
+  angle: NONEMPTY_TYPE = (angle?)
+    CONTAINING zero_measurement WITH [`system := ANY, `angle_dim := 1];
+
+  zero_angle: angle = zero_measurement WITH [`system := ANY, `angle_dim := 1];
+
+  unit_angle: angle =
+    zero_angle WITH [`value := 1];
+
+  negunit_angle: angle = unit_angle WITH [`value := -1];
+
+  nonzero_angle: NONEMPTY_TYPE =
+    {l: angle | l`value /= 0} CONTAINING unit_angle;
+
+  nonneg_angle: NONEMPTY_TYPE =
+    {l: angle | l`value >= 0} CONTAINING zero_angle;
+
+  nonpos_angle: NONEMPTY_TYPE =
+    {l: angle | l`value <= 0} CONTAINING zero_angle;
+
+  posangle: NONEMPTY_TYPE =
+    {l: angle | l`value > 0} CONTAINING unit_angle;
+
+  negangle: NONEMPTY_TYPE =
+    {l: angle | l`value < 0} CONTAINING negunit_angle;
+
+  nzangle: NONEMPTY_TYPE = nonzero_angle;
+  nnangle: NONEMPTY_TYPE = nonneg_angle;
+  npangle: NONEMPTY_TYPE = nonpos_angle;
+
+  radian?(m: measurement): bool = angle?(m) AND (m`scaling = 1);
+  radian: (radian?) = unit_angle;
+
+  x:   VAR angle;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  angle_plus_angle_is_angle:
+    JUDGEMENT +(x: angle, y: {l: angle | unit_match?(x, l)})
+    HAS_TYPE angle;
+  angle_minus_angle_is_angle:
+    JUDGEMENT -(x: angle, y: {l: angle | unit_match?(x, l)})
+    HAS_TYPE angle;
+  real_times_angle_is_angle:        JUDGEMENT *(a, x)   HAS_TYPE angle;
+  angle_div_nzreal_is_angle:        JUDGEMENT /(x, n0c) HAS_TYPE angle;
+  neg_angle_is_angle:               JUDGEMENT -(x)      HAS_TYPE angle;
+  angle_div_angle_is_dimensionless:
+    JUDGEMENT /(x: dimensionless, n0z: {d: nzdimensionless | system_match?(x, d)})
+    HAS_TYPE dimensionless;
+
+  nzreal_times_nzangle_is_nzangle:
+    JUDGEMENT *(n0c: nzreal, n0z: nzangle)
+    HAS_TYPE nzangle;
+  nzangle_div_nzreal_is_nzangle:
+    JUDGEMENT /(n0z: nzangle, n0c: nzreal)
+    HAS_TYPE nzangle;
+
+  % degrees
+  degree_scaling: posreal = pi / 180;
+  degree?(m: measurement): boolean = angle?(m) AND (m`scaling = degree_scaling);
+  degree: (degree?) = unit_angle WITH [`scaling := degree_scaling];
+
+  degrees_to_radians(a: (degree?)): (radian?) =
+    a WITH [`value := a`value * degree`scaling / radian`scaling, `scaling := radian`scaling];
+
+  radians_to_degrees(a: (radian?)): (degree?) =
+    a WITH [`value := a`value * radian`scaling / degree`scaling, `scaling := degree`scaling];
+
+  r2d_is_inv_d2r: LEMMA
+    FORALL(a: (degree?)):
+      radians_to_degrees(degrees_to_radians(a)) = a;
+
+  d2r_is_inv_r2d: LEMMA
+    FORALL(a: (radian?)):
+      degrees_to_radians(radians_to_degrees(a)) = a;
+
+  two_pi_radians_is_360_degrees: LEMMA
+    radians_to_degrees(2 * pi * radian) = 360 * degree;
+
+END angles

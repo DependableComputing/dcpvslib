@@ -1,0 +1,76 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of acceleration measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+accelerations: THEORY
+BEGIN
+
+  IMPORTING measurements
+  IMPORTING speeds
+  IMPORTING times
+  IMPORTING dimensionlesses
+  IMPORTING reals@sqrt
+
+  acceleration?(m: measurement): bool =
+    valid_measurement?(m) AND
+    dimension_match?(m, zero_length WITH [`time_dim := -2]);
+
+  acceleration: NONEMPTY_TYPE = (acceleration?)
+    CONTAINING zero_length WITH [`system := ANY, `time_dim := -2];
+
+  zero_acceleration: acceleration =
+    zero_length WITH [`system := ANY, `time_dim := -2];
+
+  unit_acceleration: acceleration = zero_acceleration WITH [`value := 1];
+
+  negunit_acceleration: acceleration = unit_acceleration WITH [`value := -1];
+
+  nonzero_acceleration: NONEMPTY_TYPE =
+    {a: acceleration | a`value /= 0} CONTAINING unit_acceleration;
+
+  nonneg_acceleration: NONEMPTY_TYPE =
+    {a: acceleration | a`value >= 0} CONTAINING zero_acceleration;
+
+  nonpos_acceleration: NONEMPTY_TYPE =
+    {a: acceleration | a`value <= 0} CONTAINING zero_acceleration;
+
+  posacceleration: NONEMPTY_TYPE =
+    {a: acceleration | a`value > 0} CONTAINING unit_acceleration;
+
+  negacceleration: NONEMPTY_TYPE =
+    {a: acceleration | a`value < 0} CONTAINING negunit_acceleration;
+
+  nzacceleration: NONEMPTY_TYPE = nonzero_acceleration;
+  nnacceleration: NONEMPTY_TYPE = nonneg_acceleration;
+  npacceleration: NONEMPTY_TYPE = nonpos_acceleration;
+
+  x:   VAR acceleration;
+  n0z: VAR nzacceleration;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  acceleration_plus_acceleration_is_acceleration:
+    JUDGEMENT +(x: acceleration, y: {a: acceleration | unit_match?(x, a)})
+    HAS_TYPE acceleration;
+  acceleration_minus_acceleration_is_acceleration:
+    JUDGEMENT -(x: acceleration, y: {a: acceleration | unit_match?(x, a)})
+    HAS_TYPE acceleration;
+  real_times_acceleration_is_acceleration: JUDGEMENT *(a, x)   HAS_TYPE acceleration;
+  acceleration_div_nzreal_is_acceleration: JUDGEMENT /(x, n0c) HAS_TYPE acceleration;
+  neg_acceleration_is_acceleration:        JUDGEMENT -(x)      HAS_TYPE acceleration;
+
+  speed_over_time_is_acceleration:
+    JUDGEMENT /(x: speed, y: {t: nztime | system_match?(x, t)})
+    HAS_TYPE acceleration;
+  acceleration_times_time_is_speed:
+    JUDGEMENT *(x: acceleration, y: {t: time | system_match?(x, t)})
+    HAS_TYPE speed;
+
+  nzreal_times_nzacceleration_is_nzacceleration: JUDGEMENT *(n0c, n0z) HAS_TYPE nzacceleration;
+  nzacceleration_div_nzreal_is_nzacceleration:   JUDGEMENT /(n0z, n0c) HAS_TYPE nzacceleration;
+
+  sqrt_accel_times_length_is_nnspeed: LEMMA
+    FORALL(nnx: nnacceleration, nny: {l: nnlength | system_match?(nnx, l)}):
+      speed?(sqrt(nnx * nny)) AND (sqrt(nnx * nny)`value >= 0);
+
+END accelerations

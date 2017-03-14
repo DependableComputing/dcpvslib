@@ -1,0 +1,34 @@
+(transmutations
+ (transmutation_TCC1 0
+  (transmutation_TCC1-1 nil 3647778052 ("" (subtype-tcc) nil nil)
+   ((T formal-const-decl "{s: system_enum | s /= S}" transmutations
+     nil)
+    (S formal-const-decl "system_enum" transmutations nil)
+    (/= const-decl "boolean" notequal nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (unit_measurement const-decl "measurement" measurements nil))
+   nil))
+ (transmutation_TCC2 0
+  (transmutation_TCC2-1 nil 3647778345 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" transmutations nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (unit_measurement const-decl "measurement" measurements nil))
+   nil))
+ (transmute_TCC1 0
+  (transmute_TCC1-1 nil 3647778052 ("" (subtype-tcc) nil nil)
+   ((/= const-decl "boolean" notequal nil)) nil))
+ (commutative_mult 0
+  (commutative_mult-1 nil 3647794135
+   ("" (skeep)
+    (("" (expand "*")
+      (("" (name-replace "x" "transmute(meas, t)")
+        (("" (grind) nil nil)) nil))
+      nil))
+    nil)
+   ((* const-decl "measurements[S].measurement" transmutations nil)
+    (* const-decl "measurements[S].measurement" transmutations nil))
+   shostak)))
+

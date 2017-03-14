@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of time measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+times[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING dimensionlesses[S];
+
+  time?(m: measurement): bool =
+    dimension_match?(m, zero_measurement WITH [`time_dim := 1]);
+
+  time: NONEMPTY_TYPE = (time?)
+    CONTAINING zero_measurement WITH [`time_dim := 1];
+
+  zero_time: time = zero_measurement WITH [`time_dim := 1];
+
+  unit_time: time = zero_time WITH [`value := 1];
+
+  negunit_time: time = unit_time WITH [`value := -1];
+
+  nonzero_time: NONEMPTY_TYPE =
+    {t: time | t`value /= 0} CONTAINING unit_time;
+
+  nonneg_time: NONEMPTY_TYPE =
+    {t: time | t`value >= 0} CONTAINING zero_time;
+
+  nonpos_time: NONEMPTY_TYPE =
+    {t: time | t`value <= 0} CONTAINING zero_time;
+
+  postime: NONEMPTY_TYPE =
+    {t: time | t`value > 0} CONTAINING unit_time;
+
+  negtime: NONEMPTY_TYPE =
+    {t: time | t`value < 0} CONTAINING negunit_time;
+
+  nztime: NONEMPTY_TYPE = nonzero_time;
+  nntime: NONEMPTY_TYPE = nonneg_time;
+  nptime: NONEMPTY_TYPE = nonpos_time;
+
+  % By defining units as uninterpreted positive real constants,
+  % mathematical operations can be performed on them in a manner
+  % that allows dimensional analysis
+
+  s:   postime = unit_time;
+
+  x:   VAR time;
+  n0z: VAR nztime;
+  pw:  VAR postime;
+  a:   VAR real;
+  n0c: VAR nzreal;
+  pb:  VAR posreal;
+
+  time_plus_time_is_time:
+    JUDGEMENT +(x: time, y: {t: time | unit_match?(x, t)})
+    HAS_TYPE time;
+  time_minus_time_is_time:
+    JUDGEMENT -(x: time, y: {t: time | unit_match?(x, t)})
+    HAS_TYPE time;
+  real_times_time_is_time:        JUDGEMENT *(a, x)   HAS_TYPE time;
+  time_div_nzreal_is_time:        JUDGEMENT /(x, n0c) HAS_TYPE time;
+  neg_time_is_time:               JUDGEMENT -(x)      HAS_TYPE time;
+  time_div_time_is_dimensionless:
+    JUDGEMENT /(x: time, y: nztime) HAS_TYPE dimensionless;
+
+  nzreal_times_nztime_is_nztime: JUDGEMENT *(n0c, n0z) HAS_TYPE nztime;
+  nztime_div_nzreal_is_nztime:   JUDGEMENT /(n0z, n0c) HAS_TYPE nztime;
+
+  ms: postime = s WITH [`scaling := 1/1000];
+
+  posreal_times_postime_is_postime: JUDGEMENT *(pb, pw) HAS_TYPE postime;
+  postime_div_posreal_is_postime:   JUDGEMENT /(pw, pb) HAS_TYPE postime;
+
+END times

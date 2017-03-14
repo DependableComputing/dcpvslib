@@ -1,0 +1,11 @@
+time_is_time: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING times[METRIC];
+  IMPORTING times[IMPERIAL];
+
+  system_agnostic: LEMMA
+    times[METRIC].s = times[IMPERIAL].s;
+
+END time_is_time

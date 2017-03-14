@@ -1,0 +1,55 @@
+(metric_masses
+ (g_TCC1 0
+  (g_TCC1-1 nil 3666116886 ("" (subtype-tcc) nil nil)
+   ((METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_mass const-decl "mass" masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_masses nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (kg_TCC1 0
+  (kg_TCC1-1 nil 3666116886 ("" (subtype-tcc) nil nil)
+   ((mass? const-decl "bool" masses nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_masses nil)
+    (g const-decl "posmass" metric_masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_mass const-decl "mass" masses nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil))
+ (mg_TCC1 0
+  (mg_TCC1-1 nil 3666116886 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (mass? const-decl "bool" masses nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_masses nil)
+    (g const-decl "posmass" metric_masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_mass const-decl "mass" masses nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil)))
+

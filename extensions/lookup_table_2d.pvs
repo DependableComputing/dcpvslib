@@ -1,0 +1,59 @@
+lookup_table_2d: THEORY
+BEGIN
+
+  IMPORTING lookup_table_1d;
+
+  table_entry_2d: TYPE = [#
+                               x1: real,
+                               x2: {r: real | r > x1},
+                               y1: real,
+                               y2: {r: real | r > y1},
+                               z11: real,
+                               z12: real,
+                               z21: real,
+                               z22: real
+                              #];
+
+  % Assertion that either we're interpolating or we're clipping (not true if we're extrapolating)
+  interpolate_or_clipping_2d(x: real, y: real, data: table_entry_2d): bool =
+    ((data`x1 <= x AND x <= data`x2) OR (data`z11 = data`z12 AND data`z21 = data`z22)) AND
+    ((data`y1 <= y AND y <= data`y2) OR (data`z11 = data`z21 AND data`z12 = data`z22));
+
+  get_1d_from_2d_1(data: table_entry_2d): table_entry_1d =
+    (# x1 := data`x1, x2 := data`x2, y1 := data`z11, y2 := data`z12 #);
+
+  get_1d_from_2d_2(data: table_entry_2d): table_entry_1d =
+    (# x1 := data`x1, x2 := data`x2, y1 := data`z21, y2 := data`z22 #);
+
+  get_1d_from_2d_y(data: table_entry_2d, y1: real, y2: real): table_entry_1d =
+    (# x1 := data`y1, x2 := data`y2, y1 := y1, y2 := y2 #);
+
+  interpolate_2d(x: real, y: real, data: table_entry_2d): real =
+    LET z_est_1: real = interpolate_1d(x, get_1d_from_2d_1(data)) IN
+    LET z_est_2: real = interpolate_1d(x, get_1d_from_2d_2(data)) IN
+    interpolate_1d(y, get_1d_from_2d_y(data, z_est_1, z_est_2));
+
+  min(a: real, b: real, c: real, d: real): real =
+    min(min(a, b), min(c, d));
+
+  max(a: real, b: real, c: real, d: real): real =
+    max(max(a, b), max(c, d));
+
+  interpolate_2d_interpolates: LEMMA
+    FORALL(data: table_entry_2d,
+           x: {r: real | data`x1 <= r AND r <= data`x2},
+           y: {r: real | data`y1 <= r AND r <= data`y2}):
+      LET val = interpolate_2d(x, y, data) IN
+      LET min = min(data`z11, data`z12, data`z21, data`z22) IN
+      LET max = max(data`z11, data`z12, data`z21, data`z22) IN
+        min <= val AND val <= max;
+
+  interp_or_clip_2d_implies_bounds: LEMMA
+    FORALL(data: table_entry_2d,
+           x: real, y: {r: real | interpolate_or_clipping_2d(x, r, data)}):
+      LET val = interpolate_2d(x, y, data) IN
+      LET min = min(data`z11, data`z12, data`z21, data`z22) IN
+      LET max = max(data`z11, data`z12, data`z21, data`z22) IN
+        min <= val AND val <= max;
+
+END lookup_table_2d

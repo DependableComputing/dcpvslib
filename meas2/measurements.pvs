@@ -1,0 +1,302 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of generic measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+measurements[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING reals@sqrt;
+
+  measurement: NONEMPTY_TYPE =
+    [#
+      value:       real,
+      scaling:     posreal,
+      length_dim:  real,
+      mass_dim:    real,
+      time_dim:    real,
+      current_dim: real,
+      temp_dim:    real,
+      intens_dim:  real,
+      angle_dim:   real
+     #] CONTAINING
+    (#
+      value       := 0,
+      scaling     := 1,
+      length_dim  := 0,
+      mass_dim    := 0,
+      time_dim    := 0,
+      current_dim := 0,
+      temp_dim    := 0,
+      intens_dim  := 0,
+      angle_dim   := 0
+     #);
+
+  zero_measurement: measurement =
+    (#
+      value       := 0,
+      scaling     := 1,
+      length_dim  := 0,
+      mass_dim    := 0,
+      time_dim    := 0,
+      current_dim := 0,
+      temp_dim    := 0,
+      intens_dim  := 0,
+      angle_dim   := 0
+     #);
+
+  dimension_match?(x: measurement, y: measurement): bool =
+    (x`length_dim = y`length_dim) AND
+    (x`time_dim = y`time_dim) AND
+    (x`mass_dim = y`mass_dim) AND
+    (x`current_dim = y`current_dim) AND
+    (x`temp_dim = y`temp_dim) AND
+    (x`intens_dim = y`intens_dim) AND
+    (x`angle_dim = y`angle_dim);
+
+  unit_measurement: measurement =
+    zero_measurement WITH [`value := 1];
+
+  negunit_measurement: measurement =
+    zero_measurement WITH [`value := -1];
+
+  nonzero_measurement: NONEMPTY_TYPE =
+    {m: measurement | m`value /= 0} CONTAINING unit_measurement;
+
+  nonneg_measurement: NONEMPTY_TYPE =
+    {m: measurement | m`value >= 0} CONTAINING zero_measurement;
+
+  nonpos_measurement: NONEMPTY_TYPE =
+    {m: measurement | m`value <= 0} CONTAINING zero_measurement;
+
+  posmeasurement: NONEMPTY_TYPE =
+    {m: measurement | m`value > 0} CONTAINING unit_measurement;
+
+  negmeasurement: NONEMPTY_TYPE =
+    {m: measurement | m`value < 0} CONTAINING negunit_measurement;
+
+  nzmeasurement: NONEMPTY_TYPE = nonzero_measurement;
+  nnmeasurement: NONEMPTY_TYPE = nonneg_measurement;
+  npmeasurement: NONEMPTY_TYPE = nonpos_measurement;
+
+  unit_match?(x: measurement, y: measurement): bool =
+    dimension_match?(x, y) AND
+    (x`scaling = y`scaling);
+
+  unit_match_transitive: LEMMA
+    FORALL(x, y, z: measurement):
+     unit_match?(x, y) AND unit_match?(y, z) IMPLIES unit_match?(x, z);
+
+  unit_match_comm: LEMMA
+    FORALL(x, y: measurement):
+      unit_match?(x, y) = unit_match?(y, x);
+
+  unit_model(value: real, m: measurement):
+    {x: measurement | unit_match?(x, m)} =
+      m WITH [`value := value];
+
+  +(x: measurement, y: {m: measurement | unit_match?(x, m)}):
+    {m: measurement | unit_match?(x, m)} =
+      x WITH [`value := x`value + y`value]
+
+  commutative_add: LEMMA
+    FORALL(x:  measurement, y: {m: measurement | unit_match?(x, m)}):
+      x + y = y + x;
+
+  associative_add: LEMMA
+    FORALL(x:  measurement, y: {m: measurement | unit_match?(x, m)},
+           z:  {m: measurement | unit_match?(x, m) AND unit_match?(y, m)}):
+      x + (y + z) = (x + y) + z;
+
+  -(x: measurement, y: {m: measurement | unit_match?(x, m)}):
+    {m: measurement | unit_match?(x, m)} =
+      x WITH [`value := x`value - y`value];
+
+  -(x: measurement): {m: measurement | unit_match?(x, m)} =
+    x WITH [`value := -x`value];
+
+  inverse_add: LEMMA
+    FORALL(x: measurement):
+      (x + -x)`value = 0;
+
+  minus_add: LEMMA
+    FORALL(x:  measurement, y: {m: measurement | unit_match?(x, m)}):
+      x - y = x + -y;
+
+  *(x: measurement, y: measurement): measurement =
+    (#
+      value       := x`value * y`value,
+      scaling     := x`scaling * y`scaling,
+      length_dim  := x`length_dim  + y`length_dim,
+      time_dim    := x`time_dim    + y`time_dim,
+      mass_dim    := x`mass_dim    + y`mass_dim,
+      current_dim := x`current_dim + y`current_dim,
+      temp_dim    := x`temp_dim    + y`temp_dim,
+      intens_dim  := x`intens_dim  + y`intens_dim,
+      angle_dim   := x`angle_dim   + y`angle_dim
+     #);
+
+  commutative_mult: LEMMA
+    FORALL(x: measurement, y: measurement): x * y = y * x;
+
+  associative_mult: LEMMA
+    FORALL(x:  measurement, y: measurement, z: measurement):
+      x * (y * z) = (x * y) * z;
+
+  identity_mult: LEMMA
+    FORALL(x: measurement): unit_measurement * x = x;
+
+  distributive: LEMMA
+    FORALL(x: measurement, y: measurement,
+           z: {m: measurement | unit_match?(y, m)}):
+      x * (y + z) = x * y + x * z;
+
+  *(x: real, y: measurement): {m: measurement | unit_match?(y, m)} =
+    y WITH [`value := x * y`value];
+
+  *(x: measurement, y: real): {m: measurement | unit_match?(x, m)} =
+    x WITH [`value := x`value * y];
+
+% mr = measurement-real
+  mr_commutative_mult: LEMMA
+    FORALL(x: measurement, y: real):
+      x * y = y * x;
+
+  mr_associative_mult: LEMMA
+    FORALL(x: measurement, y, z: real):
+      x * (y * z) = (x * y) * z;
+
+  mr_associative_mult2: LEMMA
+    FORALL(x: measurement, y: real, z: measurement):
+      x * (y * z) = (x * y) * z;
+
+  mr_distributive: LEMMA
+    FORALL(x: real, y: measurement, z: {m: measurement | unit_match?(y, m)}):
+      x * (y + z) = x * y + x * z;
+
+  /(x: measurement, y: nzmeasurement): measurement =
+    (#
+      value       := x`value / y`value,
+      scaling     := x`scaling / y`scaling,
+      length_dim  := x`length_dim  - y`length_dim,
+      time_dim    := x`time_dim    - y`time_dim,
+      mass_dim    := x`mass_dim    - y`mass_dim,
+      current_dim := x`current_dim - y`current_dim,
+      temp_dim    := x`temp_dim    - y`temp_dim,
+      intens_dim  := x`intens_dim  - y`intens_dim,
+      angle_dim   := x`angle_dim   - y`angle_dim
+     #);
+
+  inverse_mult: LEMMA
+    FORALL(n0x: nzmeasurement):
+      unit_measurement = n0x * (unit_measurement / n0x);
+
+  /(x: measurement, y: nzreal): {m: measurement | unit_match?(x, m)} =
+    x WITH [`value := x`value / y];
+
+  /(x: real, y: nzmeasurement): measurement =
+    (#
+      value       := x / y`value,
+      scaling     := 1 / y`scaling,
+      length_dim  := -y`length_dim,
+      time_dim    := -y`time_dim,
+      mass_dim    := -y`mass_dim,
+      current_dim := -y`current_dim,
+      temp_dim    := -y`temp_dim,
+      intens_dim  := -y`intens_dim,
+      angle_dim   := -y`angle_dim
+     #);
+
+  mr_inverse_mult: LEMMA
+    FORALL(n0x: nzmeasurement):
+      LET unity = n0x * (1 / n0x) IN
+        (unity`value = 1) AND dimension_match?(unity, unit_measurement)
+        AND (unity`scaling = 1);
+
+  base_value(x: measurement): real =
+    x`value * x`scaling;
+
+  % We might want to use a different comparable function, but
+  % just checking system and value is insufficient, because it
+  % does not capture how some specifications (e.g., Simulink)
+  % would handle similar logic
+  comparable?(x: measurement, y: measurement): bool =
+    unit_match?(x, y);
+
+  commutative_eq: LEMMA
+    FORALL(x, y: measurement): x = y IFF y = x;
+
+  <(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
+    base_value(x) < base_value(y);
+
+  trich_lt: LEMMA
+    FORALL(x: measurement, y: {m: measurement | comparable?(x, m)}):
+      x < y OR x = y OR y < x;
+
+  <=(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
+    x < y OR x = y;
+
+  >(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
+    y < x;
+
+  trich_gt: LEMMA
+    FORALL(x: measurement, y: {m: measurement | comparable?(x, m)}):
+      x > y OR x = y OR y > x;
+
+  >=(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
+    y <= x;
+
+  % Taking sqrt of scaling might not always be the correct solution
+  % Currently, however, I do not have a clear example where it is not
+  sqrt(x: nnmeasurement): nnmeasurement =
+    (#
+      value       := sqrt(x`value),
+      scaling     := sqrt(x`scaling),
+      length_dim  := x`length_dim  / 2,
+      time_dim    := x`time_dim    / 2,
+      mass_dim    := x`mass_dim    / 2,
+      current_dim := x`current_dim / 2,
+      temp_dim    := x`temp_dim    / 2,
+      intens_dim  := x`intens_dim  / 2,
+      angle_dim   := x`angle_dim   / 2
+     #)
+
+  % Scaling is exponentiated via multiplication rule
+  expt(x: measurement, n: nat): RECURSIVE measurement =
+    IF n = 0 THEN
+      unit_measurement
+    ELSE
+      x * expt(x, n - 1)
+    ENDIF
+    MEASURE n;
+
+  zero_value?(m: measurement): bool = (m`value = 0);
+
+  ^(x: measurement, i: {i: int | NOT(zero_value?(x)) OR i >= 0}): measurement =
+    IF i >= 0 THEN expt(x, i) ELSE 1 / expt(x, -i) ENDIF;
+
+  expt_pos: LEMMA FORALL(px: posmeasurement, i: int): (px^i)`value > 0;
+
+  sqrt_inverse_sq: LEMMA
+    FORALL(nnx: nnmeasurement): sqrt(nnx) ^ 2 = nnx
+
+  abs(x: measurement): {m: nnmeasurement | unit_match?(x, m)} =
+    x WITH [`value := abs(x`value)];
+
+  % The definition of conventional is possibly flawed for Imperial units
+  % The concept is that any product or division of pre-defined units will
+  % be "conventional", and that is true for currently pre-defined units,
+  % but I imagine a situation where inches (scaling of 1/12) might be multiplied
+  % by something with a factor of 16 (e.g., tablespoons per cup), to have
+  % a scaling of 4/3
+  conventional_measurement?(m: measurement): bool =
+    integer?(m`scaling) OR integer?(1 / (m`scaling));
+
+  % i can be < 0
+  decimal_measurement?(m: measurement): bool =
+    EXISTS(i: int): (10^i = m`scaling);
+
+  decimal_times_decimal_is_decimal:
+    JUDGEMENT *(x: (decimal_measurement?), y: (decimal_measurement?))
+    HAS_TYPE (decimal_measurement?);
+
+END measurements

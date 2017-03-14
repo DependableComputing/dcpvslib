@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of speed measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+speeds[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING lengths[S];
+  IMPORTING times[S];
+  IMPORTING dimensionlesses[S];
+
+  speed?(m: measurement): bool =
+    dimension_match?(m, zero_length WITH [`time_dim := -1]);
+
+  speed: NONEMPTY_TYPE = (speed?)
+    CONTAINING zero_length WITH [`time_dim := -1];
+
+  zero_speed: speed = zero_length WITH [`time_dim := -1];
+
+  unit_speed: speed = zero_speed WITH [`value := 1];
+
+  negunit_speed: speed = unit_speed WITH [`value := -1];
+
+  nonzero_speed: NONEMPTY_TYPE =
+    {s: speed | s`value /= 0} CONTAINING unit_speed;
+
+  nonneg_speed: NONEMPTY_TYPE =
+    {s: speed | s`value >= 0} CONTAINING zero_speed;
+
+  nonpos_speed: NONEMPTY_TYPE =
+    {s: speed | s`value <= 0} CONTAINING zero_speed;
+
+  posspeed: NONEMPTY_TYPE =
+    {s: speed | s`value > 0} CONTAINING unit_speed;
+
+  negspeed: NONEMPTY_TYPE =
+    {s: speed | s`value < 0} CONTAINING negunit_speed;
+
+  nzspeed: NONEMPTY_TYPE = nonzero_speed;
+  nnspeed: NONEMPTY_TYPE = nonneg_speed;
+  npspeed: NONEMPTY_TYPE = nonpos_speed;
+
+  x:   VAR speed;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  speed_plus_speed_is_speed:
+    JUDGEMENT +(x: speed, y: {s: speed | unit_match?(x, s)})
+    HAS_TYPE speed;
+  speed_minus_speed_is_speed:
+    JUDGEMENT -(x: speed, y: {s: speed | unit_match?(x, s)})
+    HAS_TYPE speed;
+  real_times_speed_is_speed:  JUDGEMENT *(a, x)   HAS_TYPE speed;
+  speed_div_nzreal_is_speed:  JUDGEMENT /(x, n0c) HAS_TYPE speed;
+  neg_speed_is_speed:         JUDGEMENT -(x)      HAS_TYPE speed;
+
+  distance_per_time_is_speed:
+    JUDGEMENT /(x: length, y: nztime) HAS_TYPE speed;
+  speed_times_time_is_distance:
+    JUDGEMENT *(x: speed, y: time) HAS_TYPE length;
+
+END speeds

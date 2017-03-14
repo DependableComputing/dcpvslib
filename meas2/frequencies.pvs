@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of frequency measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+frequencies[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING dimensionlesses[S];
+  IMPORTING times[S];
+
+  frequency?(m: measurement): bool =
+    dimension_match?(m, zero_measurement WITH [`time_dim := -1]);
+
+  frequency: NONEMPTY_TYPE = (frequency?)
+    CONTAINING zero_measurement WITH [`time_dim := -1];
+
+  zero_frequency: frequency = zero_measurement WITH [`time_dim := -1];
+
+  unit_frequency: frequency = zero_frequency WITH [`value := 1];
+
+  negunit_frequency: frequency = unit_frequency WITH [`value := -1];
+
+  nonzero_frequency: NONEMPTY_TYPE =
+    {f: frequency| f`value /= 0} CONTAINING unit_frequency;
+
+  nonneg_frequency: NONEMPTY_TYPE =
+    {f: frequency| f`value >= 0} CONTAINING zero_frequency;
+
+  nonpos_frequency: NONEMPTY_TYPE =
+    {f: frequency| f`value <= 0} CONTAINING zero_frequency;
+
+  posfrequency: NONEMPTY_TYPE =
+    {f: frequency| f`value > 0} CONTAINING unit_frequency;
+
+  negfrequency: NONEMPTY_TYPE =
+    {f: frequency| f`value < 0} CONTAINING negunit_frequency;
+
+  nzfrequency: NONEMPTY_TYPE = nonzero_frequency;
+  nnfrequency: NONEMPTY_TYPE = nonneg_frequency;
+  npfrequency: NONEMPTY_TYPE = nonpos_frequency;
+
+  % By defining units as uninterpreted positive real constants,
+  % mathematical operations can be performed on them in a manner
+  % that allows dimensional analysis
+
+  x:    VAR frequency;
+  n0z:  VAR nzfrequency;
+  a:    VAR real;
+  n0c:  VAR nzreal;
+  n0t:  VAR nztime;
+
+  frequency_plus_frequency_is_frequency:
+    JUDGEMENT +(x: frequency, y: {f: frequency | unit_match?(x, f)})
+    HAS_TYPE frequency;
+  frequency_minus_frequency_is_frequency:
+    JUDGEMENT -(x: frequency, y: {f: frequency | unit_match?(x, f)})
+    HAS_TYPE frequency;
+  real_times_frequency_is_frequency: JUDGEMENT *(a, x)   HAS_TYPE frequency;
+  frequency_div_nzreal_is_frequency: JUDGEMENT /(x, n0c) HAS_TYPE frequency;
+  neg_frequency_is_frequency:        JUDGEMENT -(x)      HAS_TYPE frequency;
+  frequency_div_frequency_is_dimensionless:
+    JUDGEMENT /(x: frequency, y: nzfrequency) HAS_TYPE dimensionless;
+  time_times_frequency_is_dimensionless:
+    JUDGEMENT *(x: time, y: frequency) HAS_TYPE dimensionless;
+  real_div_time_is_frequency:          JUDGEMENT /(a, n0t) HAS_TYPE frequency;
+  real_div_frequency_is_time:          JUDGEMENT /(a, n0z) HAS_TYPE time;
+  dimensionless_div_time_is_frequency:
+    JUDGEMENT /(x: dimensionless, y: nztime) HAS_TYPE frequency;
+  dimensionless_div_frequency_is_time:
+    JUDGEMENT /(x: dimensionless, y: nzfrequency) HAS_TYPE time;
+
+  Hz: posfrequency = 1 / s;
+
+  s_times_Hz_is_unitary: LEMMA s * Hz = unit_measurement;
+
+  RPM: posfrequency = Hz WITH [`scaling := 1 / 60];
+
+  nzreal_times_nzfrequency_is_nzfrequency: JUDGEMENT *(n0c, n0z) HAS_TYPE nzfrequency;
+  nzfrequency_div_nzreal_is_nzfrequency:   JUDGEMENT /(n0z, n0c) HAS_TYPE nzfrequency;
+
+END frequencies

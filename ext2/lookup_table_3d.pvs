@@ -1,0 +1,65 @@
+lookup_table_3d: THEORY
+  BEGIN
+
+    IMPORTING lookup_table_2d;
+    IMPORTING lookup_table_aux[table_2d];
+
+    table_3d: TYPE = lookup_table_aux[table_2d].lookup_table;
+
+    tbl: VAR table_3d;
+
+    x, y, z: VAR real;
+
+    i, j, k: VAR nat;
+
+    fn: VAR [[real, real] -> real];
+
+    interpolate(tbl, (i: upto(tbl`length)), x, y, z): real =
+       IF i = 0 THEN
+         lookup_table_2d.lookup(tbl(0)`rhs)(y, z)
+       ELSIF i = tbl`length THEN
+         lookup_table_2d.lookup(tbl(i - 1)`rhs)(y, z)
+       ELSE
+         LET x1 = tbl(i - 1)`lhs IN
+         LET x2 = tbl(i)`lhs IN
+         LET z1 = lookup_table_2d.lookup(tbl(i - 1)`rhs)(y, z) IN
+         LET z2 = lookup_table_2d.lookup(tbl(i)`rhs)(y, z) IN
+         z1 + (x - x1) * (z2 - z1) / (x2 - x1)
+       ENDIF;
+
+    lookup(tbl)(x, y, z): real =
+      LET i = find(tbl)(x) IN
+      interpolate(tbl, i, x, y, z);
+
+    fn_helper(fn, tbl, (i: below(tbl`length))): RECURSIVE real =
+      LET x = lookup_table_2d.fn_helper(fn, tbl(i)`rhs, 0) IN
+      IF i = tbl`length - 1 THEN
+        x
+      ELSE
+        fn(x, fn_helper(fn, tbl, i + 1))
+      ENDIF
+      MEASURE (tbl`length - i - 1);
+
+    min(tbl): {r: real |
+      (FORALL(i: below(tbl`length)):
+        (FORALL(j: below(tbl(i)`rhs`length)):
+          (FORALL(k: below(tbl(i)`rhs(j)`rhs`length)):
+            r <= tbl(i)`rhs(j)`rhs(k)`rhs))) AND
+      (EXISTS(i: below(tbl`length)):
+        (EXISTS(j: below(tbl(i)`rhs`length)):
+          (EXISTS(k: below(tbl(i)`rhs(j)`rhs`length)):
+            r = tbl(i)`rhs(j)`rhs(k)`rhs)))} =
+      fn_helper(min, tbl, 0);
+
+    max(tbl): {r: real |
+      (FORALL(i: below(tbl`length)):
+        (FORALL(j: below(tbl(i)`rhs`length)):
+          (FORALL(k: below(tbl(i)`rhs(j)`rhs`length)):
+            r >= tbl(i)`rhs(j)`rhs(k)`rhs))) AND
+      (EXISTS(i: below(tbl`length)):
+        (EXISTS(j: below(tbl(i)`rhs`length)):
+          (EXISTS(k: below(tbl(i)`rhs(j)`rhs`length)):
+            r = tbl(i)`rhs(j)`rhs(k)`rhs)))} =
+      fn_helper(max, tbl, 0);
+
+END lookup_table_3d

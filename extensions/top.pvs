@@ -1,0 +1,25 @@
+top: THEORY
+%------------------------------------------------------------------------
+% System of measurements
+%
+%  measurements     -- generic measurement
+%  dimensionlesses  -- measurement that has no dimensions
+%  lengths          -- length measurement
+%  times            -- time measurement
+%  areas            -- area measurement (length x length)
+%  volumes          -- volume measurement (length x length x length)
+%  speeds           -- speed measurement (length / time)
+%  accelerations    -- acceleration measurement (length / time ^ 2)
+%  volume_per_times -- flow measurement (length ^ 3 / time)
+% 
+%------------------------------------------------------------------------
+
+BEGIN
+
+  IMPORTING lookup_table_1d,
+            lookup_table_2d,
+            lookup_table_3d,
+            queue,
+            nbit_ints
+
+END top

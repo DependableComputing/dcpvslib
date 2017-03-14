@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of pressure measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+pressures[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING speeds[S];
+  IMPORTING times[S];
+  IMPORTING dimensionlesses[S];
+  IMPORTING accelerations[S];
+  IMPORTING masses[S];
+  IMPORTING forces[S];
+  IMPORTING areas[S];
+  IMPORTING reals@sqrt
+
+  pressure?(m: measurement): bool =
+    dimension_match?(m, zero_force WITH [`length_dim := -1]);
+
+  pressure: NONEMPTY_TYPE = (pressure?)
+    CONTAINING zero_force WITH [`length_dim := -1];
+
+  zero_pressure: pressure =
+    zero_force WITH [`length_dim := -1];
+
+  unit_pressure: pressure = zero_pressure WITH [`value := 1];
+
+  negunit_pressure: pressure = unit_pressure WITH [`value := -1];
+
+  nonzero_pressure: NONEMPTY_TYPE =
+    {p: pressure| p`value /= 0} CONTAINING unit_pressure;
+
+  nonneg_pressure: NONEMPTY_TYPE =
+    {p: pressure| p`value >= 0} CONTAINING zero_pressure;
+
+  nonpos_pressure: NONEMPTY_TYPE =
+    {p: pressure| p`value <= 0} CONTAINING zero_pressure;
+
+  pospressure: NONEMPTY_TYPE =
+    {p: pressure| p`value > 0} CONTAINING unit_pressure;
+
+  negpressure: NONEMPTY_TYPE =
+    {p: pressure| p`value < 0} CONTAINING negunit_pressure;
+
+  nzpressure: NONEMPTY_TYPE = nonzero_pressure;
+  nnpressure: NONEMPTY_TYPE = nonneg_pressure;
+  nppressure: NONEMPTY_TYPE = nonpos_pressure;
+
+  x:   VAR pressure;
+  n0z: VAR nzpressure;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  pressure_plus_pressure_is_pressure:
+    JUDGEMENT +(x: pressure, y: {p: pressure | unit_match?(x, p)})
+    HAS_TYPE pressure;
+  pressure_minus_pressure_is_pressure:
+    JUDGEMENT -(x: pressure, y: {p: pressure | unit_match?(x, p)})
+    HAS_TYPE pressure;
+  real_times_pressure_is_pressure:     JUDGEMENT *(a, x)   HAS_TYPE pressure;
+  pressure_div_nzreal_is_pressure:     JUDGEMENT /(x, n0c) HAS_TYPE pressure;
+  neg_pressure_is_pressure:            JUDGEMENT -(x)      HAS_TYPE pressure;
+
+  force_over_area_is_pressure:
+    JUDGEMENT /(x: force, y: nzarea) HAS_TYPE pressure;
+
+  nzreal_times_nzpressure_is_nzpressure: JUDGEMENT *(n0c, n0z) HAS_TYPE nzpressure;
+  nzpressure_div_nzreal_is_nzpressure: JUDGEMENT /(n0z, n0c) HAS_TYPE nzpressure;
+
+END pressures

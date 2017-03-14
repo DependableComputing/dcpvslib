@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of volume per time measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+volume_per_times: THEORY
+BEGIN
+
+  IMPORTING measurements
+  IMPORTING volumes
+  IMPORTING times
+  IMPORTING dimensionlesses
+  IMPORTING speeds
+  IMPORTING areas
+
+  volume_per_time?(m: measurement): bool =
+    valid_measurement?(m) AND
+    dimension_match?(m, zero_volume WITH [`time_dim := -1]);
+
+  volume_per_time: NONEMPTY_TYPE = (volume_per_time?)
+    CONTAINING zero_volume WITH [`system := ANY, `time_dim := -1];
+
+  zero_volume_per_time: volume_per_time =
+    zero_volume WITH [`system := ANY, `time_dim := -1];
+
+  unit_volume_per_time: volume_per_time =
+    zero_volume_per_time WITH [`value := 1];
+
+  negunit_volume_per_time: volume_per_time =
+    unit_volume_per_time WITH [`value := -1];
+
+  nonzero_volume_per_time: NONEMPTY_TYPE =
+    {v: volume_per_time| v`value /= 0} CONTAINING unit_volume_per_time;
+
+  nonneg_volume_per_time: NONEMPTY_TYPE =
+    {v: volume_per_time| v`value >= 0} CONTAINING zero_volume_per_time;
+
+  nonpos_volume_per_time: NONEMPTY_TYPE =
+    {v: volume_per_time| v`value <= 0} CONTAINING zero_volume_per_time;
+
+  posvolume_per_time: NONEMPTY_TYPE =
+    {v: volume_per_time| v`value > 0} CONTAINING unit_volume_per_time;
+
+  negvolume_per_time: NONEMPTY_TYPE =
+    {v: volume_per_time| v`value < 0} CONTAINING negunit_volume_per_time;
+
+  nzvolume_per_time: NONEMPTY_TYPE = nonzero_volume_per_time;
+  nnvolume_per_time: NONEMPTY_TYPE = nonneg_volume_per_time;
+  npvolume_per_time: NONEMPTY_TYPE = nonpos_volume_per_time;
+
+  x:   VAR volume_per_time;
+  n0z: VAR nzvolume_per_time;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  volume_per_time_plus_volume_per_time_is_volume_per_time:
+    JUDGEMENT +(x: volume_per_time, y: {v: volume_per_time | unit_match?(x, v)})
+    HAS_TYPE volume_per_time;
+  volume_per_time_minus_volume_per_time_is_volume_per_time:
+    JUDGEMENT -(x: volume_per_time, y: {v: volume_per_time | unit_match?(x, v)})
+    HAS_TYPE volume_per_time;
+  real_times_volume_per_time_is_volume_per_time:            JUDGEMENT *(a, x)   HAS_TYPE volume_per_time;
+  volume_per_time_div_nzreal_is_volume_per_time:            JUDGEMENT /(x, n0c) HAS_TYPE volume_per_time;
+  neg_volume_per_time_is_volume_per_time:                   JUDGEMENT -(x)      HAS_TYPE volume_per_time;
+
+  volume_over_time_is_volume_per_time:
+    JUDGEMENT /(x: volume, y: {v: nztime | system_match?(x, v)})
+    HAS_TYPE volume_per_time;
+  speed_times_area_is_volume_per_time:
+    JUDGEMENT *(x: speed, y: {a: area | system_match?(x, a)})
+    HAS_TYPE volume_per_time;
+
+  nzreal_times_nzvolume_per_time_is_nzvolume_per_time: JUDGEMENT *(n0c, n0z) HAS_TYPE nzvolume_per_time;
+  nzvolume_per_time_div_nzreal_is_nzvolume_per_time: JUDGEMENT /(n0z, n0c) HAS_TYPE nzvolume_per_time;
+
+END volume_per_times

@@ -1,0 +1,73 @@
+;; see /Users/Dependable/Tools/nasalib/interval_arith/interval.lisp
+;; for a more complex strategy
+(defstep label-hide (name &optional (fnum -1))
+  (then
+   (label name fnum)
+   (hide fnum)
+  )
+  "Labels then hides a formula"
+  "Providing label '~a' to ~a then hiding it")
+
+(defstep replace-hidden (name)
+  (then
+   (reveal name)
+   (replace name)
+   (hide name)
+  )
+  "Replaces using a hidden, named formula"
+  "Applying reveal, replace, then hide on ~a")
+
+(defstep meas ()
+  (then (try
+         ; if times theory is not loaded this will fail
+          (typepred "times.s")
+          (skip)
+          (skip)
+        )
+        (try
+         ; if lengths theory is not loaded this will fail
+          (typepred "lengths.m")
+          (skip)
+          (skip)
+        )
+        (grind)
+        (field))
+  "A default strategy for dealing with measurements."
+  "Applying lemmas, typepreds, grind then field")
+
+(defstep sum_integer (i j)
+  (then
+    (typepred i j)
+    (expand "integer?" +)
+    (split)
+      (lemma "reals.closed_plus" ("x" i "y" j))
+        (assert)(subtype-tcc)(subtype-tcc)
+      (lemma "rationals.closed_plus" ("x" i "y" j))
+        (assert)(subtype-tcc)(subtype-tcc)
+      (lemma "closed_plus" ("i" i "j" j))
+        (assert)(subtype-tcc)(subtype-tcc)
+  )
+  "Strategy for showing summation is an integer."
+  "Showing summation is an integer")
+
+(defstep sum_sized_integer (t i j lb1 ub1 lb2 ub2)
+  (then
+    (typepred i j)
+    (expand t)
+    (split)
+      (expand "integer?")
+        (lemma "reals.closed_plus" ("x" i "y" j))
+          (assert)(subtype-tcc)(subtype-tcc)
+        (lemma "rationals.closed_plus" ("x" i "y" j))
+          (assert)(subtype-tcc)(subtype-tcc)
+        (lemma "closed_plus" ("i" i "j" j))
+          (assert)(subtype-tcc)(subtype-tcc)
+      (model-check)
+      (lemma "le_plus_le" ("x" lb1 "y" i "z" lb2 "w" j))
+        (assert)(subtype-tcc)(subtype-tcc) 
+      (model-check)
+      (lemma "le_plus_le" ("x" i "y" ub1 "z" j "w" ub2)) 
+        (assert)(subtype-tcc)(subtype-tcc)
+  )
+  "Strategy for showing summation is an integer of a particular size."
+  "Showing summation is an integer of a particular size")

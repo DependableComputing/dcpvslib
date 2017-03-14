@@ -1,0 +1,525 @@
+(force_distances
+ (force_distance_TCC1 0
+  (force_distance_TCC1-1 nil 3643126059 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (force_distance? const-decl "bool" force_distances nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (unit_force_distance_TCC1 0
+  (unit_force_distance_TCC1-1 nil 3643126059 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (force_distance? const-decl "bool" force_distances nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (negunit_force_distance_TCC1 0
+  (negunit_force_distance_TCC1-1 nil 3643126059
+   ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (unit_force_distance const-decl "force_distance" force_distances
+     nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (force_distance? const-decl "bool" force_distances nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (nonzero_force_distance_TCC1 0
+  (nonzero_force_distance_TCC1-1 nil 3643126059
+   ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (unit_force_distance const-decl "force_distance" force_distances
+     nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil))
+   nil))
+ (nonneg_force_distance_TCC1 0
+  (nonneg_force_distance_TCC1-1 nil 3643126059
+   ("" (subtype-tcc) nil nil)
+   ((real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (nonpos_force_distance_TCC1 0
+  (nonpos_force_distance_TCC1-1 nil 3643126059
+   ("" (subtype-tcc) nil nil)
+   ((real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (posforce_distance_TCC1 0
+  (posforce_distance_TCC1-1 nil 3643126059 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (unit_force_distance const-decl "force_distance" force_distances
+     nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (negforce_distance_TCC1 0
+  (negforce_distance_TCC1-1 nil 3643126059 ("" (subtype-tcc) nil nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (zero_force_distance const-decl "force_distance" force_distances
+     nil)
+    (unit_force_distance const-decl "force_distance" force_distances
+     nil)
+    (negunit_force_distance const-decl "force_distance" force_distances
+     nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (force_distance_plus_force_distance_is_force_distance_TCC1 0
+  (force_distance_plus_force_distance_is_force_distance_TCC1-1 nil
+   3646733191 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force_distance? const-decl "bool" force_distances nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (force_distance_plus_force_distance_is_force_distance_TCC2 0
+  (force_distance_plus_force_distance_is_force_distance_TCC2-1 nil
+   3646733191 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force_distance? const-decl "bool" force_distances nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (force_distance_plus_force_distance_is_force_distance 0
+  (force_distance_plus_force_distance_is_force_distance-1 nil
+   3643126059 ("" (grind) nil nil)
+   ((unit_match? const-decl "bool" measurements nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (system_enum type-decl nil measurements nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (preferred_system? const-decl "bool" measurements nil)
+    (+ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (force_distance? const-decl "bool" force_distances nil))
+   nil))
+ (force_distance_minus_force_distance_is_force_distance 0
+  (force_distance_minus_force_distance_is_force_distance-1 nil
+   3643126059 ("" (grind) nil nil)
+   ((unit_match? const-decl "bool" measurements nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (system_enum type-decl nil measurements nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (system_match? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (preferred_system? const-decl "bool" measurements nil)
+    (- const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (force_distance? const-decl "bool" force_distances nil))
+   nil))
+ (real_times_force_distance_is_force_distance 0
+  (real_times_force_distance_is_force_distance-1 nil 3643126059
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (/= const-decl "boolean" notequal nil)
+    (* const-decl "{m: valid_measurement | unit_match?(y, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (force_distance? const-decl "bool" force_distances nil))
+   nil))
+ (force_distance_div_nzreal_is_force_distance 0
+  (force_distance_div_nzreal_is_force_distance-1 nil 3643126059
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (force_distance? const-decl "bool" force_distances nil))
+   nil))
+ (neg_force_distance_is_force_distance 0
+  (neg_force_distance_is_force_distance-1 nil 3643126059
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (/= const-decl "boolean" notequal nil)
+    (- const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (force_distance? const-decl "bool" force_distances nil))
+   nil))
+ (force_times_distance_is_force_distance_TCC1 0
+  (force_times_distance_is_force_distance_TCC1-1 nil 3646733191
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force? const-decl "bool" forces nil)
+    (force nonempty-type-eq-decl nil forces nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (force_times_distance_is_force_distance_TCC2 0
+  (force_times_distance_is_force_distance_TCC2-1 nil 3646733191
+   ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force? const-decl "bool" forces nil)
+    (force nonempty-type-eq-decl nil forces nil)
+    (length? const-decl "bool" lengths nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (system_match? const-decl "bool" measurements nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (force_times_distance_is_force_distance 0
+  (force_times_distance_is_force_distance-1 nil 3643126059
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force? const-decl "bool" forces nil)
+    (force nonempty-type-eq-decl nil forces nil)
+    (length? const-decl "bool" lengths nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (system_match? const-decl "bool" measurements nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (odd_plus_odd_is_even application-judgement "even_int" integers
+     nil)
+    (nnint_plus_posint_is_posint application-judgement "posint"
+     integers nil)
+    (even_plus_even_is_even application-judgement "even_int" integers
+     nil)
+    (odd_plus_even_is_odd application-judgement "odd_int" integers nil)
+    (posint_plus_nnint_is_posint application-judgement "posint"
+     integers nil)
+    (even_minus_odd_is_odd application-judgement "odd_int" integers
+     nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (/= const-decl "boolean" notequal nil)
+    (explicit_system? const-decl "bool" measurements nil)
+    (* const-decl "{m: valid_measurement | system_match?(x, m)}"
+       measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (force_distance? const-decl "bool" force_distances nil))
+   nil))
+ (nzreal_times_nzforce_distance_is_nzforce_distance_TCC1 0
+  (nzreal_times_nzforce_distance_is_nzforce_distance_TCC1-1 nil
+   3646733191 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (force_distance? const-decl "bool" force_distances nil)
+    (force_distance nonempty-type-eq-decl nil force_distances nil)
+    (number nonempty-type-decl nil numbers nil)
+    (nzforce_distance nonempty-type-eq-decl nil force_distances nil)
+    (minus_even_is_even application-judgement "even_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_acceleration const-decl "acceleration" accelerations nil)
+    (zero_force const-decl "force" forces nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil))
+ (nzreal_times_nzforce_distance_is_nzforce_distance 0
+  (nzreal_times_nzforce_distance_is_nzforce_distance-1 nil 3643126059
+   ("" (judgement-tcc) nil nil)
+   ((* const-decl "{m: valid_measurement | unit_match?(y, m)}"
+       measurements nil))
+   nil))
+ (nzforce_distance_div_nzreal_is_nzforce_distance 0
+  (nzforce_distance_div_nzreal_is_nzforce_distance-1 nil 3643126059
+   ("" (judgement-tcc) nil nil)
+   ((/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
+       measurements nil))
+   nil)))
+

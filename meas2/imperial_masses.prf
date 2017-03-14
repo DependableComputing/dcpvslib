@@ -1,0 +1,33 @@
+(imperial_masses
+ (slug_TCC1 0
+  (slug_TCC1-1 nil 3666116877 ("" (subtype-tcc) nil nil)
+   ((real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (slug_to_g const-decl "real" imperial_masses nil)
+    (posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (slug_TCC2 0
+  (slug_TCC2-1 nil 3670348221 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (mass? const-decl "bool" masses nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (slug_to_g const-decl "real" imperial_masses nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     imperial_masses nil)
+    (unit_mass const-decl "mass" masses nil)
+    (zero_mass const-decl "mass" masses nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (IMPERIAL? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (IMPERIAL adt-constructor-decl "(IMPERIAL?)" measurement_systems
+     nil))
+   nil)))
+

@@ -1,0 +1,46 @@
+top: THEORY
+%------------------------------------------------------------------------
+% System of measurements
+%
+%  measurements     -- generic measurement
+%  dimensionlesses  -- measurement that has no dimensions
+%  lengths          -- length measurement
+%  times            -- time measurement
+%  areas            -- area measurement (length x length)
+%  volumes          -- volume measurement (length x length x length)
+%  speeds           -- speed measurement (length / time)
+%  accelerations    -- acceleration measurement (length / time ^ 2)
+%  volume_per_times -- flow measurement (length ^ 3 / time)
+% 
+%------------------------------------------------------------------------
+
+BEGIN
+
+  IMPORTING measurement_systems,
+            measurements,
+            dimensionlesses,
+            angles,
+            lengths,
+            metric_lengths,
+            imperial_lengths,
+            masses,
+            metric_masses,
+            imperial_masses,
+            times,
+            frequencies,
+            areas,
+            volumes,
+            speeds,
+            accelerations,
+            forces,
+            metric_forces,
+            imperial_forces,
+            pressures,
+            metric_pressures,
+            force_distances,
+            volume_per_times,
+            rotational_inertias,
+            transmutations,
+            sigma_meas;
+
+END top

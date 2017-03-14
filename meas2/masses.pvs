@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of mass measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+masses[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING dimensionlesses[S];
+
+  mass?(m: measurement): bool =
+    dimension_match?(m, zero_measurement WITH [`mass_dim := 1]);
+
+  mass: NONEMPTY_TYPE = (mass?)
+    CONTAINING zero_measurement WITH [`mass_dim := 1];
+
+  zero_mass: mass = zero_measurement WITH [`mass_dim := 1];
+
+  unit_mass: mass = zero_mass WITH [`value := 1];
+
+  negunit_mass: mass = unit_mass WITH [`value := -1];
+
+  nonzero_mass: NONEMPTY_TYPE =
+    {m: mass | m`value /= 0} CONTAINING
+    unit_mass;
+
+  nonneg_mass: NONEMPTY_TYPE =
+    {m: mass | m`value >= 0} CONTAINING
+    zero_mass;
+
+  nonpos_mass: NONEMPTY_TYPE =
+    {m: mass | m`value <= 0} CONTAINING
+    zero_mass;
+
+  posmass: NONEMPTY_TYPE =
+    {m: mass | m`value > 0} CONTAINING
+    unit_mass;
+
+  negmass: NONEMPTY_TYPE =
+    {m: mass | m`value < 0} CONTAINING
+    negunit_mass;
+
+  nzmass: NONEMPTY_TYPE = nonzero_mass;
+  nnmass: NONEMPTY_TYPE = nonneg_mass;
+  npmass: NONEMPTY_TYPE = nonpos_mass;
+
+  % By defining units as uninterpreted positive real constants,
+  % mathematical operations can be performed on them in a manner
+  % that allows dimensional analysis
+
+  x:   VAR mass;
+  n0z: VAR nzmass;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  mass_plus_mass_is_mass:
+    JUDGEMENT +(x: mass, y: {m: mass | unit_match?(x, m)})
+    HAS_TYPE mass;
+  mass_minus_mass_is_mass:
+    JUDGEMENT -(x: mass, y: {m: mass | unit_match?(x, m)})
+    HAS_TYPE mass;
+  real_times_mass_is_mass:        JUDGEMENT *(a, x)   HAS_TYPE mass;
+  mass_div_nzreal_is_mass:        JUDGEMENT /(x, n0c) HAS_TYPE mass;
+  neg_mass_is_mass:               JUDGEMENT -(x)      HAS_TYPE mass;
+  mass_div_mass_is_dimensionless:
+    JUDGEMENT /(x: mass, y: nzmass) HAS_TYPE dimensionless;
+
+  nzreal_times_nzmass_is_nzmass: JUDGEMENT *(n0c, n0z) HAS_TYPE nzmass;
+  nzmass_div_nzreal_is_nzmass:   JUDGEMENT /(n0z, n0c) HAS_TYPE nzmass;
+
+END masses

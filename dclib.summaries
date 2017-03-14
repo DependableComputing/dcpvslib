@@ -1,0 +1,31 @@
+Processing measurements/top.pvs. Writing output to file summaries/measurements.summary
+Logging PVS information in summaries/measurements.log
+Grand Totals: 493 proofs, 493 attempted, 493 succeeded (132.23 s)
+
+Processing meas2/top.pvs. Writing output to file summaries/meas2.summary
+Logging PVS information in summaries/meas2.log
+Grand Totals: 373 proofs, 373 attempted, 373 succeeded (52.42 s)
+
+Processing extensions/top.pvs. Writing output to file summaries/extensions.summary
+Logging PVS information in summaries/extensions.log
+Grand Totals: 43 proofs, 43 attempted, 43 succeeded (249.52 s)
+
+Processing ext2/top.pvs. Writing output to file summaries/ext2.summary
+Logging PVS information in summaries/ext2.log
+ Proof summary for theory lookup_table_2d
+    min_TCC3..............................unfinished          [shostak](0.46 s)
+    max_TCC1..............................unfinished          [shostak](0.46 s)
+    Theory totals: 14 formulas, 14 attempted, 12 succeeded (2.82 s)
+ Proof summary for theory lookup_table_3d
+    min_TCC4..............................unfinished          [shostak](0.79 s)
+    max_TCC1..............................unfinished          [shostak](0.80 s)
+    Theory totals: 15 formulas, 15 attempted, 13 succeeded (4.68 s)
+Grand Totals: 71 proofs, 71 attempted, 67 succeeded (20.48 s)
+
+PVS_LIBRARY_PATH=/Users/Dependable/Tools/nasalib:/Users/Dependable/Tools/PVS-lib
+measurements             [OK: 493 proofs]
+meas2                    [OK: 373 proofs]
+extensions               [OK: 43 proofs]
+ext2                     [MISS: 4 unsuccessful / 71 formulas]
+
+*** Grand Total: 976 proofs / 980 formulas. Missed: 4 formulas.

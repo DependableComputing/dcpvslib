@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of dimensionless measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+dimensionlesses[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+
+  dimensionless?(m: measurement): bool = dimension_match?(m, zero_measurement);
+
+  dimensionless: NONEMPTY_TYPE = (dimensionless?) CONTAINING zero_measurement;
+
+  nonzero_dimensionless: NONEMPTY_TYPE =
+    {d: dimensionless | d`value /= 0} CONTAINING unit_measurement;
+
+  nonneg_dimensionless: NONEMPTY_TYPE =
+    {d: dimensionless | d`value >= 0} CONTAINING zero_measurement;
+
+  nonpos_dimensionless: NONEMPTY_TYPE =
+    {d: dimensionless | d`value <= 0} CONTAINING zero_measurement;
+
+  posdimensionless: NONEMPTY_TYPE =
+    {d: dimensionless | d`value > 0} CONTAINING unit_measurement;
+
+  negdimensionless: NONEMPTY_TYPE =
+    {d: dimensionless | d`value < 0} CONTAINING negunit_measurement;
+
+  nzdimensionless: NONEMPTY_TYPE = nonzero_dimensionless;
+  nndimensionless: NONEMPTY_TYPE = nonneg_dimensionless;
+  npdimensionless: NONEMPTY_TYPE = nonpos_dimensionless;
+
+  % For explicitly casting a real as a dimensionless
+  dimensionless(r: real): dimensionless =
+    zero_measurement WITH [`value := r];
+
+  x:    VAR dimensionless;
+  n0z:  VAR nzdimensionless;
+  a:    VAR real;
+  n0c:  VAR nzreal;
+
+  dimensionless_plus_dimensionless_is_dimensionless:
+    JUDGEMENT +(x: dimensionless, y: {d: dimensionless | unit_match?(x, d)})
+    HAS_TYPE dimensionless;
+  dimensionless_minus_dimensionless_is_dimensionless:
+    JUDGEMENT -(x: dimensionless, y: {d: dimensionless | unit_match?(x, d)})
+    HAS_TYPE dimensionless;
+  dimensionless_times_dimensionless_is_dimensionless:
+    JUDGEMENT *(x: dimensionless, y: dimensionless)
+    HAS_TYPE dimensionless;
+  dimensionless_div_nzdimensionless_is_dimensionless:
+    JUDGEMENT /(x: dimensionless, n0z: nzdimensionless)
+    HAS_TYPE dimensionless;
+  neg_dimensionless_is_dimensionless:                 JUDGEMENT -(x)      HAS_TYPE dimensionless;
+  real_times_dimensionless_is_dimensionless:          JUDGEMENT *(a, x)   HAS_TYPE dimensionless;
+  dimensionless_div_nzreal_is_dimensionless:          JUDGEMENT /(x, n0c) HAS_TYPE dimensionless;
+
+  zero_measurement_is_dimensionless:    JUDGEMENT zero_measurement    HAS_TYPE dimensionless;
+  unit_measurement_is_dimensionless:    JUDGEMENT unit_measurement    HAS_TYPE dimensionless;
+  negunit_measurement_is_dimensionless: JUDGEMENT negunit_measurement HAS_TYPE dimensionless;
+
+END dimensionlesses

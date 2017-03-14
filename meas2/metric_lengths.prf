@@ -1,0 +1,75 @@
+(metric_lengths
+ (m_TCC1 0
+  (m_TCC1-1 nil 3666115857 ("" (subtype-tcc) nil nil)
+   ((METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_length const-decl "length" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_lengths nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (km_TCC1 0
+  (km_TCC1-1 nil 3666115857 ("" (subtype-tcc) nil nil)
+   ((length? const-decl "bool" lengths nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_lengths nil)
+    (m const-decl "poslength" metric_lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil))
+ (cm_TCC1 0
+  (cm_TCC1-1 nil 3666115857 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_lengths nil)
+    (m const-decl "poslength" metric_lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil))
+ (mm_TCC1 0
+  (mm_TCC1-1 nil 3666115857 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     metric_lengths nil)
+    (m const-decl "poslength" metric_lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (METRIC? adt-recognizer-decl "[system_enum -> boolean]"
+     measurement_systems nil)
+    (METRIC adt-constructor-decl "(METRIC?)" measurement_systems nil))
+   nil)))
+

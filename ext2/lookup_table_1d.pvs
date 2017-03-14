@@ -1,0 +1,45 @@
+lookup_table_1d: THEORY
+  BEGIN
+
+    IMPORTING lookup_table_aux[real];
+
+    table_1d: TYPE = lookup_table;
+
+    tbl: VAR table_1d;
+
+    x: VAR real;
+
+    i: VAR nat;
+
+    fn: VAR [[real, real] -> real];
+
+    interpolate(tbl, (i: upto(tbl`length)), x): real =
+      IF i = 0 THEN
+        tbl(0)`rhs
+      ELSIF i = tbl`length THEN
+        tbl(i - 1)`rhs
+      ELSE
+        tbl(i - 1)`rhs + (x - tbl(i-1)`lhs) * (tbl(i)`rhs - tbl(i - 1)`rhs) /
+                       (tbl(i)`lhs - tbl(i-1)`lhs)
+      ENDIF;
+
+    lookup(tbl)(x): real = (LET i = find(tbl)(x)
+                           IN interpolate(tbl, i, x));
+
+    fn_helper(fn, tbl, (i : below(tbl`length))): RECURSIVE real =
+      (IF i = tbl`length - 1 THEN
+         tbl(i)`rhs
+       ELSE
+         fn(tbl(i)`rhs, fn_helper(fn, tbl, i + 1))
+       ENDIF)
+      MEASURE (tbl`length - i - 1);
+
+    min(tbl): {r: real | (FORALL(i: below(tbl`length)): r <= tbl(i)`rhs) AND
+                       (EXISTS(i: below(tbl`length)): r = tbl(i)`rhs)} =
+      fn_helper(min, tbl, 0);
+
+    max(tbl): {r: real | (FORALL(i: below(tbl`length)): r >= tbl(i)`rhs) AND
+                       (EXISTS(i: below(tbl`length)): r = tbl(i)`rhs)} =
+      fn_helper(max, tbl, 0);
+
+End lookup_table_1d

@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of rotational_inertia measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+rotational_inertias: THEORY
+BEGIN
+
+  IMPORTING measurements
+  IMPORTING dimensionlesses
+  IMPORTING masses
+  IMPORTING lengths
+  IMPORTING areas
+
+  rotational_inertia?(m: measurement): bool =
+    valid_measurement?(m) AND
+    dimension_match?(m, zero_mass WITH [`length_dim := 2]);
+
+  rotational_inertia: NONEMPTY_TYPE = (rotational_inertia?)
+    CONTAINING zero_mass WITH [`system := ANY, `length_dim := 2];
+
+  zero_rotational_inertia: rotational_inertia =
+    zero_mass WITH [`system := ANY, `length_dim := 2];
+
+  unit_rotational_inertia: rotational_inertia =
+    zero_rotational_inertia WITH [`value := 1];
+
+  negunit_rotational_inertia: rotational_inertia =
+    unit_rotational_inertia WITH [`value := -1];
+
+  nonzero_rotational_inertia: NONEMPTY_TYPE =
+    {r: rotational_inertia| r`value /= 0} CONTAINING unit_rotational_inertia;
+
+  nonneg_rotational_inertia: NONEMPTY_TYPE =
+    {r: rotational_inertia| r`value >= 0} CONTAINING zero_rotational_inertia;
+
+  nonpos_rotational_inertia: NONEMPTY_TYPE =
+    {r: rotational_inertia| r`value <= 0} CONTAINING zero_rotational_inertia;
+
+  posrotational_inertia: NONEMPTY_TYPE =
+    {r: rotational_inertia| r`value > 0} CONTAINING unit_rotational_inertia;
+
+  negrotational_inertia: NONEMPTY_TYPE =
+    {r: rotational_inertia| r`value < 0} CONTAINING negunit_rotational_inertia;
+
+  nzrotational_inertia: NONEMPTY_TYPE = nonzero_rotational_inertia;
+  nnrotational_inertia: NONEMPTY_TYPE = nonneg_rotational_inertia;
+  nprotational_inertia: NONEMPTY_TYPE = nonpos_rotational_inertia;
+
+  x:    VAR rotational_inertia;
+  n0z:  VAR nzrotational_inertia;
+  a:    VAR real;
+  n0c:  VAR nzreal;
+
+  rotational_inertia_plus_rotational_inertia_is_rotational_inertia:
+    JUDGEMENT +(x: rotational_inertia, y: {r: rotational_inertia | unit_match?(x, r)})
+    HAS_TYPE rotational_inertia;
+  rotational_inertia_minus_rotational_inertia_is_rotational_inertia:
+    JUDGEMENT -(x: rotational_inertia, y: {r: rotational_inertia | unit_match?(x, r)})
+    HAS_TYPE rotational_inertia;
+  real_times_rotational_inertia_is_rotational_inertia:               JUDGEMENT *(a, x)   HAS_TYPE rotational_inertia;
+  rotational_inertia_div_nzreal_is_rotational_inertia:               JUDGEMENT /(x, n0c) HAS_TYPE rotational_inertia;
+  neg_rotational_inertia_is_rotational_inertia:                      JUDGEMENT -(x)      HAS_TYPE rotational_inertia;
+  rotational_inertia_div_rotational_inertia_is_dimensionless:
+    JUDGEMENT /(x: rotational_inertia, y: {r: nzrotational_inertia | system_match?(x, r)})
+    HAS_TYPE dimensionless;
+
+  mass_times_area_is_rotational_inertia:
+    JUDGEMENT *(x: mass, y: {a: area | system_match?(x, a)})
+    HAS_TYPE rotational_inertia;
+
+  nzreal_times_nzrotational_inertia_is_nzrotational_inertia: JUDGEMENT *(n0c, n0z) HAS_TYPE nzrotational_inertia;
+  nzrotational_inertia_div_nzreal_is_nzrotational_inertia:   JUDGEMENT /(n0z, n0c) HAS_TYPE nzrotational_inertia;
+
+END rotational_inertias

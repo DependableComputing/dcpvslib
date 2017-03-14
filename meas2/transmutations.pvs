@@ -1,0 +1,85 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of conversions between systems of units %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+transmutations[(IMPORTING measurement_systems) S: system_enum,
+               (IMPORTING measurement_systems) T: {s: system_enum | s /= S}]:
+THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING measurements[T];
+
+  transmutation: NONEMPTY_TYPE =
+    [#
+      to_factor:   measurements[S].nzmeasurement,
+      from_factor: measurements[T].nzmeasurement
+     #] CONTAINING
+    (#
+      to_factor   := measurements[S].unit_measurement,
+      from_factor := measurements[T].unit_measurement
+     #);
+
+  % Transmutation involves multiplying a measurement by the to_factor and
+  % then dividing by the from_factor
+  transmute(meas: measurements[T].measurement, t: transmutation):
+    measurements[S].measurement =
+      (#
+        value   := meas`value * t`to_factor`value / t`from_factor`value,
+        scaling := meas`scaling * t`to_factor`scaling / t`from_factor`scaling,
+        length_dim  := meas`length_dim  + t`to_factor`length_dim
+                                        - t`from_factor`length_dim,
+        time_dim    := meas`time_dim    + t`to_factor`time_dim
+                                        - t`from_factor`time_dim,
+        mass_dim    := meas`mass_dim    + t`to_factor`mass_dim
+                                        - t`from_factor`mass_dim,
+        current_dim := meas`current_dim + t`to_factor`current_dim
+                                        - t`from_factor`current_dim,
+        temp_dim    := meas`temp_dim    + t`to_factor`temp_dim
+                                        - t`from_factor`temp_dim,
+        intens_dim  := meas`intens_dim  + t`to_factor`intens_dim
+                                        - t`from_factor`intens_dim,
+        angle_dim   := meas`angle_dim   + t`to_factor`angle_dim
+                                        - t`from_factor`angle_dim
+       #);
+
+  % Multiply = transmute, can be in either order
+  *(meas: measurements[T].measurement, t: transmutation):
+    measurements[S].measurement = transmute(meas, t);
+
+  *(t: transmutation, meas: measurements[T].measurement):
+    measurements[S].measurement = transmute(meas, t);
+
+  commutative_mult: LEMMA
+    FORALL(t: transmutation, meas: measurements[T].measurement):
+      t * meas = meas * t;
+
+  % Multiplication is not associative because t * (x * y) will be valid even
+  % when (t * x) * y is not.
+%  not_associative_mult
+
+  % % Dividing by a transmutation performs the inverse transmutation
+  % /(meas: measurements[S].measurement,
+  %   t: {c: transmutation | c`to_factor`system = meas`system}):
+  %     measurement =
+  %       LET inv_t: transmutation =
+  %         (# to_factor := t`from_factor, from_factor := t`to_factor #) IN
+  %       transmute(meas, inv_t);
+
+  % % Dividing a transumtation by a measurement is an odd concept to consider.
+  % % However, it's simply one over the division with the reverse arguments.
+  % /(t: transmutation,
+  %   meas: {n: nzmeasurement | n`system = t`to_factor`system}):
+  %     measurement = 1 / (meas / t);
+
+  % % Simple way of creating a transmutation from two otherwise incompatible measurements
+  % /(n: {m: nzmeasurement | explicit_system?(m)},
+  %   d: {m: nzmeasurement | explicit_system?(m) AND n`system /= m`system}): transmutation =
+  %   (# to_factor := n, from_factor := d #);
+
+  % div_is_inv_mult: LEMMA
+  %   FORALL(t: transmutation,
+  %          meas: {n: measurement | n`system = t`from_factor`system}):
+  %     (meas * t) / t = meas;
+
+END transmutations

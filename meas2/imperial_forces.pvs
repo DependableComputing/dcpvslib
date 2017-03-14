@@ -1,0 +1,12 @@
+imperial_forces: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING forces[IMPERIAL];
+  IMPORTING imperial_masses;
+  IMPORTING imperial_lengths;
+
+  lb: posforce = slug * ft / s^2;
+  lb_def: LEMMA lb = unit_force WITH [`scaling := slug_to_g * ft_to_m];
+
+END imperial_forces

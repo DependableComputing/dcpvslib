@@ -1,0 +1,11 @@
+metric_masses: THEORY
+BEGIN
+
+  IMPORTING measurement_systems;
+  IMPORTING masses[METRIC];
+
+  g: posmass = unit_mass;
+  kg: posmass = g WITH [`scaling := 1000];
+  mg: posmass = g WITH [`scaling := 1/1000];
+
+END metric_masses

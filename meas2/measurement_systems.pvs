@@ -1,0 +1,11 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of measurements systems %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+measurement_systems: THEORY
+BEGIN
+
+% Some units will have to be defined for both systems, e.g., seconds or radians
+  system_enum: NONEMPTY_TYPE = {METRIC, IMPERIAL};
+
+END measurement_systems

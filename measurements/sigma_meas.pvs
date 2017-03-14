@@ -1,0 +1,34 @@
+% Based on reals@sigma from nasalib
+sigma_meas[T: NONEMPTY_TYPE FROM int]: THEORY
+BEGIN
+
+  ASSUMING
+    % Required to discharge TCCs that all values between two ints of type T
+    % are themselves of type T
+    connected_domain: ASSUMPTION (FORALL (x, y: T), (z: integer):
+                                    x <= z AND z <= y IMPLIES T_pred(z))
+  ENDASSUMING
+  
+  IMPORTING measurements;
+
+  summable_fn?(f: FUNCTION[T -> valid_measurement]): bool =
+    FORALL(i, j: T): unit_match?(f(i), f(j));
+
+  T_low?: MACRO set[int] = {i:int | EXISTS (j:T): j <= i};
+  T_low  : TYPE = {i:int | T_pred(i) OR T_low?(i)};
+
+  T_high?: MACRO set[int] = {i:int | EXISTS (j:T): i <= j};
+  T_high : TYPE = {i:int | T_pred(i) OR T_high?(i)};
+
+  low,  low1,  low2  : VAR T_low;
+  high, high1, high2 : VAR T_high;
+    
+  F: VAR (summable_fn?);
+
+  sigma(low, high, F): RECURSIVE {m: valid_measurement | unit_match?(m, F(high))} =
+    IF low > high THEN F(high) WITH [`value := 0]
+    ELSE  F(high) + sigma(low, high-1, F)
+    ENDIF
+  MEASURE (LAMBDA(low, high, F): abs(high + 1 - low));
+
+END sigma_meas

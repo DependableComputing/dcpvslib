@@ -1,0 +1,318 @@
+(areas
+ (area_TCC1 0
+  (area_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil))
+   nil))
+ (unit_area_TCC1 0
+  (unit_area_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil))
+   nil))
+ (negunit_area_TCC1 0
+  (negunit_area_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (unit_area const-decl "area" areas nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil))
+   nil))
+ (nonzero_area_TCC1 0
+  (nonzero_area_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (unit_area const-decl "area" areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil))
+   nil))
+ (nonneg_area_TCC1 0
+  (nonneg_area_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (nonpos_area_TCC1 0
+  (nonpos_area_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil))
+   nil))
+ (posarea_TCC1 0
+  (posarea_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (unit_area const-decl "area" areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (negarea_TCC1 0
+  (negarea_TCC1-1 nil 3639836392 ("" (subtype-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (zero_area const-decl "area" areas nil)
+    (unit_area const-decl "area" areas nil)
+    (negunit_area const-decl "area" areas nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil))
+ (area_plus_area_is_area 0
+  (area_plus_area_is_area-1 nil 3639836392 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (+ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil))
+   nil))
+ (area_minus_area_is_area 0
+  (area_minus_area_is_area-1 nil 3639836392 ("" (grind) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (unit_match? const-decl "bool" measurements nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil))
+   nil))
+ (real_times_area_is_area 0
+  (real_times_area_is_area-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil))
+   nil))
+ (area_div_nzreal_is_area 0
+  (area_div_nzreal_is_area-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (nzreal nonempty-type-eq-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil))
+   nil))
+ (neg_area_is_area 0
+  (neg_area_is_area-1 nil 3639836392 ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil))
+   nil))
+ (length_times_length_is_area 0
+  (length_times_length_is_area-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (length? const-decl "bool" lengths nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (nnint_plus_posint_is_posint application-judgement "posint"
+     integers nil)
+    (odd_plus_odd_is_even application-judgement "even_int" integers
+     nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "measurement" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (area? const-decl "bool" areas nil))
+   nil))
+ (area_div_length_is_length 0
+  (area_div_length_is_length-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area? const-decl "bool" areas nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (length nonempty-type-eq-decl nil lengths nil)
+    (number nonempty-type-decl nil numbers nil)
+    (/= const-decl "boolean" notequal nil)
+    (nzlength nonempty-type-eq-decl nil lengths nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (even_minus_odd_is_odd application-judgement "odd_int" integers
+     nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (even_minus_even_is_even application-judgement "even_int" integers
+     nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "measurement" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil))
+ (nzreal_times_nzarea_is_nzarea 0
+  (nzreal_times_nzarea_is_nzarea-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (* const-decl "{m: measurement | unit_match?(y, m)}" measurements
+       nil))
+   nil))
+ (nzarea_div_nzreal_is_nzarea 0
+  (nzarea_div_nzreal_is_nzarea-1 nil 3639836392
+   ("" (judgement-tcc) nil nil)
+   ((S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (/ const-decl "{m: measurement | unit_match?(x, m)}" measurements
+       nil))
+   nil))
+ (sqrt_area_is_length 0
+  (sqrt_area_is_length-1 nil 3639836392 ("" (judgement-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (area? const-decl "bool" areas nil)
+    (area nonempty-type-eq-decl nil areas nil)
+    (number nonempty-type-decl nil numbers nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (>= const-decl "bool" reals nil)
+    (nnarea nonempty-type-eq-decl nil areas nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     areas nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil)
+    (S formal-const-decl "system_enum" areas nil)
+    (system_enum type-decl nil measurement_systems nil)
+    (sqrt const-decl "nnmeasurement" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (length? const-decl "bool" lengths nil))
+   nil)))
+

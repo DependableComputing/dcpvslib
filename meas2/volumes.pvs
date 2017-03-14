@@ -1,0 +1,69 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of volume measurements %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+volumes[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+  IMPORTING lengths[S];
+  IMPORTING areas[S];
+  IMPORTING dimensionlesses[S];
+ 
+  volume?(m: measurement): bool =
+    dimension_match?(m, zero_measurement WITH [`length_dim := 3]);
+
+  volume: NONEMPTY_TYPE = (volume?)
+    CONTAINING zero_measurement WITH [`length_dim := 3];
+
+  zero_volume: volume = zero_measurement WITH [`length_dim := 3];
+
+  unit_volume: volume = zero_volume WITH [`value := 1];
+
+  negunit_volume: volume = unit_volume WITH [`value := -1];
+
+  nonzero_volume: NONEMPTY_TYPE =
+    {v: volume | v`value /= 0} CONTAINING unit_volume;
+
+  nonneg_volume: NONEMPTY_TYPE =
+    {v: volume | v`value >= 0} CONTAINING zero_volume;
+
+  nonpos_volume: NONEMPTY_TYPE =
+    {v: volume | v`value <= 0} CONTAINING zero_volume;
+
+  posvolume: NONEMPTY_TYPE =
+    {v: volume | v`value > 0} CONTAINING unit_volume;
+
+  negvolume: NONEMPTY_TYPE =
+    {v: volume | v`value < 0} CONTAINING negunit_volume;
+
+  nzvolume: NONEMPTY_TYPE = nonzero_volume;
+  nnvolume: NONEMPTY_TYPE = nonneg_volume;
+  npvolume: NONEMPTY_TYPE = nonpos_volume;
+
+  x:   VAR volume;
+  n0z: VAR nzvolume;
+  a:   VAR real;
+  n0c: VAR nzreal;
+
+  volume_plus_volume_is_volume:
+    JUDGEMENT +(x: volume, y: {v: volume | unit_match?(x, v)})
+    HAS_TYPE volume;
+  volume_minus_volume_is_volume:
+    JUDGEMENT -(x: volume, y: {v: volume | unit_match?(x, v)})
+    HAS_TYPE volume;
+  real_times_volume_is_volume:   JUDGEMENT *(a, x)   HAS_TYPE volume;
+  volume_div_nzreal_is_volume:   JUDGEMENT /(x, n0c) HAS_TYPE volume;
+  neg_volume_is_volume:          JUDGEMENT -(x)      HAS_TYPE volume;
+
+  length_times_area_is_volume:
+    JUDGEMENT *(x: length, y: area) HAS_TYPE volume;
+  volume_div_area_is_length:
+    JUDGEMENT /(x: volume, y: nzarea) HAS_TYPE length;
+  volume_div_length_is_area:
+    JUDGEMENT /(x: volume, y: nzlength) HAS_TYPE area;
+
+  nzreal_times_nzvolume_is_nzvolume: JUDGEMENT *(n0c, n0z) HAS_TYPE nzvolume;
+  nzvolume_div_nzreal_is_nzvolume: JUDGEMENT /(n0z, n0c) HAS_TYPE nzvolume;
+
+END volumes

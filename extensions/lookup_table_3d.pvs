@@ -1,0 +1,90 @@
+lookup_table_3d: THEORY
+BEGIN
+
+  IMPORTING lookup_table_2d;
+  IMPORTING lookup_table_1d;
+
+  table_entry_3d: TYPE = [#
+                               x1: real,
+                               x2: {r: real | r > x1},
+                               y1: real,
+                               y2: {r: real | r > y1},
+                               z1: real,
+                               z2: {r: real | r > z1},
+                               w111: real,
+                               w112: real,
+                               w121: real,
+                               w122: real,
+                               w211: real,
+                               w212: real,
+                               w221: real,
+                               w222: real
+                              #];
+
+  % Assertion that either we're interpolating or we're clipping (not true if we're extrapolating)
+  interpolate_or_clipping_3d(x: real, y: real, z: real, data: table_entry_3d): bool =
+    ((data`x1 <= x AND x <= data`x2) OR
+      (data`w111 = data`w211 AND data`w121 = data`w221 AND
+       data`w112 = data`w212 AND data`w122 = data`w222)) AND
+    ((data`y1 <= y AND y <= data`y2) OR
+      (data`w111 = data`w121 AND data`w112 = data`w122 AND
+       data`w211 = data`w221 AND data`w212 = data`w222)) AND
+    ((data`z1 <= z AND z <= data`z2) OR
+      (data`w111 = data`w112 AND data`w121 = data`w122 AND
+       data`w211 = data`w212 AND data`w221 = data`w222));
+
+  % Note that for 2-D, the zmn terms use m for y and n for x, but for 3-D the wlmn terms use
+  % l for x, m for y, and n for z
+  get_2d_from_3d_z1(data: table_entry_3d): table_entry_2d =
+    (#
+      x1  := data`x1,   x2  := data`x2,
+      y1  := data`y1,   y2  := data`y2,
+      z11 := data`w111, z12 := data`w211,
+      z21 := data`w121, z22 := data`w221
+     #);
+
+  get_2d_from_3d_z2(data: table_entry_3d): table_entry_2d =
+    (#
+      x1  := data`x1,   x2  := data`x2,
+      y1  := data`y1,   y2  := data`y2,
+      z11 := data`w112, z12 := data`w212,
+      z21 := data`w122, z22 := data`w222
+     #);
+
+  get_1d_from_3d_z(data: table_entry_3d, y1: real, y2: real): table_entry_1d =
+    (# x1 := data`z1, x2 := data`z2, y1 := y1, y2 := y2 #);
+
+  interpolate_3d(x: real, y: real, z: real, data: table_entry_3d): real =
+    LET w_est_1: real = interpolate_2d(x, y, get_2d_from_3d_z1(data)) IN
+    LET w_est_2: real = interpolate_2d(x, y, get_2d_from_3d_z2(data)) IN
+    interpolate_1d(z, get_1d_from_3d_z(data, w_est_1, w_est_2));
+
+  min(a: real, b: real, c: real, d: real, e: real, f: real, g: real, h: real): real =
+    min(min(a, b, c, d), min(e, f, g, h));
+
+  max(a: real, b: real, c: real, d: real, e: real, f: real, g: real, h: real): real =
+    max(max(a, b, c, d), max(e, f, g, h));
+
+  interpolate_3d_interpolates: LEMMA
+    FORALL(data: table_entry_3d,
+           x: {r: real | data`x1 <= r AND r <= data`x2},
+           y: {r: real | data`y1 <= r AND r <= data`y2},
+           z: {r: real | data`z1 <= r AND r <= data`z2}):
+      LET val = interpolate_3d(x, y, z, data) IN
+      LET min = min(data`w111, data`w211, data`w121, data`w221,
+                    data`w112, data`w212, data`w122, data`w222) IN
+      LET max = max(data`w111, data`w211, data`w121, data`w221,
+                    data`w112, data`w212, data`w122, data`w222) IN
+        min <= val AND val <= max;
+
+  interp_or_clip_3d_implies_bounds: LEMMA
+    FORALL(data: table_entry_3d, x: real, y: real,
+           z: {r: real | interpolate_or_clipping_3d(x, y, r, data)}):
+      LET val = interpolate_3d(x, y, z, data) IN
+      LET min = min(data`w111, data`w211, data`w121, data`w221,
+                    data`w112, data`w212, data`w122, data`w222) IN
+      LET max = max(data`w111, data`w211, data`w121, data`w221,
+                    data`w112, data`w212, data`w122, data`w222) IN
+        min <= val AND val <= max;
+
+END lookup_table_3d

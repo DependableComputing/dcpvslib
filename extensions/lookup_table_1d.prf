@@ -1,0 +1,236 @@
+(lookup_table_1d
+ (interpolate_1d_TCC1 0
+  (interpolate_1d_TCC1-1 nil 3645911451 ("" (subtype-tcc) nil nil)
+   ((real_minus_real_is_real application-judgement "real" reals nil)
+    (/= const-decl "boolean" notequal nil))
+   nil))
+ (oneD_interpolate_interpolates 0
+  (oneD_interpolate_interpolates-1 nil 3645911460
+   ("" (skeep)
+    (("" (typepred "x" "data`x2")
+      (("" (expand* "min" "max" "interpolate_1d")
+        ((""
+          (case "data`y2 + (data`x2 * data`y1 - data`x2 * data`y2 +                                
+                    (data`y2 * x - data`y1 * x)) / (data`x2 - data`x1) =                 
+                    data`y1 + (x - data`x1) * (data`y2 - data`y1) / (data`x2 - data`x1)")
+          (("1" (label-hide "swap")
+            (("1"
+              (case "(data`x1 * data`y1 - data`x1 * data`y2 +         
+                   (data`y2 * x - data`y1 * x)) =       
+                   (x - data`x1) * (data`y2 - data`y1)")
+              (("1" (label-hide "reduce1")
+                (("1"
+                  (case "(data`x2 * data`y1 - data`x2 * data`y2 +         
+                   (data`y2 * x - data`y1 * x)) =       
+                   (x - data`x2) * (data`y2 - data`y1)")
+                  (("1" (label-hide "reduce2")
+                    (("1" (lift-if)
+                      (("1" (model-check)
+                        (("1" (replace-hidden "swap")
+                          (("1"
+                            (case "(x - data`x1) * (data`y2 - data`y1) / (data`x2 - data`x1) <= 0")
+                            (("1" (field) nil nil)
+                             ("2"
+                              (case "(x - data`x1) * (data`y2 - data`y1) <= 0")
+                              (("1"
+                                (hide 2)
+                                (("1" (field) nil nil))
+                                nil)
+                               ("2"
+                                (hide -2 -3 2 3)
+                                (("2" (field) nil nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil)
+                         ("2"
+                          (case "(data`x2 * data`y1 - data`x2 * data`y2 +
+          (data`y2 * x - data`y1 * x))
+         / (data`x2 - data`x1) >= 0")
+                          (("1" (field) nil nil)
+                           ("2" (replace-hidden "reduce2")
+                            (("2"
+                              (case "(x - data`x2) * (data`y2 - data`y1) >= 0")
+                              (("1"
+                                (hide 2)
+                                (("1" (field) nil nil))
+                                nil)
+                               ("2"
+                                (hide -1 -3 2 3)
+                                (("2" (field) nil nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil)
+                         ("3" (lift-if)
+                          (("3" (split)
+                            (("1" (flatten)
+                              (("1"
+                                (case
+                                 "(data`x2 * data`y1 - data`x2 * data`y2 +
+         (data`y2 * x - data`y1 * x))
+        / (data`x2 - data`x1) <= 0")
+                                (("1" (field) nil nil)
+                                 ("2"
+                                  (replace-hidden "reduce2")
+                                  (("2"
+                                    (case
+                                     "(x - data`x2) * (data`y2 - data`y1) <= 0")
+                                    (("1"
+                                      (hide 2)
+                                      (("1" (field) nil nil))
+                                      nil)
+                                     ("2"
+                                      (hide -2 -4 2 3)
+                                      (("2" (field) nil nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil)
+                             ("2" (flatten)
+                              (("2"
+                                (case "data`y1 = data`y2")
+                                (("1" (grind) nil nil)
+                                 ("2" (assert) nil nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil)
+                         ("4" (replace-hidden "swap")
+                          (("4"
+                            (case "(x - data`x1) * (data`y2 - data`y1) / (data`x2 - data`x1) >= 0")
+                            (("1" (field) nil nil)
+                             ("2"
+                              (case "(x - data`x1) * (data`y2 - data`y1) >= 0")
+                              (("1"
+                                (hide 3)
+                                (("1" (field) nil nil))
+                                nil)
+                               ("2"
+                                (hide 2 4)
+                                (("2" (field) nil nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil)
+                   ("2" (hide 2) (("2" (field) nil nil)) nil))
+                  nil))
+                nil)
+               ("2" (hide 2) (("2" (field) nil nil)) nil))
+              nil))
+            nil)
+           ("2" (hide 2) (("2" (field) nil nil)) nil)
+           ("3" (hide -1 -2 2) (("3" (field) nil nil)) nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((AND const-decl "[bool, bool -> bool]" booleans nil)
+    (table_entry_1d type-eq-decl nil lookup_table_1d nil)
+    (> const-decl "bool" reals nil) (<= const-decl "bool" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (* const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (- const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
+    (nznum nonempty-type-eq-decl nil number_fields nil)
+    (/= const-decl "boolean" notequal nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (= const-decl "[T, T -> boolean]" equalities nil)
+    (FDX_38 skolem-const-decl "real" lookup_table_1d nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (FDX_28 skolem-const-decl "real" lookup_table_1d nil)
+    (pos_times_ge formula-decl nil real_props nil)
+    (both_sides_times_pos_ge1 formula-decl nil real_props nil)
+    (FDX_17 skolem-const-decl "real" lookup_table_1d nil)
+    (neg_times_le formula-decl nil real_props nil)
+    (zero_times1 formula-decl nil real_props nil)
+    (both_sides_times_pos_le1 formula-decl nil real_props nil)
+    (nonneg_real nonempty-type-eq-decl nil real_types nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (FDX_6 skolem-const-decl "real" lookup_table_1d nil)
+    (>= const-decl "bool" reals nil)
+    (real_ge_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (div_cancel2 formula-decl nil real_props nil)
+    (nonzero_real nonempty-type-eq-decl nil reals nil)
+    (bijective? const-decl "bool" functions nil)
+    (id const-decl "(bijective?[T, T])" identity nil)
+    (TRUE const-decl "bool" booleans nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
+    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
+    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
+     nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (both_sides_times1 formula-decl nil real_props nil)
+    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil)
+    (interpolate_1d const-decl "real" lookup_table_1d nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil))
+   shostak))
+ (oneD_interp_or_clipping_implies_bounds 0
+  (oneD_interp_or_clipping_implies_bounds-1 nil 3645916428
+   ("" (skeep)
+    (("" (typepred "x" "data`x2")
+      (("" (expand "interpolate_or_clipping_1d")
+        (("" (split)
+          (("1" (lemma "oneD_interpolate_interpolates")
+            (("1" (inst?) nil nil)) nil)
+           ("2" (grind) nil nil))
+          nil))
+        nil))
+      nil))
+    nil)
+   ((interpolate_or_clipping_1d const-decl "bool" lookup_table_1d nil)
+    (table_entry_1d type-eq-decl nil lookup_table_1d nil)
+    (> const-decl "bool" reals nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (real_pred const-decl "[number_field -> boolean]" reals nil)
+    (number_field nonempty-type-from-decl nil number_fields nil)
+    (number_field_pred const-decl "[number -> boolean]" number_fields
+     nil)
+    (number nonempty-type-decl nil numbers nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (boolean nonempty-type-decl nil booleans nil)
+    (data skolem-const-decl "table_entry_1d" lookup_table_1d nil)
+    (x skolem-const-decl
+     "{r: real | interpolate_or_clipping_1d(r, data)}" lookup_table_1d
+     nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (<= const-decl "bool" reals nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
+    (oneD_interpolate_interpolates formula-decl nil lookup_table_1d
+     nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_plus_real_is_real application-judgement "real" reals nil)
+    (real_div_nzreal_is_real application-judgement "real" reals nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (real_minus_real_is_real application-judgement "real" reals nil)
+    (interpolate_1d const-decl "real" lookup_table_1d nil)
+    (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
+    (min const-decl "{p: real | p <= m AND p <= n}" real_defs nil))
+   shostak)))
+

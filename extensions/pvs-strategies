@@ -1,0 +1,34 @@
+;; see /Users/Dependable/Tools/nasalib/interval_arith/interval.lisp
+;; for a more complex strategy
+(defstep label-hide (name &optional (fnum -1))
+  (then
+   (label name fnum)
+   (hide fnum)
+  )
+  "Labels then hides a formula"
+  "Providing label '~a' to ~a then hiding it")
+
+(defstep replace-hidden (name)
+  (then
+   (reveal name)
+   (replace name)
+   (hide name)
+  )
+  "Replaces using a hidden, named formula"
+  "Applying reveal, replace, then hide on ~a")
+
+(defstep mca ()
+  (then
+    (label "cons" +)
+    (hide "cons")
+    (branch
+      (model-check)
+      ((then
+        (reveal "cons")
+        (unlabel "cons")
+       )
+      )
+    )
+  )
+  "Applies model-checking only to antecedents"
+  "Model-checking antecedents")
