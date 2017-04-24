@@ -1,0 +1,52 @@
+types: THEORY
+BEGIN
+
+min_int8 : int = -128;
+max_int8 : int = 127;
+max_nnint8 : int = 255;
+int8?(i: real): bool = integer?(i) AND (min_int8 <= i) AND (i <= max_int8);
+int8 : NONEMPTY_TYPE = (int8?) CONTAINING 0;
+nzint8?(nzi: real): bool = integer?(nzi) AND (nzi /= 0) AND (min_int8 <= nzi) AND (nzi <= max_int8);
+nzint8 : NONEMPTY_TYPE = (nzint8?) CONTAINING 1;
+nnint8?(n: real): bool = integer?(n) AND (0 <= n) AND (n <= max_nnint8);
+nnint8 : NONEMPTY_TYPE = (nnint8?) CONTAINING 0;
+posint8?(pn: real): bool = integer?(pn) AND (0 < pn) AND (pn <= max_nnint8);
+posint8 : NONEMPTY_TYPE = (posint8?) CONTAINING 1;
+npint8?(n: real): bool = integer?(n) AND (min_int8 <= n) AND (n <= 0);
+npint8 : NONEMPTY_TYPE = (npint8?) CONTAINING -1;
+negint8?(n: real): bool = integer?(n) AND (min_int8 <= n) AND (n < 0);
+negint8 : NONEMPTY_TYPE = (negint8?) CONTAINING -1;
+
+min_int16 : int = -32768;
+max_int16 : int = 32767;
+max_nnint16 : int = 65535;
+int16?(i: real): bool = integer?(i) AND (min_int16 <= i) AND (i <= max_int16);
+int16 : NONEMPTY_TYPE = (int16?) CONTAINING 0;
+nzint16?(nzi: real): bool = integer?(nzi) AND (nzi /= 0) AND (min_int16 <= nzi) AND (nzi <= max_int16);
+nzint16 : NONEMPTY_TYPE = (nzint16?) CONTAINING 1;
+nnint16?(n: real): bool = integer?(n) AND (0 <= n) AND (n <= max_nnint16);
+nnint16 : NONEMPTY_TYPE = (nnint16?) CONTAINING 0;
+posint16?(pn: real): bool = integer?(pn) AND (0 < pn) AND (pn <= max_nnint16);
+posint16 : NONEMPTY_TYPE = (posint16?) CONTAINING 1;
+npint16?(n: real): bool = integer?(n) AND (min_int16 <= n) AND (n <= 0);
+npint16 : NONEMPTY_TYPE = (npint16?) CONTAINING -1;
+negint16?(n: real): bool = integer?(n) AND (min_int16 <= n) AND (n < 0);
+negint16 : NONEMPTY_TYPE = (negint16?) CONTAINING -1;
+
+min_int32 : int = -2147483648;
+max_int32 : int = 2147483647;
+max_nnint32 : int = 4294967295;
+int32?(i: real): bool = integer?(i) AND (min_int32 <= i) AND (i <= max_int32);
+int32 : NONEMPTY_TYPE = (int32?) CONTAINING 0;
+nzint32?(nzi: real): bool = integer?(nzi) AND (nzi /= 0) AND (min_int32 <= nzi) AND (nzi <= max_int32);
+nzint32 : NONEMPTY_TYPE = (nzint32?) CONTAINING 1;
+nnint32?(n: real): bool = integer?(n) AND (0 <= n) AND (n <= max_nnint32);
+nnint32 : NONEMPTY_TYPE = (nnint32?) CONTAINING 0;
+posint32?(pn: real): bool = integer?(pn) AND (0 < pn) AND (pn <= max_nnint32);
+posint32 : NONEMPTY_TYPE = (posint32?) CONTAINING 1;
+npint32?(n: real): bool = integer?(n) AND (min_int32 <= n) AND (n <= 0);
+npint32 : NONEMPTY_TYPE = (npint32?) CONTAINING -1;
+negint32?(n: real): bool = integer?(n) AND (min_int32 <= n) AND (n < 0);
+negint32 : NONEMPTY_TYPE = (negint32?) CONTAINING -1;
+
+END types

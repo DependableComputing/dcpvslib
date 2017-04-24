@@ -1,0 +1,271 @@
+(types (int8_TCC1 0
+        (int8_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (int8? const-decl "bool" types nil)
+          (max_int8 const-decl "int" types nil)
+          (min_int8 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (nzint8_TCC1 0
+        (nzint8_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (nzint8? const-decl "bool" types nil)
+          (max_int8 const-decl "int" types nil)
+          (min_int8 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (nnint8_TCC1 0
+        (nnint8_TCC1-1 nil 3701008357 ("" (subtype-tcc) nil nil)
+         ((integer? const-decl "bool" integers nil)
+          (max_nnint8 const-decl "int" types nil)
+          (nnint8? const-decl "bool" types nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil))
+         nil))
+       (posint8_TCC1 0
+        (posint8_TCC1-1 nil 3701008357 ("" (subtype-tcc) nil nil)
+         ((integer? const-decl "bool" integers nil)
+          (max_nnint8 const-decl "int" types nil)
+          (posint8? const-decl "bool" types nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (real_lt_is_strict_total_order name-judgement
+           "(strict_total_order?[real])" real_props nil))
+         nil))
+       (npint8_TCC1 0
+        (npint8_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_odd_is_odd application-judgement "odd_int" integers
+           nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (npint8? const-decl "bool" types nil)
+          (min_int8 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (negint8_TCC1 0
+        (negint8_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_odd_is_odd application-judgement "odd_int" integers
+           nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (real_lt_is_strict_total_order name-judgement
+           "(strict_total_order?[real])" real_props nil)
+          (negint8? const-decl "bool" types nil)
+          (min_int8 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (int16_TCC1 0
+        (int16_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (int16? const-decl "bool" types nil)
+          (max_int16 const-decl "int" types nil)
+          (min_int16 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (nzint16_TCC1 0
+        (nzint16_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (nzint16? const-decl "bool" types nil)
+          (max_int16 const-decl "int" types nil)
+          (min_int16 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (nnint16_TCC1 0
+        (nnint16_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((integer? const-decl "bool" integers nil)
+          (max_nnint16 const-decl "int" types nil)
+          (nnint16? const-decl "bool" types nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil))
+         nil))
+       (posint16_TCC1 0
+        (posint16_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((integer? const-decl "bool" integers nil)
+          (max_nnint16 const-decl "int" types nil)
+          (posint16? const-decl "bool" types nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (real_lt_is_strict_total_order name-judgement
+           "(strict_total_order?[real])" real_props nil))
+         nil))
+       (npint16_TCC1 0
+        (npint16_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_odd_is_odd application-judgement "odd_int" integers
+           nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (npint16? const-decl "bool" types nil)
+          (min_int16 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (negint16_TCC1 0
+        (negint16_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_odd_is_odd application-judgement "odd_int" integers
+           nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (real_lt_is_strict_total_order name-judgement
+           "(strict_total_order?[real])" real_props nil)
+          (negint16? const-decl "bool" types nil)
+          (min_int16 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (int32_TCC1 0
+        (int32_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (int32? const-decl "bool" types nil)
+          (max_int32 const-decl "int" types nil)
+          (min_int32 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (nzint32_TCC1 0
+        (nzint32_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (nzint32? const-decl "bool" types nil)
+          (max_int32 const-decl "int" types nil)
+          (min_int32 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (nnint32_TCC1 0
+        (nnint32_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((integer? const-decl "bool" integers nil)
+          (max_nnint32 const-decl "int" types nil)
+          (nnint32? const-decl "bool" types nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil))
+         nil))
+       (posint32_TCC1 0
+        (posint32_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((integer? const-decl "bool" integers nil)
+          (max_nnint32 const-decl "int" types nil)
+          (posint32? const-decl "bool" types nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (real_lt_is_strict_total_order name-judgement
+           "(strict_total_order?[real])" real_props nil))
+         nil))
+       (npint32_TCC1 0
+        (npint32_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_odd_is_odd application-judgement "odd_int" integers
+           nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (npint32? const-decl "bool" types nil)
+          (min_int32 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil))
+       (negint32_TCC1 0
+        (negint32_TCC1-1 nil 3701008903 ("" (subtype-tcc) nil nil)
+         ((minus_nzreal_is_nzreal application-judgement "nzreal"
+           real_types nil)
+          (minus_nzrat_is_nzrat application-judgement "nzrat" rationals
+           nil)
+          (minus_nzint_is_nzint application-judgement "nzint" integers
+           nil)
+          (minus_odd_is_odd application-judgement "odd_int" integers
+           nil)
+          (real_le_is_total_order name-judgement "(total_order?[real])"
+           real_props nil)
+          (minus_even_is_even application-judgement "even_int" integers
+           nil)
+          (real_lt_is_strict_total_order name-judgement
+           "(strict_total_order?[real])" real_props nil)
+          (negint32? const-decl "bool" types nil)
+          (min_int32 const-decl "int" types nil)
+          (integer? const-decl "bool" integers nil))
+         nil)))
+
