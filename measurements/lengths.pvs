@@ -61,9 +61,6 @@ BEGIN
     JUDGEMENT /(x: dimensionless, n0z: {d: nzdimensionless | system_match?(x, d)})
     HAS_TYPE dimensionless;
 
-  cm: poslength = m WITH [`scaling := 1/100];
-  mm: poslength = m WITH [`scaling := 1/1000];
-
   nzreal_times_nzlength_is_nzlength:
     JUDGEMENT *(n0c: nzreal, n0z: nzlength)
     HAS_TYPE nzlength;
@@ -71,7 +68,12 @@ BEGIN
     JUDGEMENT /(n0z: nzlength, n0c: nzreal)
     HAS_TYPE nzlength;
 
+  cm: poslength = m WITH [`scaling := 1/100];
+  mm: poslength = m WITH [`scaling := 1/1000];
+
   % Imperial
   ft: poslength = unit_length WITH [`system := IMPERIAL];
+  inch: poslength = ft WITH [`scaling := 1/12];
+  mi: poslength = ft WITH [`scaling := 5280];
 
 END lengths

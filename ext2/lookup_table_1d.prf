@@ -406,9 +406,6 @@
     (<= const-decl "bool" reals nil)
     (upto_induction formula-decl nil bounded_nat_inductions nil)
     (pred type-eq-decl nil defined_types nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
-    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
     (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
      nil)
     (odd_minus_odd_is_even application-judgement "even_int" integers
@@ -573,9 +570,6 @@
     (max const-decl "{p: real | p >= m AND p >= n}" real_defs nil)
     (upto_induction formula-decl nil bounded_nat_inductions nil)
     (pred type-eq-decl nil defined_types nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
-    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
     (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
      nil)
     (odd_minus_odd_is_even application-judgement "even_int" integers

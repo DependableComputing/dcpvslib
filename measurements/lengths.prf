@@ -303,38 +303,6 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil))
    nil))
- (cm_TCC1 0
-  (cm_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
-   ((posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (length? const-decl "bool" lengths nil)
-    (valid_measurement? const-decl "bool" measurements nil)
-    (dimension_match? const-decl "bool" measurements nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (zero_measurement_is_dimensionless name-judgement "dimensionless"
-     dimensionlesses nil)
-    (m const-decl "poslength" lengths nil)
-    (unit_length const-decl "length" lengths nil)
-    (zero_length const-decl "length" lengths nil)
-    (zero_measurement const-decl "measurement" measurements nil))
-   nil))
- (mm_TCC1 0
-  (mm_TCC1-1 nil 3646734173 ("" (subtype-tcc) nil nil)
-   ((posrat_div_posrat_is_posrat application-judgement "posrat"
-     rationals nil)
-    (length? const-decl "bool" lengths nil)
-    (valid_measurement? const-decl "bool" measurements nil)
-    (dimension_match? const-decl "bool" measurements nil)
-    (real_gt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (zero_measurement_is_dimensionless name-judgement "dimensionless"
-     dimensionlesses nil)
-    (m const-decl "poslength" lengths nil)
-    (unit_length const-decl "length" lengths nil)
-    (zero_length const-decl "length" lengths nil)
-    (zero_measurement const-decl "measurement" measurements nil))
-   nil))
  (nzreal_times_nzlength_is_nzlength_TCC1 0
   (nzreal_times_nzlength_is_nzlength_TCC1-1 nil 3646733189
    ("" (subtype-tcc) nil nil)
@@ -368,6 +336,38 @@
    ((/ const-decl "{m: valid_measurement | unit_match?(x, m)}"
        measurements nil))
    nil))
+ (cm_TCC1 0
+  (cm_TCC1-1 nil 3639836391 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (m const-decl "poslength" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (mm_TCC1 0
+  (mm_TCC1-1 nil 3646734173 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (m const-decl "poslength" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
  (ft_TCC1 0
   (ft_TCC1-1 nil 3642755863 ("" (subtype-tcc) nil nil)
    ((length? const-decl "bool" lengths nil)
@@ -377,6 +377,36 @@
      "(strict_total_order?[real])" real_props nil)
     (zero_measurement_is_dimensionless name-judgement "dimensionless"
      dimensionlesses nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (inch_TCC1 0
+  (inch_TCC1-1 nil 3701009373 ("" (subtype-tcc) nil nil)
+   ((posrat_div_posrat_is_posrat application-judgement "posrat"
+     rationals nil)
+    (length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (ft const-decl "poslength" lengths nil)
+    (unit_length const-decl "length" lengths nil)
+    (zero_length const-decl "length" lengths nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   nil))
+ (mi_TCC1 0
+  (mi_TCC1-1 nil 3701009373 ("" (subtype-tcc) nil nil)
+   ((length? const-decl "bool" lengths nil)
+    (valid_measurement? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (real_gt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (zero_measurement_is_dimensionless name-judgement "dimensionless"
+     dimensionlesses nil)
+    (ft const-decl "poslength" lengths nil)
     (unit_length const-decl "length" lengths nil)
     (zero_length const-decl "length" lengths nil)
     (zero_measurement const-decl "measurement" measurements nil))

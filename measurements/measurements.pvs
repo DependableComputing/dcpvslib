@@ -152,8 +152,9 @@ BEGIN
     {x: valid_measurement | unit_match?(x, m)} =
       m WITH [`value := value];
 
-  +(x: valid_measurement, y: {m: valid_measurement | unit_match?(x, m)}):
-    {m: valid_measurement | unit_match?(x, m)} =
+  +(x: valid_measurement,
+    y: {m: valid_measurement | unit_match?(x, m)}):
+     {m: valid_measurement | unit_match?(x, m)} =
       IF preferred_system?(x, y) THEN
         x WITH [`value := x`value + y`value]
       ELSE

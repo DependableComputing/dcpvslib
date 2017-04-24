@@ -5,6 +5,7 @@
 
 : --dir summaries # Save summary files in summaries/
 
+integers
 measurements
 meas2
 extensions

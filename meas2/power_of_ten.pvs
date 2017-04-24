@@ -1,0 +1,10 @@
+power_of_ten[(IMPORTING measurement_systems) S: system_enum]: THEORY
+BEGIN
+
+  IMPORTING measurements[S];
+
+  % i can be < 0
+  power_of_ten_measurement?(m: measurement): bool =
+      EXISTS(i: int): (10^i = m`scaling);
+
+END power_of_ten
