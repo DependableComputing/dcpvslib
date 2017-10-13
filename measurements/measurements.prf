@@ -4,7 +4,9 @@
    ((zero_measurement const-decl "measurement" measurements nil)
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (valid_measurement subtype "measurements.zero_measurement"
+    "valid_measurement")))
  (system_match_not_transitive 0
   (system_match_not_transitive-1 nil 3646665114
    (""
@@ -52,23 +54,27 @@
    ((zero_measurement const-decl "measurement" measurements nil)
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (unit_measurement subtype
+    "measurements.zero_measurement WITH [`value := 1, `system := measurements.NOT_APPLICABLE]"
+    "valid_measurement")))
  (negunit_measurement_TCC1 0
   (negunit_measurement_TCC1-1 nil 3646655874 ("" (subtype-tcc) nil nil)
-   ((minus_nzreal_is_nzreal application-judgement "nzreal" real_types
-     nil)
-    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
-    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (valid_measurement? const-decl "bool" measurements nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
     (dimension_match? const-decl "bool" measurements nil)
-    (zero_measurement const-decl "measurement" measurements nil))
-   nil))
+    (valid_measurement? const-decl "bool" measurements nil)
+    (minus_odd_is_odd application-judgement "odd_int" integers nil))
+   nil
+   (negunit_measurement subtype
+    "measurements.zero_measurement WITH [`value := , `system := measurements.NOT_APPLICABLE]"
+    "valid_measurement")))
  (nonzero_measurement_TCC1 0
   (nonzero_measurement_TCC1-1 nil 3639470965 ("" (subtype-tcc) nil nil)
    ((zero_measurement const-decl "measurement" measurements nil)
     (unit_measurement const-decl "valid_measurement" measurements nil))
-   nil))
+   nil
+   (nonzero_measurement subtype "measurements.unit_measurement"
+    "nonzero_measurement")))
  (nonneg_measurement_TCC1 0
   (nonneg_measurement_TCC1-1 nil 3639470965 ("" (subtype-tcc) nil nil)
    ((valid_measurement? const-decl "bool" measurements nil)
@@ -76,7 +82,9 @@
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (zero_measurement const-decl "measurement" measurements nil))
-   nil))
+   nil
+   (nonneg_measurement subtype "measurements.zero_measurement"
+    "nonneg_measurement")))
  (nonpos_measurement_TCC1 0
   (nonpos_measurement_TCC1-1 nil 3639470965 ("" (subtype-tcc) nil nil)
    ((valid_measurement? const-decl "bool" measurements nil)
@@ -84,27 +92,29 @@
     (real_le_is_total_order name-judgement "(total_order?[real])"
      real_props nil)
     (zero_measurement const-decl "measurement" measurements nil))
-   nil))
+   nil
+   (nonpos_measurement subtype "measurements.zero_measurement"
+    "nonpos_measurement")))
  (posmeasurement_TCC1 0
   (posmeasurement_TCC1-1 nil 3639470965 ("" (subtype-tcc) nil nil)
    ((zero_measurement const-decl "measurement" measurements nil)
     (unit_measurement const-decl "valid_measurement" measurements nil)
     (real_gt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil))
-   nil))
+   nil
+   (posmeasurement subtype "measurements.unit_measurement"
+    "posmeasurement")))
  (negmeasurement_TCC1 0
   (negmeasurement_TCC1-1 nil 3639470965 ("" (subtype-tcc) nil nil)
-   ((real_lt_is_strict_total_order name-judgement
-     "(strict_total_order?[real])" real_props nil)
-    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
-     nil)
-    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
-    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+   ((zero_measurement const-decl "measurement" measurements nil)
     (negunit_measurement const-decl "valid_measurement" measurements
      nil)
-    (zero_measurement const-decl "measurement" measurements nil))
-   nil))
+    (minus_odd_is_odd application-judgement "odd_int" integers nil)
+    (real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil))
+   nil
+   (negmeasurement subtype "measurements.negunit_measurement"
+    "negmeasurement")))
  (unit_match_not_transitive 0
   (unit_match_not_transitive-1 nil 3646652115
    (""
@@ -170,7 +180,10 @@
     (/= const-decl "boolean" notequal nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (unit_model subtype
+    "measurements.m WITH [`value := measurements.value]"
+    "{x: measurements.valid_measurement | measurements.unit_match?(x, measurements.m)}")))
  (plus_TCC1 0
   (plus_TCC1-1 nil 3645225232 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -188,7 +201,10 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (plus subtype
+    "measurements.x WITH [`value := (number_fields.+)(measurements.x`value, measurements.y`value)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (plus_TCC2 0
   (plus_TCC2-1 nil 3646650359 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -206,7 +222,10 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (plus subtype
+    "measurements.y WITH [`value := (number_fields.+)(measurements.x`value, measurements.y`value)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (commutative_add_TCC1 0
   (commutative_add_TCC1-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -224,7 +243,9 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (commutative_add subtype "measurements.x"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.y, m)}")))
  (commutative_add 0
   (commutative_add-1 nil 3645147442 ("" (model-check) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -267,7 +288,10 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (associative_add subtype
+    "((measurements.+)(measurements.y, measurements.z))"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (associative_add_TCC2 0
   (associative_add_TCC2-1 nil 3645147249 ("" (grind) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -289,7 +313,9 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (associative_add subtype "measurements.z"
+    "{m: measurements.valid_measurement | measurements.unit_match?(((measurements.+)(measurements.x, measurements.y)), m)}")))
  (associative_add 0
   (associative_add-1 nil 3645146554
    ("" (skeep) (("" (grind) nil nil)) nil)
@@ -317,7 +343,10 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (difference subtype
+    "measurements.x WITH [`value := (number_fields.-)(measurements.x`value, measurements.y`value)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (difference_TCC2 0
   (difference_TCC2-1 nil 3645225232 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -335,7 +364,10 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (difference subtype
+    "measurements.y WITH [`value := (number_fields.-)(measurements.x`value, measurements.y`value)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (difference_TCC3 0
   (difference_TCC3-1 nil 3646650359 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -353,7 +385,9 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (difference subtype "measurements.x WITH [`value := ]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (inverse_add 0
   (inverse_add-1 nil 3645146699 ("" (grind) nil nil)
    ((- const-decl "{m: valid_measurement | unit_match?(x, m)}"
@@ -384,7 +418,9 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (minus_add subtype ""
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (minus_add 0
   (minus_add-1 nil 3645147454 ("" (grind) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -429,7 +465,10 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (times subtype
+    "(# value := number_fields.*(measurements.x`value, measurements.y`value), system := IF measurements.preferred_system?(measurements.x, measurements.y) THEN measurements.x`system ELSE measurements.y`system ENDIF, scaling := number_fields.*(measurements.x`scaling, measurements.y`scaling), length_dim := (number_fields.+)(measurements.x`length_dim, measurements.y`length_dim), time_dim := (number_fields.+)(measurements.x`time_dim, measurements.y`time_dim), mass_dim := (number_fields.+)(measurements.x`mass_dim, measurements.y`mass_dim), current_dim := (number_fields.+)(measurements.x`current_dim, measurements.y`current_dim), temp_dim := (number_fields.+)(measurements.x`temp_dim, measurements.y`temp_dim), intens_dim := (number_fields.+)(measurements.x`intens_dim, measurements.y`intens_dim), angle_dim := (number_fields.+)(measurements.x`angle_dim, measurements.y`angle_dim) #)"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (commutative_mult_TCC1 0
   (commutative_mult_TCC1-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -446,7 +485,9 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (commutative_mult subtype "measurements.x"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.y, m)}")))
  (commutative_mult 0
   (commutative_mult-1 nil 3645147462 ("" (model-check) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -489,7 +530,9 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (associative_mult subtype "measurements.z"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.y, m)}")))
  (associative_mult_TCC2 0
   (associative_mult_TCC2-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -512,7 +555,10 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (associative_mult subtype
+    "(measurements.*(measurements.y, measurements.z))"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (associative_mult_TCC3 0
   (associative_mult_TCC3-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -531,7 +577,9 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (associative_mult subtype "measurements.y"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (associative_mult_TCC4 0
   (associative_mult_TCC4-1 nil 3646652368 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -554,7 +602,9 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (associative_mult subtype "measurements.z"
+    "{m: measurements.valid_measurement | measurements.system_match?((measurements.*(measurements.x, measurements.y)), m)}")))
  (associative_mult 0
   (associative_mult-1 nil 3645147468 ("" (grind) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -603,7 +653,10 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (distributive subtype
+    "((measurements.+)(measurements.y, measurements.z))"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (distributive_TCC2 0
   (distributive_TCC2-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -622,7 +675,9 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (distributive subtype "measurements.z"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (distributive_TCC3 0
   (distributive_TCC3-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -645,7 +700,10 @@
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (distributive subtype
+    "measurements.*(measurements.x, measurements.z)"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.*(measurements.x, measurements.y), m)}")))
  (distributive 0
   (distributive-1 nil 3645148159 ("" (grind) nil nil)
    ((real_plus_real_is_real application-judgement "real" reals nil)
@@ -696,7 +754,10 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (times subtype
+    "measurements.y WITH [`value := number_fields.*(measurements.x, measurements.y`value)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.y, m)}")))
  (times_TCC3 0
   (times_TCC3-1 nil 3645225232 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -719,7 +780,10 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (times subtype
+    "measurements.x WITH [`value := number_fields.*(measurements.x`value, measurements.y)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (mr_commutative_mult 0
   (mr_commutative_mult-1 nil 3645148590 ("" (grind) nil nil)
    ((* const-decl "{m: valid_measurement | unit_match?(x, m)}"
@@ -757,7 +821,10 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (mr_associative_mult2 subtype
+    "(measurements.*(measurements.y, measurements.z))"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (mr_associative_mult2_TCC2 0
   (mr_associative_mult2_TCC2-1 nil 3645148549
    ("" (subtype-tcc) nil nil)
@@ -782,7 +849,9 @@
     (explicit_system? const-decl "bool" measurements nil)
     (/= const-decl "boolean" notequal nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (mr_associative_mult2 subtype "measurements.z"
+    "{m: measurements.valid_measurement | measurements.system_match?((measurements.*(measurements.x, measurements.y)), m)}")))
  (mr_associative_mult2 0
   (mr_associative_mult2-1 nil 3645148604 ("" (grind) nil nil)
    ((* const-decl "{m: valid_measurement | unit_match?(y, m)}"
@@ -820,7 +889,10 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (mr_distributive subtype
+    "measurements.*(measurements.x, measurements.z)"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.*(measurements.x, measurements.y), m)}")))
  (mr_distributive 0
   (mr_distributive-1 nil 3645148609 ("" (grind) nil nil)
    ((real_times_real_is_real application-judgement "real" reals nil)
@@ -851,7 +923,8 @@
        measurements nil))
    shostak))
  (divide_TCC1 0
-  (divide_TCC1-1 nil 3639429787 ("" (subtype-tcc) nil nil) nil nil))
+  (divide_TCC1-1 nil 3639429787 ("" (subtype-tcc) nil nil) nil nil
+   (divide subtype "measurements.y`value" "nznum")))
  (divide_TCC2 0
   (divide_TCC2-1 nil 3645133710 ("" (grind) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -864,11 +937,6 @@
     (valid_measurement nonempty-type-eq-decl nil measurements nil)
     (number nonempty-type-decl nil numbers nil)
     (nzmeasurement nonempty-type-eq-decl nil measurements nil)
-    (minus_odd_is_odd application-judgement "odd_int" integers nil)
-    (minus_nzint_is_nzint application-judgement "nzint" integers nil)
-    (minus_nzrat_is_nzrat application-judgement "nzrat" rationals nil)
-    (minus_nzreal_is_nzreal application-judgement "nzreal" real_types
-     nil)
     (real_minus_real_is_real application-judgement "real" reals nil)
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
@@ -877,7 +945,10 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (divide subtype
+    "(# value := number_fields./(measurements.x`value, measurements.y`value), system := IF measurements.preferred_system?(measurements.x, measurements.y) THEN measurements.x`system ELSE measurements.y`system ENDIF, scaling := number_fields./(measurements.x`scaling, measurements.y`scaling), length_dim := (number_fields.-)(measurements.x`length_dim, measurements.y`length_dim), time_dim := (number_fields.-)(measurements.x`time_dim, measurements.y`time_dim), mass_dim := (number_fields.-)(measurements.x`mass_dim, measurements.y`mass_dim), current_dim := (number_fields.-)(measurements.x`current_dim, measurements.y`current_dim), temp_dim := (number_fields.-)(measurements.x`temp_dim, measurements.y`temp_dim), intens_dim := (number_fields.-)(measurements.x`intens_dim, measurements.y`intens_dim), angle_dim := (number_fields.-)(measurements.x`angle_dim, measurements.y`angle_dim) #)"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.y, m)}")))
  (inverse_mult_TCC1 0
   (inverse_mult_TCC1-1 nil 3645147249 ("" (subtype-tcc) nil nil)
    ((zero_measurement const-decl "measurement" measurements nil)
@@ -885,7 +956,10 @@
     (/= const-decl "boolean" notequal nil)
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (inverse_mult subtype
+    "(measurements.unit_measurement WITH [`system := measurements.n0x`system])"
+    "valid_measurement")))
  (inverse_mult_TCC2 0
   (inverse_mult_TCC2-1 nil 3646655874 ("" (subtype-tcc) nil nil)
    ((zero_measurement const-decl "measurement" measurements nil)
@@ -894,7 +968,9 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (inverse_mult subtype "measurements.n0x"
+    "{m: measurements.nzmeasurement | measurements.system_match?((measurements.unit_measurement WITH [`system := measurements.n0x`system]), m)}")))
  (inverse_mult 0
   (inverse_mult-1 nil 3645148270 ("" (grind) nil nil)
    ((zero_measurement const-decl "measurement" measurements nil)
@@ -932,9 +1008,13 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (divide subtype
+    "measurements.x WITH [`value := number_fields./(measurements.x`value, measurements.y)]"
+    "{m: measurements.valid_measurement | measurements.unit_match?(measurements.x, m)}")))
  (divide_TCC4 0
-  (divide_TCC4-1 nil 3645225232 ("" (subtype-tcc) nil nil) nil nil))
+  (divide_TCC4-1 nil 3645225232 ("" (subtype-tcc) nil nil) nil nil
+   (divide subtype "measurements.y`value" "nznum")))
  (divide_TCC5 0
   (divide_TCC5-1 nil 3645225232 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -957,7 +1037,10 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (divide subtype
+    "(# value := number_fields./(measurements.x, measurements.y`value), system := measurements.y`system, scaling := number_fields./(1, measurements.y`scaling), length_dim := , time_dim := , mass_dim := , current_dim := , temp_dim := , intens_dim := , angle_dim :=  #)"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.y, m)}")))
  (mr_inverse_mult 0
   (mr_inverse_mult-1 nil 3645148613 ("" (grind) nil nil)
    ((/ const-decl "{m: valid_measurement | system_match?(y, m)}"
@@ -973,6 +1056,21 @@
     (nzreal_div_nzreal_is_nzreal application-judgement "nzreal"
      real_types nil))
    shostak))
+ (equal_TCC1 0
+  (equal_TCC1-1 nil 3716918930 ("" (subtype-tcc) nil nil)
+   ((boolean nonempty-type-decl nil booleans nil)
+    (bool nonempty-type-eq-decl nil booleans nil)
+    (NOT const-decl "[bool -> bool]" booleans nil)
+    (real nonempty-type-from-decl nil reals nil)
+    (posreal nonempty-type-eq-decl nil real_types nil)
+    (system_enum type-decl nil measurements nil)
+    (measurement nonempty-type-eq-decl nil measurements nil)
+    (dimensionless? const-decl "bool" measurements nil)
+    (/= const-decl "boolean" notequal nil)
+    (zero_measurement const-decl "measurement" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (valid_measurement? const-decl "bool" measurements nil))
+   nil (equal subtype "measurements.x" "valid_measurement")))
  (trich_lt_TCC1 0
   (trich_lt_TCC1-1 nil 3645218206 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -997,7 +1095,9 @@
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil)
     (comparable? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (trich_lt subtype "measurements.x"
+    "{m: measurements.valid_measurement | measurements.comparable?(measurements.y, m)}")))
  (trich_lt 0
   (trich_lt-1 nil 3645218238 ("" (grind) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1023,6 +1123,20 @@
     (< const-decl "bool" measurements nil)
     (= const-decl "bool" measurements nil))
    shostak))
+ (trich_lt_dimensionless 0
+  (trich_lt_dimensionless-1 nil 3716919273
+   ("" (skeep 1 t) (("" (grind) nil nil)) nil)
+   ((real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (< const-decl "bool" measurements nil)
+    (= const-decl "bool" measurements nil)
+    (< const-decl "bool" measurements nil)
+    (base_value const-decl "real" measurements nil)
+    (dimensionless? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   shostak))
  (greaterp_TCC1 0
   (greaterp_TCC1-1 nil 3645224438 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1041,7 +1155,9 @@
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil)
     (comparable? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (greaterp subtype "measurements.x"
+    "{m: measurements.valid_measurement | measurements.comparable?(measurements.y, m)}")))
  (trich_gt 0
   (trich_gt-1 nil 3645218736 ("" (grind) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1068,8 +1184,25 @@
     (> const-decl "bool" measurements nil)
     (= const-decl "bool" measurements nil))
    shostak))
+ (trich_gt_dimensionless 0
+  (trich_gt_dimensionless-1 nil 3716919280
+   ("" (skeep 1 t) (("" (grind) nil nil)) nil)
+   ((real_lt_is_strict_total_order name-judgement
+     "(strict_total_order?[real])" real_props nil)
+    (real_times_real_is_real application-judgement "real" reals nil)
+    (> const-decl "bool" measurements nil)
+    (< const-decl "bool" measurements nil)
+    (= const-decl "bool" measurements nil)
+    (> const-decl "bool" measurements nil)
+    (< const-decl "bool" measurements nil)
+    (base_value const-decl "real" measurements nil)
+    (dimensionless? const-decl "bool" measurements nil)
+    (dimension_match? const-decl "bool" measurements nil)
+    (zero_measurement const-decl "measurement" measurements nil))
+   shostak))
  (sqrt_TCC1 0
-  (sqrt_TCC1-1 nil 3639470687 ("" (subtype-tcc) nil nil) nil nil))
+  (sqrt_TCC1-1 nil 3639470687 ("" (subtype-tcc) nil nil) nil nil
+   (sqrt subtype "measurements.x`value" "nonneg_real")))
  (sqrt_TCC2 0
   (sqrt_TCC2-1 nil 3639688275 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1095,7 +1228,10 @@
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (sqrt subtype
+         "(# value := sqrt.sqrt(measurements.x`value), system := measurements.x`system, scaling := sqrt.sqrt(measurements.x`scaling), length_dim := number_fields./(measurements.x`length_dim, 2), time_dim := number_fields./(measurements.x`time_dim, 2), mass_dim := number_fields./(measurements.x`mass_dim, 2), current_dim := number_fields./(measurements.x`current_dim, 2), temp_dim := number_fields./(measurements.x`temp_dim, 2), intens_dim := number_fields./(measurements.x`intens_dim, 2), angle_dim := number_fields./(measurements.x`angle_dim, 2) #)"
+         "{m: measurements.nnmeasurement | measurements.system_match?(measurements.x, m)}")))
  (expt_TCC1 0
   (expt_TCC1-1 nil 3639477842 ("" (subtype-tcc) nil nil)
    ((zero_measurement const-decl "measurement" measurements nil)
@@ -1103,7 +1239,10 @@
     (/= const-decl "boolean" notequal nil)
     (dimension_match? const-decl "bool" measurements nil)
     (valid_measurement? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (expt subtype
+         "measurements.unit_measurement WITH [`system := measurements.x`system]"
+         "{m: measurements.valid_measurement | measurements.x`system = m`system}")))
  (expt_TCC2 0
   (expt_TCC2-1 nil 3639477842 ("" (termination-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1124,9 +1263,12 @@
     (int_minus_int_is_int application-judgement "int" integers nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil (expt subtype "(number_fields.-)(measurements.n, 1)" "nat")))
  (expt_TCC3 0
-  (expt_TCC3-1 nil 3645133710 ("" (subtype-tcc) nil nil) nil nil))
+  (expt_TCC3-1 nil 3645133710 ("" (subtype-tcc) nil nil) nil nil
+   (expt termination
+         "measurements.expt(measurements.x, (number_fields.-)(measurements.n, 1))"
+         "nil")))
  (expt_TCC4 0
   (expt_TCC4-1 nil 3646662772 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1157,7 +1299,10 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (expt subtype
+         "measurements.expt(measurements.x, (number_fields.-)(measurements.n, 1))"
+         "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (expt_TCC5 0
   (expt_TCC5-1 nil 3646662772 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1189,7 +1334,10 @@
     (explicit_system? const-decl "bool" measurements nil)
     (* const-decl "{m: valid_measurement | system_match?(x, m)}"
        measurements nil))
-   nil))
+   nil
+   (expt subtype
+         "measurements.*(measurements.x, measurements.expt(measurements.x, (number_fields.-)(measurements.n, 1)))"
+         "{m: measurements.valid_measurement | measurements.x`system = m`system}")))
  (caret_TCC1 0
   (caret_TCC1-1 nil 3639477842 ("" (subtype-tcc) nil nil)
    ((boolean nonempty-type-decl nil booleans nil)
@@ -1220,7 +1368,9 @@
     (/= const-decl "boolean" notequal nil)
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (caret subtype "measurements.expt(measurements.x, measurements.i)"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (caret_TCC2 0
   (caret_TCC2-1 nil 3639477842
    ("" (skeep)
@@ -1276,7 +1426,7 @@
     (minus_int_is_int application-judgement "int" integers nil)
     (real_ge_is_total_order name-judgement "(total_order?[real])"
      real_props nil))
-   nil))
+   nil (caret subtype "" "nat")))
  (caret_TCC3 0
   (caret_TCC3-1 nil 3645225232
    ("" (skeep)
@@ -1363,7 +1513,9 @@
     (/= const-decl "boolean" notequal nil)
     (pred type-eq-decl nil defined_types nil)
     (nat_induction formula-decl nil naturalnumbers nil))
-   nil))
+   nil
+   (caret subtype "measurements.expt(measurements.x, )"
+    "nzmeasurement")))
  (caret_TCC4 0
   (caret_TCC4-1 nil 3646662772
    ("" (skeep)
@@ -1482,10 +1634,15 @@
      real_types nil)
     (minus_real_is_real application-judgement "real" reals nil)
     (explicit_system? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (caret subtype
+    "measurements./(1, measurements.expt(measurements.x, ))"
+    "{m: measurements.valid_measurement | measurements.system_match?(measurements.x, m)}")))
  (expt_pos_TCC1 0
   (expt_pos_TCC1-1 nil 3639836382 ("" (subtype-tcc) nil nil)
-   ((zero_value? const-decl "bool" measurements nil)) nil))
+   ((zero_value? const-decl "bool" measurements nil)) nil
+   (expt_pos subtype "measurements.i"
+    "{i: integers.int | booleans.OR(, reals.>=(i, 0))}")))
  (expt_pos 0
   (expt_pos-1 nil 3639487845
    ("" (skeep)
@@ -1593,7 +1750,9 @@
    ((sqrt const-decl "{m: nnmeasurement | system_match?(x, m)}"
           measurements nil)
     (zero_value? const-decl "bool" measurements nil))
-   nil))
+   nil
+   (sqrt_inverse_sq subtype "2"
+    "{i: integers.int | booleans.OR(, reals.>=(i, 0))}")))
  (sqrt_inverse_sq 0
   (sqrt_inverse_sq-1 nil 3645134161 ("" (grind) nil nil)
    ((nnmeasurement nonempty-type-eq-decl nil measurements nil)
@@ -1660,5 +1819,8 @@
     (explicit_system? const-decl "bool" measurements nil)
     (system_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
-   nil)))
+   nil
+   (abs subtype
+        "measurements.x WITH [`value := real_defs.abs(measurements.x`value)]"
+        "{m: measurements.nnmeasurement | measurements.unit_match?(measurements.x, m)}"))))
 
