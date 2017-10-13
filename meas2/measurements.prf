@@ -151,9 +151,7 @@
     (NOT const-decl "[bool -> bool]" booleans nil)
     (real nonempty-type-from-decl nil reals nil)
     (posreal nonempty-type-eq-decl nil real_types nil)
-    (measurement nonempty-type-eq-decl nil measurements nil)
-    (- const-decl "{m: measurement | unit_match?(x, m)}" measurements
-       nil)
+    (measurement nonempty-type-eq-decl nil measurements nil) nil
     (dimension_match? const-decl "bool" measurements nil)
     (unit_match? const-decl "bool" measurements nil))
    nil))
