@@ -53,6 +53,8 @@ BEGIN
     (x`intens_dim = y`intens_dim) AND
     (x`angle_dim = y`angle_dim);
 
+  dimensionless?(x: measurement): bool = dimension_match?(x, zero_measurement);
+
   unit_measurement: measurement =
     zero_measurement WITH [`value := 1];
 
@@ -228,22 +230,63 @@ BEGIN
   <(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
     base_value(x) < base_value(y);
 
+  <(x: (dimensionless?), y: real): bool =
+    (base_value(x) < y);
+
+  <(x: real, y: (dimensionless?)): bool =
+    (x < base_value(y));
+
   trich_lt: LEMMA
     FORALL(x: measurement, y: {m: measurement | comparable?(x, m)}):
+      x < y OR x = y OR y < x;
+
+  trich_lt_dimensionless: LEMMA
+    FORALL(x: (dimensionless?), y: real):
       x < y OR x = y OR y < x;
 
   <=(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
     x < y OR x = y;
 
+  <=(x: (dimensionless?), y: real): bool =
+    x < y OR x = y;
+
+  <=(x: real, y: (dimensionless?)): bool =
+    x < y OR x = y;
+
   >(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
+    y < x;
+
+  >(x: (dimensionless?), y: real): bool =
+    y < x;
+
+  >(x: real, y: (dimensionless?)): bool =
     y < x;
 
   trich_gt: LEMMA
     FORALL(x: measurement, y: {m: measurement | comparable?(x, m)}):
       x > y OR x = y OR y > x;
 
+  trich_gt_dimensionless: LEMMA
+    FORALL(x: (dimensionless?), y: real):
+      x > y OR x = y OR y > x;
+
   >=(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
     y <= x;
+
+  >=(x: (dimensionless?), y: real): bool =
+    y <= x;
+
+  >=(x: real, y: (dimensionless?)): bool =
+    y <= x;
+
+  /=(x: measurement, y: {m: measurement | comparable?(x, m)}): bool =
+    NOT(y = x);
+
+  /=(x: (dimensionless?), y: real): bool =
+    NOT(y = x);
+
+  /=(x: real, y: (dimensionless?)): bool =
+    NOT(y = x);
 
   % Taking sqrt of scaling might not always be the correct solution
   % Currently, however, I do not have a clear example where it is not
